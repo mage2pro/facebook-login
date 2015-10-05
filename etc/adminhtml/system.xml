@@ -35,16 +35,11 @@
                 https://mage2.pro/t/114
             -->
             <resource>Dfe_Facebook::config</resource>
-            <!--
-                2015-09-25
-                Первые 2 цифры sortOrder соответствуют порядковому номеру первой буквы модуля
-                в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
-            -->
             <group
                 id='credentials'
                 translate='label'
                 type='text'
-                sortOrder='30'
+                sortOrder='1'
                 showInDefault='1'
                 showInWebsite='1'
                 showInStore='1'
@@ -73,6 +68,35 @@
                 >
                     <label>App Secret</label>
                     <comment><![CDATA[<a href="https://discourse.pro/t/15">how to get it?</a>]]></comment>
+                </field>
+            </group>
+            <!--
+                2015-09-25
+                Первые 2 цифры sortOrder соответствуют порядковому номеру первой буквы модуля
+                в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
+            -->
+            <group
+                id='login'
+                translate='label'
+                type='text'
+                sortOrder='60'
+                showInDefault='1'
+                showInWebsite='1'
+                showInStore='1'
+            >
+                <label>Frontend Login</label>
+                <field
+                    id='enable'
+                    translate='label'
+                    type='select'
+                    sortOrder='1'
+                    showInDefault='1'
+                    showInWebsite='1'
+                    showInStore='1'
+                >
+                    <label>Enable?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[]]></comment>
                 </field>
             </group>
             <!--

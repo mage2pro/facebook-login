@@ -16,12 +16,7 @@
 	<body>
 		<referenceContainer name='root'>
 			<block
-				class='Dfe\Facebook\Block\Metadata'
-				name='Dfe_Facebook_Block_Metadata'
-				ifconfig='dfe_facebook/like/product'
-			/>
-			<block
-				class='Dfe\Facebook\Block\Template'
+				class='Dfe\Facebook\Block\Init'
 				name='Dfe_Facebook_Block_Init'
 				template='init.phtml'
 				ifconfig='dfe_facebook/like/product'
