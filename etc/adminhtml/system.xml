@@ -75,6 +75,35 @@
                     <comment><![CDATA[<a href="https://discourse.pro/t/15">how to get it?</a>]]></comment>
                 </field>
             </group>
+            <!--
+                2015-09-25
+                Первые 2 цифры sortOrder соответствуют порядковому номеру первой буквы модуля
+                в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
+            -->
+            <group
+                id='like'
+                translate='label'
+                type='text'
+                sortOrder='120'
+                showInDefault='1'
+                showInWebsite='1'
+                showInStore='1'
+            >
+                <label>«Like» Button</label>
+                <field
+                    id='product'
+                    translate='label'
+                    type='select'
+                    sortOrder='1'
+                    showInDefault='1'
+                    showInWebsite='1'
+                    showInStore='1'
+                >
+                    <label>Enable on Product Pages?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[]]></comment>
+                </field>
+            </group>
         </section>
     </system>
 </config>
