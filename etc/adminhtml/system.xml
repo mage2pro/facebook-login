@@ -19,75 +19,60 @@
             в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
         -->
         <section
-            id='dfe_login'
+            id='dfe_facebook'
             translate='label'
             type='text'
-            sortOrder='120'
+            sortOrder='60'
             showInDefault='1'
             showInWebsite='1'
             showInStore='1'
         >
             <tab>_df</tab>
-            <label>Login</label>
+            <label>Facebook</label>
             <class>separator-top</class>
             <!--
                 2015-10-05
                 https://mage2.pro/t/114
             -->
-            <resource>Dfe_Login::config</resource>
+            <resource>Dfe_Facebook::config</resource>
             <!--
                 2015-09-25
                 Первые 2 цифры sortOrder соответствуют порядковому номеру первой буквы модуля
                 в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
             -->
             <group
-                id='facebook'
+                id='credentials'
                 translate='label'
                 type='text'
-                sortOrder='60'
+                sortOrder='30'
                 showInDefault='1'
                 showInWebsite='1'
                 showInStore='1'
             >
-                <label>Facebook</label>
-                <field
-                    id='enable'
-                    translate='label'
-                    type='select'
-                    sortOrder='1'
-                    showInDefault='1'
-                    showInWebsite='1'
-                    showInStore='1'
-                >
-                    <label>Enable?</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[]]></comment>
-                </field>
+                <label>OAuth Credentials</label>
                 <field
                     id='app_id'
                     translate='label'
                     type='text'
-                    sortOrder='2'
+                    sortOrder='1'
                     showInDefault='1'
                     showInWebsite='1'
                     showInStore='1'
                 >
                     <label>App ID</label>
                     <comment><![CDATA[<a href="https://discourse.pro/t/15">how to get it?</a>]]></comment>
-                    <depends><field id='enable'>1</field></depends>
                 </field>
                 <field
                     id='app_secret'
                     translate='label'
                     type='obscure'
-                    sortOrder='3'
+                    sortOrder='2'
                     showInDefault='1'
                     showInWebsite='1'
                     showInStore='1'
                 >
                     <label>App Secret</label>
                     <comment><![CDATA[<a href="https://discourse.pro/t/15">how to get it?</a>]]></comment>
-                    <depends><field id='enable'>1</field></depends>
                 </field>
             </group>
         </section>
