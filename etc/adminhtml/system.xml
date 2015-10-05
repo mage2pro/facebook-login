@@ -89,7 +89,7 @@
                 showInWebsite='1'
                 showInStore='1'
             >
-                <label>«Like» Button</label>
+                <label><![CDATA[Like & Share]]></label>
                 <field
                     id='product'
                     translate='label'

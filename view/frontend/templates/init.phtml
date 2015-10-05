@@ -1,8 +1,10 @@
 <script>
 	window.fbAsyncInit = function() {
-		debugger;
-		FB.init({appId: '970040746390692', xfbml: true, version: 'v2.4'});
-		console.log('initialized!');
+		FB.init({
+			appId: '<?php echo \Dfe\Facebook\Settings\Credentials::s()->appId(); ?>'
+			, xfbml: true
+			, version: 'v2.4'
+		});
 	};
 	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];

@@ -2,11 +2,27 @@
 <page 
 	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
 	xsi:noNamespaceSchemaLocation='../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd'>
+	<head>
+		<!--
+			2015-10-05
+			На текущий момент ядро никак не использует возможность defer,
+			но она прекрасно работает:
+			выполнение нашего скрипта замораживается до окончания загрузки страницы.
+            http://www.w3schools.com/tags/att_script_defer.asp
+		-->
+		<script src='Dfe_Facebook::main.js' defer='defer'/>
+		<css src='Dfe_Facebook::main.css'/>
+	</head>
 	<body>
 		<referenceContainer name='root'>
 			<block
-				class='Dfe\Facebook\Block\Init'
-				name='Dfe_Facebook_Block-Init'
+				class='Dfe\Facebook\Block\Metadata'
+				name='Dfe_Facebook_Block_Metadata'
+				ifconfig='dfe_facebook/like/product'
+			/>
+			<block
+				class='Dfe\Facebook\Block\Template'
+				name='Dfe_Facebook_Block_Init'
 				template='init.phtml'
 				ifconfig='dfe_facebook/like/product'
 			/>
