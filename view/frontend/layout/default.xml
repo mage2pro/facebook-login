@@ -22,5 +22,14 @@
 				ifconfig='dfe_facebook/like/product'
 			/>
 		</referenceContainer>
+		<referenceBlock name='header.links'>
+			<block
+				class='Dfe\Facebook\Block\Login'
+				name='Dfe_Facebook_Block_Login'
+				template='Dfe_Facebook::login.phtml'
+				ifconfig='dfe_facebook/login/enable'
+				before="-"
+			/>
+		</referenceBlock>
 	</body>
 </page>

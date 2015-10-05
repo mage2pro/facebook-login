@@ -2,53 +2,38 @@ require([
 	'jquery'
 	, 'jquery/jquery.cookie'
 ], function($) {$(function() {
-	var process = function() {
-		// This is called with the results from from FB.getLoginStatus().
-		function statusChangeCallback(response) {
-			console.log('statusChangeCallback');
-			console.log(response);
-			// The response object is returned with a status field that lets the
-			// app know the current login status of the person.
-			// Full docs on the response object can be found in the documentation
-			// for FB.getLoginStatus().
-			if (response.status === 'connected') {
-				// Logged into your app and Facebook.
-				testAPI();
-			} else if (response.status === 'not_authorized') {
-				// The person is logged into Facebook, but not your app.
-				document.getElementById('status').innerHTML = 'Please log ' +
-				'into this app.';
-			} else {
-				// The person is not logged into Facebook, so we're not sure if
-				// they are logged into this app or not.
-				document.getElementById('status').innerHTML = 'Please log ' +
-				'into Facebook.';
-			}
-		}
-		// This function is called when someone finishes with the Login
-		// Button.  See the onlogin handler attached to it in the sample
-		// code below.
-		function checkLoginState() {
-			FB.getLoginStatus(function(response) {
-				statusChangeCallback(response);
-			});
-		}
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		});
-		// Here we run a very simple test of the Graph API after login is
-		// successful.  See statusChangeCallback() for when this call is made.
-		function testAPI() {
-			console.log('Welcome!  Fetching your information.... ');
-			FB.api('/me', function(response) {
-			console.log('Successful login for: ' + response.name);
-			document.getElementById('status').innerHTML =
-			'Thanks for logging in, ' + response.name + '!';
-			});
-		}
-	};
+	var process = function() {};
 	'undefined' !== typeof FB && FB.dfInitialized
 		? process()
 		: document.addEventListener('dfeFacebookInitialized', process)
 	;
 });});
+window.dfeFacebookLogin = function() {
+	var setStatus = function(status) {jQuery('#status').html(status);};
+	FB.getLoginStatus(function(response) {
+		switch (response.status) {
+			case 'connected':
+				var fields = [
+					'email'
+					,'first_name'
+					,'gender'
+					,'last_name'
+					,'locale'
+					,'middle_name'
+					,'name'
+					,'name_format'
+					,'timezone'
+				];
+				FB.api('/me', {fields: fields}, function(response) {
+					console.log(response);
+					setStatus(response.name);
+			    });
+				break;
+			case 'not_authorized':
+				setStatus('Please log into this app.');
+				break;
+			default:
+				setStatus('Please log into Facebook.');
+		}
+	});
+};
