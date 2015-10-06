@@ -1,0 +1,14 @@
+<?php /** @var \Dfe\Facebook\Block\Backend\Info $this */ ?>
+<script>(function($){$(function() {
+	/** @type {?Number} */
+	var id = $('meta[name=dfe_facebook_id]').attr('content');
+	if (id) {
+		$('.customer-information tbody:first').append(
+			$('<tr>')
+				.append($('<th>').append($.mage.__('Facebook Profile')))
+				.append($('<td>').append(
+					$('<a>').attr('href', 'https://www.facebook.com/' + id).html(id)
+				))
+		);
+	}
+})})(jQuery);</script>
