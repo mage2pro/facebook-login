@@ -13,7 +13,7 @@ class InstallData implements InstallDataInterface {
 	 * @return void
 	 */
 	public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context) {
-		df_eav()->addAttribute('customer', 'dfe_facebook_id', array(
+		df_eav()->addAttribute('customer', InstallSchema::F__FACEBOOK_ID, array(
 			'type' => 'static',
 			'label' => 'Facebook ID',
 			'input' => 'text',
@@ -22,6 +22,13 @@ class InstallData implements InstallDataInterface {
 			'visible' => false,
 			'system' => false,
 			'required' => false
+		));
+		/** @var int $attributeId */
+		$attributeId = rm_first(rm_fetch_col(
+			'eav_attribute', 'attribute_id', 'attribute_code', InstallSchema::F__FACEBOOK_ID
+		));
+		rm_conn()->insert(rm_table('customer_form_attribute'), array(
+			'form_code' => 'adminhtml_customer', 'attribute_id' => $attributeId
 		));
 	}
 }
