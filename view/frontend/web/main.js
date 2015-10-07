@@ -16,8 +16,10 @@ require(['jquery', 'jquery/jquery.cookie'], function($) {$(function() {
 						}
 					};
 					addFields({
-						accessToken: response.authResponse.accessToken
-						,url: window.location.href
+						url: window.location.href
+						,token: response.authResponse.accessToken
+						/** @link https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus */
+						,user: response.authResponse.userID
 					});
 					$('body').append($form);
 					$form.submit();
