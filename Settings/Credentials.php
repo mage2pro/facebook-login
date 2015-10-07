@@ -5,7 +5,7 @@ class Credentials extends \Df\Core\Settings {
 	public function appId() {return $this->v('app_id');}
 
 	/** @return string */
-	public function appSecret() {return $this->v('app_secret');}
+	public function appSecret() {return $this->p('app_secret');}
 
 	/**
 	 * @override
