@@ -6,7 +6,6 @@
 		,"magento/framework": ">=1.0.0-beta"
 		,"magento/magento-composer-installer": "*"
 		,"df/core": "dev-master"
-		,"league/oauth2-facebook": "~1.0"
 	},
 	"extra": {"map": [["*", "Dfe/Facebook"]]}
 }
