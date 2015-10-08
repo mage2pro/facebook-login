@@ -42,7 +42,7 @@
                 sortOrder='1'
                 showInDefault='1'
                 showInWebsite='1'
-                showInStore='1'
+                showInStore='0'
             >
                 <label>OAuth Credentials</label>
                 <field
@@ -52,7 +52,7 @@
                     sortOrder='1'
                     showInDefault='1'
                     showInWebsite='1'
-                    showInStore='1'
+                    showInStore='0'
                 >
                     <label>App ID</label>
                     <comment><![CDATA[<a href="https://discourse.pro/t/15">how to get it?</a>]]></comment>
@@ -64,7 +64,7 @@
                     sortOrder='2'
                     showInDefault='1'
                     showInWebsite='1'
-                    showInStore='1'
+                    showInStore='0'
                 >
                     <label>App Secret</label>
                     <comment><![CDATA[<a href="https://discourse.pro/t/15">how to get it?</a>]]></comment>

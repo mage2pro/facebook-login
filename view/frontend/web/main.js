@@ -1,9 +1,18 @@
 require([
 	'jquery'
 	, 'Magento_Customer/js/customer-data'
-], function($, customerData, sectionConfig) {$(function() {
+], function($, customerData) {$(function() {
+	/** @type {jQuery} HTMLLIElement */
+	var $li = $('li.dfe-facebook-login');
+	debugger;
+	$li.removeAttr('style');
 	window.dfeFacebookLogin = function() {
-		var setStatus = function(status) {jQuery('#status').html(status);};
+		/**
+		 * 2015-10-08
+		 * Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
+		 */
+		debugger;
+		$li.hide();
 		FB.getLoginStatus(function(response) {
 			switch (response.status) {
 				case 'connected':
@@ -39,10 +48,12 @@ require([
 					$form.submit();
 					break;
 				case 'not_authorized':
-					setStatus('Please log into this app.');
+					$li.show();
+					//setStatus('Please log into this app.');
 					break;
 				default:
-					setStatus('Please log into Facebook.');
+					$li.show();
+					//setStatus('Please log into Facebook.');
 			}
 		});
 	};
