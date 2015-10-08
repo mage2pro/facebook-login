@@ -7,25 +7,33 @@ class Index extends \Magento\Framework\App\Action\Action {
 	 * @return \Magento\Framework\Controller\Result\Redirect
 	 */
 	public function execute() {
+		/** @var \Magento\Customer\Model\Session $session */
+		$session = df_o('Magento\Customer\Model\Session');
+		/**
+		 * @used-by \Magento\Customer\Model\Account\Redirect::getRedirect()
+		 * @link https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Model/Account/Redirect.php#L101
+		 */
+		$session->setBeforeAuthUrl(rm_request(\Magento\Customer\Model\Url::REFERER_QUERY_PARAM_NAME));
 		if ($this->customer()->getId()) {
-			/** @var \Magento\Customer\Model\Session $session */
-			$session = df_o('Magento\Customer\Model\Session');
 			/**
 			 * 2015-10-08
 			 * По аналогии с @see \Magento\Customer\Controller\Account\LoginPost::execute()
 			 * @link https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Controller/Account/LoginPost.php#L84-L85
-			 * Обратите внимание, что в нашем случае вызывать
-			 * @see \Magento\Customer\Model\Session::regenerateId() не нужно,
-			 * потому что этот метод уже вызывается из
-			 * @uses \Magento\Customer\Model\Session::setCustomerAsLoggedIn()
 			 */
-			$session->setCustomerAsLoggedIn($this->customer());
+			$session->setCustomerDataAsLoggedIn($this->customer()->getDataModel());
+			$session->regenerateId();
 		}
 		else {
 
 		}
-		/** @var string $response */
-		return $this->resultRedirectFactory->create()->setUrl(rm_request('url'));
+		/** @var \Magento\Customer\Model\Account\Redirect $redirect */
+		$redirect = df_o('Magento\Customer\Model\Account\Redirect');
+		/**
+		 * 2015-10-08
+		 * По аналогии с @see \Magento\Customer\Controller\Account\LoginPost::execute()
+		 * @link https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Controller/Account/LoginPost.php#L110
+		 */
+		return $redirect->getRedirect();
 	}
 
 	/** @return \Magento\Customer\Model\Customer */
@@ -73,11 +81,6 @@ class Index extends \Magento\Framework\App\Action\Action {
 				 * @link https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Model/AccountManagement.php#L382-L385
 				 */
 				df_dispatch('customer_customer_authenticated', ['model' => $result, 'password' => '']);
-				/**
-				 * По аналогии с @see \Magento\Customer\Model\AccountManagement::authenticate()
-				 * @link https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Model/AccountManagement.php#L387
-				 */
-				df_dispatch('customer_data_object_login', ['customer' => $result]);
 				/**
 				 * 2015-10-08
 				 * Не знаю, нужно ли это на самом деле.

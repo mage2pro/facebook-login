@@ -16,7 +16,13 @@ require(['jquery', 'jquery/jquery.cookie'], function($) {$(function() {
 						}
 					};
 					addFields({
-						url: window.location.href
+						/**
+						 * 2015-10-08
+						 * Этот параметр должен называться именно так!
+						 * @used-by \Magento\Customer\Model\Account\Redirect::processLoggedCustomer()
+						 * @link https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Model/Account/Redirect.php#L177-L183
+						 */
+						referer: window.location.href
 						,token: response.authResponse.accessToken
 						/** @link https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus */
 						,user: response.authResponse.userID
