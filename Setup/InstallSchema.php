@@ -24,5 +24,5 @@ class InstallSchema implements InstallSchemaInterface {
 	 * @used-by \Dfe\Facebook\Setup\InstallSchema::install()
 	 * @used-by \Dfe\Facebook\Setup\InstallData::install()
 	 */
-	const F__FACEBOOK_ID = 'dfe_facebook_id';
+	const F__FACEBOOK_ID = 'df_facebook_id';
 }

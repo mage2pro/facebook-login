@@ -25,7 +25,7 @@ class InstallData implements InstallDataInterface {
 		));
 		/** @var int $attributeId */
 		$attributeId = rm_first(rm_fetch_col(
-			'eav_attribute', 'attribute_id', 'attribute_code', InstallSchema::F__FACEBOOK_ID
+			'eav_attribute', 'attribute_id', 'attribute_code', \Df\Customer\Model\Customer::P__FACEBOOK_ID
 		));
 		rm_conn()->insert(rm_table('customer_form_attribute'), array(
 			'form_code' => 'adminhtml_customer', 'attribute_id' => $attributeId
