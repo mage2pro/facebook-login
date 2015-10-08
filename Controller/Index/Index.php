@@ -9,11 +9,6 @@ class Index extends \Magento\Framework\App\Action\Action {
 	public function execute() {
 		/** @var \Magento\Customer\Model\Session $session */
 		$session = df_o('Magento\Customer\Model\Session');
-		/**
-		 * @used-by \Magento\Customer\Model\Account\Redirect::getRedirect()
-		 * @link https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Model/Account/Redirect.php#L101
-		 */
-		$session->setBeforeAuthUrl(rm_request(\Magento\Customer\Model\Url::REFERER_QUERY_PARAM_NAME));
 		if ($this->customer()->getId()) {
 			/**
 			 * 2015-10-08
@@ -22,18 +17,20 @@ class Index extends \Magento\Framework\App\Action\Action {
 			 */
 			$session->setCustomerDataAsLoggedIn($this->customer()->getDataModel());
 			$session->regenerateId();
+			/**
+			 * По аналогии с @see \Magento\Customer\Model\Account\Redirect::updateLastCustomerId()
+			 * Напрямую тот метод вызвать не можем, потому что он protected,
+			 * а использовать весь класс @see \Magento\Customer\Model\Account\Redirect пробовал,
+			 * но оказалось неудобно из-за слишком сложной процедуры перенаправлений.
+			 */
+			if ($session->getLastCustomerId() != $session->getId()) {
+				$session->unsBeforeAuthUrl()->setLastCustomerId($session->getId());
+			}
 		}
 		else {
 
 		}
-		/** @var \Magento\Customer\Model\Account\Redirect $redirect */
-		$redirect = df_o('Magento\Customer\Model\Account\Redirect');
-		/**
-		 * 2015-10-08
-		 * По аналогии с @see \Magento\Customer\Controller\Account\LoginPost::execute()
-		 * @link https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Controller/Account/LoginPost.php#L110
-		 */
-		return $redirect->getRedirect();
+		return $this->resultRedirectFactory->create()->setUrl(rm_request('url'));
 	}
 
 	/** @return \Magento\Customer\Model\Customer */
