@@ -4,20 +4,15 @@ require([
 ], function($, customerData) {$(function() {
 	/** @type {jQuery} HTMLLIElement */
 	var $li = $('li.dfe-facebook-login');
-	debugger;
 	$li.removeAttr('style');
 	window.dfeFacebookLogin = function() {
-		/**
-		 * 2015-10-08
-		 * Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
-		 */
-		debugger;
+		// 2015-10-08
+		// Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
 		$li.hide();
 		FB.getLoginStatus(function(response) {
 			debugger;
 			switch (response.status) {
 				case 'connected':
-					//$.getJSON('https://graph.facebook.com/me')
 					/**
 					 * 2015-10-08
 					 * Мы вынуждены вручную удалять устаревшие данные посетителя из Local Storage,
@@ -49,6 +44,14 @@ require([
 					$('body').append($form);
 					$form.submit();
 					break;
+				/**
+				 * 2015-10-10
+				 * Так и не понял, как получить эти статусы.
+				 * Вроде и отказывал приложению в авторизации,
+				 * и отказывал Facebook в аутентификации,
+				 * но в обоих этих случаях окно авторизации просто молча закрывается,
+				 * а сюда управление не попадает.
+				 */
 				case 'not_authorized':
 					$li.show();
 					//setStatus('Please log into this app.');

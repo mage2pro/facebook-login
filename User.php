@@ -45,6 +45,7 @@ class User extends \Df\Core\O {
 	/**
 	 * Общую схему запрсоа взял здесь: https://github.com/thephpleague/oauth2-facebook
 	 * @return array(string => mixed)
+	 * @throws Exception
 	 */
 	private function responseA() {
 		if (!isset($this->{__METHOD__})) {
@@ -106,6 +107,11 @@ class User extends \Df\Core\O {
 			/** @var array(string => mixed) $result */
 			$result = json_decode($responseAsJson, true);
 			df_result_array($result);
+			/** @var array(string => string)|null $error */
+			$error = df_a($result, 'error');
+			if ($error) {
+				throw new Exception($error);
+			}
 			$this->{__METHOD__} = $result;
 		}
 		return $this->{__METHOD__};

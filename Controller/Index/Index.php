@@ -7,28 +7,33 @@ class Index extends \Magento\Framework\App\Action\Action {
 	 * @return \Magento\Framework\Controller\Result\Redirect
 	 */
 	public function execute() {
-		/** @var \Magento\Customer\Model\Session $session */
-		$session = df_o('Magento\Customer\Model\Session');
-		if ($this->customer()->getId()) {
-			/**
-			 * 2015-10-08
-			 * По аналогии с @see \Magento\Customer\Controller\Account\LoginPost::execute()
-			 * https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Controller/Account/LoginPost.php#L84-L85
-			 */
-			$session->setCustomerDataAsLoggedIn($this->customer()->getDataModel());
-			$session->regenerateId();
-			/**
-			 * По аналогии с @see \Magento\Customer\Model\Account\Redirect::updateLastCustomerId()
-			 * Напрямую тот метод вызвать не можем, потому что он protected,
-			 * а использовать весь класс @see \Magento\Customer\Model\Account\Redirect пробовал,
-			 * но оказалось неудобно из-за слишком сложной процедуры перенаправлений.
-			 */
-			if ($session->getLastCustomerId() != $session->getId()) {
-				$session->unsBeforeAuthUrl()->setLastCustomerId($session->getId());
+		try {
+			/** @var \Magento\Customer\Model\Session $session */
+			$session = df_o('Magento\Customer\Model\Session');
+			if ($this->customer()->getId()) {
+				/**
+				 * 2015-10-08
+				 * По аналогии с @see \Magento\Customer\Controller\Account\LoginPost::execute()
+				 * https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Controller/Account/LoginPost.php#L84-L85
+				 */
+				$session->setCustomerDataAsLoggedIn($this->customer()->getDataModel());
+				$session->regenerateId();
+				/**
+				 * По аналогии с @see \Magento\Customer\Model\Account\Redirect::updateLastCustomerId()
+				 * Напрямую тот метод вызвать не можем, потому что он protected,
+				 * а использовать весь класс @see \Magento\Customer\Model\Account\Redirect пробовал,
+				 * но оказалось неудобно из-за слишком сложной процедуры перенаправлений.
+				 */
+				if ($session->getLastCustomerId() != $session->getId()) {
+					$session->unsBeforeAuthUrl()->setLastCustomerId($session->getId());
+				}
+			}
+			else {
+
 			}
 		}
-		else {
-
+		catch (\Exception $e) {
+			df_message()->addErrorMessage(rm_ets($e));
 		}
 		return $this->resultRedirectFactory->create()->setUrl(rm_request('url'));
 	}
