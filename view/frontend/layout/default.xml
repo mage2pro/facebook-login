@@ -19,16 +19,15 @@
 				class='Dfe\Facebook\Block\Init'
 				name='Dfe_Facebook_Block_Init'
 				template='init.phtml'
-				ifconfig='dfe_facebook/like/product'
 			/>
 		</referenceContainer>
 		<referenceBlock name='header.links'>
 			<block
 				class='Dfe\Facebook\Block\Login'
 				name='Dfe_Facebook_Block_Login'
-				template='Dfe_Facebook::login.phtml'
+				template='login.phtml'
 				ifconfig='dfe_facebook/login/enable'
-				before="-"
+				before='-'
 			/>
 		</referenceBlock>
 	</body>

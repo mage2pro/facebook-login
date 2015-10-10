@@ -5,7 +5,6 @@
 		"php": ">=5.5.0"
 		,"magento/framework": ">=1.0.0-beta"
 		,"magento/magento-composer-installer": "*"
-		,"df/config": "dev-master"
 		,"df/core": "dev-master"
 	},
 	"extra": {"map": [["*", "Dfe/Facebook"]]}

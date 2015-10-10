@@ -65,7 +65,6 @@
                     showInDefault='1'
                     showInWebsite='1'
                     showInStore='0'
-                    autocomplete='new-password'
                 >
                     <label>App Secret</label>
                     <comment><![CDATA[<a href='https://discourse.pro/t/15'>how to get it?</a>]]></comment>
