@@ -14,8 +14,11 @@ class InstallData implements InstallDataInterface {
 	 */
 	public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context) {
 		$this->attribute(InstallSchema::F__FULL_NAME, 'Facebook User Full Name');
-		$this->attribute(InstallSchema::F__URL, 'Facebook User URL');
-		$this->attribute(InstallSchema::F__TOKEN_FOR_BUSINESS, 'Facebook User Token for Business');
+		$this->attribute(InstallSchema::F__PICTURE, 'Facebook User Profile Picture');
+		$this->attribute(
+			InstallSchema::F__LONG_LIVED_ACCESS_TOKEN, 'Facebook API Long-lived Access Token'
+		);
+		$this->attribute(InstallSchema::F__TOKEN_FOR_BUSINESS, 'Facebook API Token for Business');
 	}
 
 	/**
@@ -27,7 +30,7 @@ class InstallData implements InstallDataInterface {
 	private function attribute($name, $label) {
 		/** @var int $ordering */
 		static $ordering = 1000;
-		df_eav()->addAttribute('customer', $name, array(
+		df_eav()->addAttribute('customer', $name, [
 			'type' => 'static',
 			'label' => $label,
 			'input' => 'text',
@@ -36,7 +39,7 @@ class InstallData implements InstallDataInterface {
 			'visible' => false,
 			'system' => false,
 			'required' => false
-		));
+		]);
 		/** @var int $attributeId */
 		$attributeId = rm_first(rm_fetch_col('eav_attribute', 'attribute_id', 'attribute_code', $name));
 		rm_conn()->insert(rm_table('customer_form_attribute'), array(

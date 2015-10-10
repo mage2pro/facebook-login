@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\Facebook\Controller\Index;
+use Dfe\Facebook\Setup\InstallSchema;
 class Index extends \Magento\Framework\App\Action\Action {
 	/**
 	 * @override
@@ -47,23 +48,22 @@ class Index extends \Magento\Framework\App\Action\Action {
 			$result = rm_om()->create('Magento\Customer\Model\Customer');
 			/** @var \Magento\Framework\DB\Select $select */
 			$select = rm_conn()->select()->from($resource->getEntityTable(), [$resource->getEntityIdField()]);
+			/**
+			 * 2015-10-10
+			 * 1) Полученный нами от браузера идентификатор пользователя Facebook
+			 * не является глобальным: он разный для разных приложений.
+			 * 2) Я так понял, что нельзя использовать одно и то же приложение Facebook
+			 * сразу на нескольких доменах.
+			 * 3) Из пунктов 1 и 2 следует, что нам нельзя идентифицировать пользователя Facebook
+			 * по его идентификатору: ведь Magento — многодоменная система.
+			 *
+			 * Есть выход: token_for_business
+			 * https://developers.facebook.com/docs/apps/upgrading#upgrading_v2_0_user_ids
+			 * https://developers.facebook.com/docs/apps/for-business
+			 * https://business.facebook.com/
+			 */
 			$select->where(
-				'? = ' . \Dfe\Facebook\Setup\InstallSchema::F__TOKEN_FOR_BUSINESS
-				/**
-				 * 2015-10-10
-				 * 1) Полученный нами от браузера идентификатор пользователя Facebook
-				 * не является глобальным: он разный для разных приложений.
-				 * 2) Я так понял, что нельзя использовать одно и то же приложение Facebook
-				 * сразу на нескольких доменах.
-				 * 3) Из пунктов 1 и 2 следует, что нам нельзя идентифицировать пользователя Facebook
-				 * по его идентификатору: ведь Magento — многодоменная система.
-				 *
-				 * Есть выход: token_for_business
-				 * https://developers.facebook.com/docs/apps/upgrading#upgrading_v2_0_user_ids
-				 * https://developers.facebook.com/docs/apps/for-business
-				 * https://business.facebook.com/
-				 */
-				, $this->fbUser()->tokenForBusiness()
+				'? = ' . InstallSchema::F__TOKEN_FOR_BUSINESS, $this->fbUser()->tokenForBusiness()
 			);
 			/**
 			 * @see \Magento\Customer\Model\Resource\Customer::loadByEmail()
@@ -82,6 +82,15 @@ class Index extends \Magento\Framework\App\Action\Action {
 			$customerId = rm_conn()->fetchOne($select);
 			if ($customerId) {
 				$resource->load($result, $customerId);
+				/**
+				 * 2015-10-10
+				 * Сразу обновляем в нашей БД полученую от Facebook информацию о покупателе.
+				 */
+				$result->addData([
+					InstallSchema::F__FULL_NAME => $this->fbUser()->nameFull()
+					, InstallSchema::F__LONG_LIVED_ACCESS_TOKEN => $this->fbUser()->longLivedAccessToken()
+					, InstallSchema::F__PICTURE => $this->fbUser()->picture()
+				])->save();
 				/**
 				 * 2015-10-08
 				 * Ядро здесь делает так:
