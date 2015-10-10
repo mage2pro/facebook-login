@@ -49,7 +49,11 @@ class User extends \Df\Core\O {
 	/** @return string */
 	public function nameFull() {return $this->r('name');}
 
-	/** @return string */
+	/**
+	 * https://developers.facebook.com/docs/graph-api/reference/user/picture/
+	 * https://developers.facebook.com/docs/graph-api/reference/profile-picture-source/
+	 * @return string
+	 */
 	public function picture() {
 		if (!isset($this->{__METHOD__})) {
 			/** @var array(string => mixed) $response */
