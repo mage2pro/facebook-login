@@ -8,8 +8,4 @@
 		,"df/core": "dev-master"
 	},
 	"extra": {"map": [["*", "Dfe/Facebook"]]}
-	,"autoload": {
-		"files": ["registration.php"]
-		, "psr-4": {"Dfe\\Facebook\\": ""}
-	}
 }
