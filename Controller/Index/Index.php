@@ -42,8 +42,8 @@ class Index extends \Magento\Framework\App\Action\Action {
 	/** @return \Magento\Customer\Model\Customer */
 	private function customer() {
 		if (!isset($this->{__METHOD__})) {
-			/** @var \Magento\Customer\Model\Resource\Customer $resource */
-			$resource = df_o('Magento\Customer\Model\Resource\Customer');
+			/** @var \Magento\Customer\Model\ResourceModel\Customer $resource */
+			$resource = df_o('Magento\Customer\Model\ResourceModel\Customer');
 			/** @var \Magento\Customer\Model\Customer $result */
 			$result = rm_om()->create('Magento\Customer\Model\Customer');
 			/** @var \Magento\Framework\DB\Select $select */
@@ -66,14 +66,14 @@ class Index extends \Magento\Framework\App\Action\Action {
 				'? = ' . InstallSchema::F__TOKEN_FOR_BUSINESS, $this->fbUser()->tokenForBusiness()
 			);
 			/**
-			 * @see \Magento\Customer\Model\Resource\Customer::loadByEmail()
+			 * @see \Magento\Customer\Model\ResourceModel\Customer::loadByEmail()
 			 * https://github.com/magento/magento2/blob/2e2785cc6a78dc073a4d5bb5a88bd23161d3835c/app/code/Magento/Customer/Model/Resource/Customer.php#L215
 			 */
 			if ($result->getSharingConfig()->isWebsiteScope()) {
 				/**
 				 * @see \Magento\Customer\Model\CustomerRegistry::retrieveByEmail()
 				 * https://github.com/magento/magento2/blob/2e2785cc6a78dc073a4d5bb5a88bd23161d3835c/app/code/Magento/Customer/Model/CustomerRegistry.php#L104
-				 * @see \Magento\Customer\Model\Resource\Customer::loadByEmail()
+				 * @see \Magento\Customer\Model\ResourceModel\Customer::loadByEmail()
 				 * https://github.com/magento/magento2/blob/2e2785cc6a78dc073a4d5bb5a88bd23161d3835c/app/code/Magento/Customer/Model/Resource/Customer.php#L222
 				 */
 				$select->where('? = website_id', rm_store_m()->getStore()->getWebsiteId());
