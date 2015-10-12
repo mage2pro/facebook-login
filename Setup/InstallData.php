@@ -30,7 +30,7 @@ class InstallData implements InstallDataInterface {
 	private function attribute($name, $label) {
 		/** @var int $ordering */
 		static $ordering = 1000;
-		df_eav()->addAttribute('customer', $name, [
+		df_eav_setup()->addAttribute('customer', $name, [
 			'type' => 'static',
 			'label' => $label,
 			'input' => 'text',
