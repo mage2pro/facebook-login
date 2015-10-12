@@ -11,7 +11,6 @@
             http://www.w3schools.com/tags/att_script_defer.asp
 		-->
 		<script src='Dfe_Facebook::main.js' defer='defer'/>
-		<css src='Dfe_Facebook::main.css'/>
 	</head>
 	<body>
 		<referenceContainer name='root'>
