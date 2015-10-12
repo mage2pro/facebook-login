@@ -67,6 +67,21 @@ class User extends \Df\Core\O {
 	/** @return string */
 	public function gender() {return $this->r('gender');}
 
+	/** @return int */
+	public function genderCode() {
+		switch ($this->gender()) {
+			case 'male':
+				$result = 1;
+				break;
+			case 'female':
+				$result = 2;
+				break;
+			default:
+				$result = 3;
+		}
+		return $result;
+	}
+
 	/** @return string */
 	public function locale() {return $this->r('locale');}
 

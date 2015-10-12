@@ -110,6 +110,11 @@ class Index extends \Magento\Framework\App\Action\Action {
 			/** @var \Magento\Customer\Model\CustomerRegistry $registry */
 			$registry = df_o('Magento\Customer\Model\CustomerRegistry');
 			$registry->push($result);
+			/**
+			 * 2015-12-10
+			 * Иначе новый покупатель не попадает в таблицу customer_grid_flat
+			 */
+			$result->reindex();
 			$this->{__METHOD__} = $result;
 		}
 		return $this->{__METHOD__};
@@ -155,9 +160,19 @@ class Index extends \Magento\Framework\App\Action\Action {
 			 * Facebook возвращает male / female,
 			 * а Magento использует Male / Female
 			 */
-			,'gender' => ucfirst($this->fbUser()->gender())
-			,'dob' => $this->fbUser()->dob()
+			,'gender' => $this->fbUser()->genderCode()
+			//ucfirst($this->fbUser()->gender())
 			,InstallSchema::F__TOKEN_FOR_BUSINESS => $this->fbUser()->tokenForBusiness()
+			/**
+				if ($customer->getForceConfirmed() || $customer->getPasswordHash() == '') {
+					$customer->setConfirmation(null);
+				}
+			    elseif (!$customer->getId() && $customer->isConfirmationRequired()) {
+					$customer->setConfirmation($customer->getRandomConfirmationKey());
+				}
+			 * https://github.com/magento/magento2/blob/6fa09047a6d4a1ec71494fadec5a42284ba7cc1d/app/code/Magento/Customer/Model/ResourceModel/Customer.php#L133
+			 */
+			,'force_confirmed' => true
 		]);
 		/** @var \DateTime $dob */
 		$dob = $this->fbUser()->dob();
@@ -173,6 +188,7 @@ class Index extends \Magento\Framework\App\Action\Action {
 			$customer['taxvat'] = '000000000000';
 		}
 		$customer->save();
+		//rm_customer_save($customer->getDataModel());
 		/** @var \Magento\Customer\Model\Address $address */
 		$address = rm_om()->create('Magento\Customer\Model\Address');
 		$address->setCustomer($customer);
@@ -196,6 +212,7 @@ class Index extends \Magento\Framework\App\Action\Action {
 		}
 		$address['postcode'] = $postCode;
 		$address->save();
+		df_dispatch('customer_register_success', ['account_controller' => $this, 'customer' => $customer]);
 	}
 
 	/** @return \Dfe\Facebook\User */
