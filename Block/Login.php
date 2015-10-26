@@ -14,6 +14,7 @@ class Login extends \Magento\Framework\View\Element\Html\Link {
 	 * @return void
 	 */
 	protected function _construct() {
+		parent::_construct();
 		df_metadata('dfe_facebook_url_login', $this->getUrl('dfe-facebook'));
 	}
 }

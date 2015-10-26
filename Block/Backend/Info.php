@@ -33,5 +33,8 @@ class Info extends \Magento\Backend\Block\Template {
 	 * @see \Magento\Backend\Block\Template::_construct()
 	 * @return void
 	 */
-	protected function _construct() {df_metadata('dfe_facebook_id', $this->getFacebookId());}
+	protected function _construct() {
+		parent::_construct();
+		df_metadata('dfe_facebook_id', $this->getFacebookId());
+	}
 }

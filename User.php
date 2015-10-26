@@ -283,6 +283,7 @@ class User extends \Df\Core\O {
 	 * @return void
 	 */
 	protected function _construct() {
+		parent::_construct();
 		$this->_prop(self::$P__APP_SCOPED_ID, RM_V_STRING_NE);
 		$this->_prop(self::$P__TOKEN, RM_V_STRING_NE);
 	}
