@@ -6,7 +6,7 @@ class Login extends \Magento\Framework\View\Element\Html\Link {
 	 * @see \Magento\Framework\View\Element\Html\Link::toHtml()
 	 * @return string
 	 */
-	public function toHtml() {return !rm_customer_logged_in() ? parent::toHtml() : '';}
+	public function toHtml() {return !df_customer_logged_in() ? parent::toHtml() : '';}
 
 	/**
 	 * @override

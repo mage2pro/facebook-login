@@ -21,7 +21,7 @@ class User extends \Df\Core\O {
 			$raw = $this->r('birthday');
 			if ($raw) {
 				/** @var string[] $rawA */
-				$rawA = rm_int(explode('/', $raw));
+				$rawA = df_int(explode('/', $raw));
 				/** @var int $count */
 				$count = count($rawA);
 				/** @var int $year */
@@ -40,9 +40,9 @@ class User extends \Df\Core\O {
 				$result = new \DateTime;
 				$result->setDate($year, $month, $day);
 			}
-			$this->{__METHOD__} = rm_n_set($result);
+			$this->{__METHOD__} = df_n_set($result);
 		}
-		return rm_n_get($this->{__METHOD__});
+		return df_n_get($this->{__METHOD__});
 	}
 
 	/**
@@ -59,9 +59,9 @@ class User extends \Df\Core\O {
 		if (!isset($this->{__METHOD__})) {
 			/** @var string $result */
 			$result = $this->emailRaw();
-			$this->{__METHOD__} = rm_n_set(rm_contains($result, '@') ? $result : null);
+			$this->{__METHOD__} = df_n_set(df_contains($result, '@') ? $result : null);
 		}
-		return rm_n_get($this->{__METHOD__});
+		return df_n_get($this->{__METHOD__});
 	}
 
 	/** @return string */

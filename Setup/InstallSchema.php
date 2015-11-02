@@ -18,7 +18,7 @@ class InstallSchema implements InstallSchemaInterface {
 		/** @var Adapter\Pdo\Mysql|Adapter\AdapterInterface $conn */
 		$conn = $setup->getConnection();
 		/** @var string $table */
-		$table = rm_table('customer_entity');
+		$table = df_table('customer_entity');
 		// 2015-10-10
 		// Не хочу проблем из-за идиотов с длинными именами, поэтому пусть будет 255.
 		$conn->addColumn($table, self::F__FULL_NAME, 'varchar(255) DEFAULT NULL');

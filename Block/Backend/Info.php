@@ -23,9 +23,9 @@ class Info extends \Magento\Backend\Block\Template {
 			$customerData = $this->_backendSession->getCustomerData();
 			/** @var int|null $facebookId */
 			$result = df_a_deep($customerData, 'account/dfe_facebook_id');
-			$this->{__METHOD__} = rm_n_set($result);
+			$this->{__METHOD__} = df_n_set($result);
 		}
-		return rm_n_get($this->{__METHOD__});
+		return df_n_get($this->{__METHOD__});
 	}
 
 	/**

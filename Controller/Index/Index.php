@@ -29,9 +29,9 @@ class Index extends \Magento\Framework\App\Action\Action {
 			}
 		}
 		catch (\Exception $e) {
-			df_message()->addErrorMessage(rm_ets($e));
+			df_message()->addErrorMessage(df_ets($e));
 		}
-		return $this->resultRedirectFactory->create()->setUrl(rm_request('url'));
+		return $this->resultRedirectFactory->create()->setUrl(df_request('url'));
 	}
 
 	/** @return \Magento\Customer\Model\Customer */
@@ -40,9 +40,9 @@ class Index extends \Magento\Framework\App\Action\Action {
 			/** @var \Magento\Customer\Model\ResourceModel\Customer $resource */
 			$resource = df_o('Magento\Customer\Model\ResourceModel\Customer');
 			/** @var \Magento\Customer\Model\Customer $result */
-			$result = rm_om()->create('Magento\Customer\Model\Customer');
+			$result = df_om()->create('Magento\Customer\Model\Customer');
 			/** @var \Magento\Framework\DB\Select $select */
-			$select = rm_conn()->select()->from($resource->getEntityTable(), [$resource->getEntityIdField()]);
+			$select = df_conn()->select()->from($resource->getEntityTable(), [$resource->getEntityIdField()]);
 			/**
 			 * 2015-10-10
 			 * 1) Полученный нами от браузера идентификатор пользователя Facebook
@@ -71,10 +71,10 @@ class Index extends \Magento\Framework\App\Action\Action {
 				 * @see \Magento\Customer\Model\ResourceModel\Customer::loadByEmail()
 				 * https://github.com/magento/magento2/blob/2e2785cc6a78dc073a4d5bb5a88bd23161d3835c/app/code/Magento/Customer/Model/Resource/Customer.php#L222
 				 */
-				$select->where('? = website_id', rm_store_m()->getStore()->getWebsiteId());
+				$select->where('? = website_id', df_store_m()->getStore()->getWebsiteId());
 			}
 			/** @var int $customerId */
-			$customerId = rm_conn()->fetchOne($select);
+			$customerId = df_conn()->fetchOne($select);
 			if (!$customerId) {
 				$this->register($result);
 			}
@@ -142,13 +142,13 @@ class Index extends \Magento\Framework\App\Action\Action {
 		 * Приходится присваивать магазин в 2 шага...
 		 */
 		/** @var \Magento\Store\Api\Data\StoreInterface|\Magento\Store\Model\Store $store */
-		$store = rm_store_m()->getStore();
+		$store = df_store_m()->getStore();
 		$customer->setStore($store);
-		$customer->setGroupId(rm_customer_group_m()->getDefaultGroup($store->getId())->getId());
+		$customer->setGroupId(df_customer_group_m()->getDefaultGroup($store->getId())->getId());
 		/** @var string $email */
 		$email = $this->fbUser()->email();
 		if (!$email) {
-			$email = rm_next_increment('customer_entity') . '@none.com';
+			$email = df_next_increment('customer_entity') . '@none.com';
 		}
 		$customer->addData([
 			'firstname' => $this->fbUser()->nameFirst()
@@ -176,7 +176,7 @@ class Index extends \Magento\Framework\App\Action\Action {
 		]);
 		/** @var \DateTime $dob */
 		$dob = $this->fbUser()->dob();
-		if (!$dob && rm_is_customer_attribute_required('dob')) {
+		if (!$dob && df_is_customer_attribute_required('dob')) {
 			$dob = new \DateTime;
 			$dob->setDate(1900, 1, 1);
 		}
@@ -184,30 +184,30 @@ class Index extends \Magento\Framework\App\Action\Action {
 			$customer['dob'] = $dob;
 		}
 		$customer->addData($this->dataForUpdate());
-		if (rm_is_customer_attribute_required('taxvat')) {
+		if (df_is_customer_attribute_required('taxvat')) {
 			$customer['taxvat'] = '000000000000';
 		}
 		$customer->save();
-		//rm_customer_save($customer->getDataModel());
+		//df_customer_save($customer->getDataModel());
 		/** @var \Magento\Customer\Model\Address $address */
-		$address = rm_om()->create('Magento\Customer\Model\Address');
+		$address = df_om()->create('Magento\Customer\Model\Address');
 		$address->setCustomer($customer);
 		$address->addData([
 			'firstname' => $this->fbUser()->nameFirst()
 			,'lastname' => $this->fbUser()->nameLast()
 			,'middlename' => $this->fbUser()->nameMiddle()
-			,'country_id' => rm_visitor()->iso2()
+			,'country_id' => df_visitor()->iso2()
 			,'region_id' => null
-			,'region' => rm_visitor()->regionName()
-			,'city' => rm_visitor()->city()
+			,'region' => df_visitor()->regionName()
+			,'city' => df_visitor()->city()
 			,'telephone' => '000000'
 			,'street' => '---'
 			,'is_default_billing' => 1
 			,'is_default_shipping' => 1
 			,'save_in_address_book' => 1
 		]);
-		$postCode = rm_visitor()->postCode();
-		if (!$postCode && rm_is_postcode_required(rm_visitor()->iso2())) {
+		$postCode = df_visitor()->postCode();
+		if (!$postCode && df_is_postcode_required(df_visitor()->iso2())) {
 			$postCode = '000000';
 		}
 		$address['postcode'] = $postCode;
@@ -218,7 +218,7 @@ class Index extends \Magento\Framework\App\Action\Action {
 	/** @return \Dfe\Facebook\User */
 	private function fbUser() {
 		if (!isset($this->{__METHOD__})) {
-			$this->{__METHOD__} = \Dfe\Facebook\User::i(rm_request('user'), rm_request('token'));
+			$this->{__METHOD__} = \Dfe\Facebook\User::i(df_request('user'), df_request('token'));
 		}
 		return $this->{__METHOD__};
 	}

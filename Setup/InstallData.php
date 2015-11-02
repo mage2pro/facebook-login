@@ -41,8 +41,8 @@ class InstallData implements InstallDataInterface {
 			'required' => false
 		]);
 		/** @var int $attributeId */
-		$attributeId = rm_first(rm_fetch_col('eav_attribute', 'attribute_id', 'attribute_code', $name));
-		rm_conn()->insert(rm_table('customer_form_attribute'), array(
+		$attributeId = df_first(df_fetch_col('eav_attribute', 'attribute_id', 'attribute_code', $name));
+		df_conn()->insert(df_table('customer_form_attribute'), array(
 			'form_code' => 'adminhtml_customer', 'attribute_id' => $attributeId
 		));
 	}
