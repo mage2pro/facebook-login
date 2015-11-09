@@ -2,7 +2,7 @@
 namespace Dfe\Facebook\Settings;
 class Login extends \Df\Core\Settings {
 	/** @return bool */
-	public function enabled() {return !!$this->v('enable');}
+	public function enable() {return $this->b('enable');}
 
 	/**
 	 * @override

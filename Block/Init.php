@@ -9,7 +9,7 @@ class Init extends Template {
 	 */
 	public function toHtml() {
 		return
-			Settings\Login::s()->enabled() || Settings\Like::s()->enabledOnProductPage()
+			Settings\Login::s()->enable() || Settings\Like::s()->enabledOnProductPage()
 			? parent::toHtml()
 			: ''
 		;
