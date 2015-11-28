@@ -208,9 +208,9 @@ class User extends \Df\Core\O {
 		$httpClient = new \Zend\Http\Client();
 		$httpClient
 			->setAdapter($adapter)
-			->setHeaders(array())
+			->setHeaders([])
 			->setUri($uri)
-			->setOptions(array('timeout' => 10))
+			->setOptions(['timeout' => 10])
 		;
 		/** @var \Zend\Http\Response $response */
 		$response = $httpClient->send();
