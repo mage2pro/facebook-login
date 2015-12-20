@@ -180,7 +180,7 @@ class User extends \Df\Core\O {
 			)
 		]);
 		/** @var array(string => mixed) $result */
-		$result = json_decode($responseAsJson, true);
+		$result = df_json_decode($responseAsJson);
 		df_result_array($result);
 		/** @var array(string => string)|null $error */
 		$error = df_a($result, 'error');
