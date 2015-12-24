@@ -10,7 +10,7 @@ class Index extends \Magento\Framework\App\Action\Action {
 	public function execute() {
 		try {
 			/** @var \Magento\Customer\Model\Session $session */
-			$session = df_o('Magento\Customer\Model\Session');
+			$session = df_o(\Magento\Customer\Model\Session::class);
 			/**
 			 * 2015-10-08
 			 * По аналогии с @see \Magento\Customer\Controller\Account\LoginPost::execute()
@@ -38,9 +38,9 @@ class Index extends \Magento\Framework\App\Action\Action {
 	private function customer() {
 		if (!isset($this->{__METHOD__})) {
 			/** @var \Magento\Customer\Model\ResourceModel\Customer $resource */
-			$resource = df_o('Magento\Customer\Model\ResourceModel\Customer');
+			$resource = df_o(\Magento\Customer\Model\ResourceModel\Customer::class);
 			/** @var \Magento\Customer\Model\Customer $result */
-			$result = df_om()->create('Magento\Customer\Model\Customer');
+			$result = df_om()->create(\Magento\Customer\Model\Customer::class);
 			/** @var \Magento\Framework\DB\Select $select */
 			$select = df_conn()->select()->from($resource->getEntityTable(), [$resource->getEntityIdField()]);
 			/**
@@ -108,7 +108,7 @@ class Index extends \Magento\Framework\App\Action\Action {
 			 * https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/Model/CustomerRegistry.php#L133-L134
 			 */
 			/** @var \Magento\Customer\Model\CustomerRegistry $registry */
-			$registry = df_o('Magento\Customer\Model\CustomerRegistry');
+			$registry = df_o(\Magento\Customer\Model\CustomerRegistry::class);
 			$registry->push($result);
 			/**
 			 * 2015-12-10
@@ -190,7 +190,7 @@ class Index extends \Magento\Framework\App\Action\Action {
 		$customer->save();
 		//df_customer_save($customer->getDataModel());
 		/** @var \Magento\Customer\Model\Address $address */
-		$address = df_om()->create('Magento\Customer\Model\Address');
+		$address = df_om()->create(\Magento\Customer\Model\Address::class);
 		$address->setCustomer($customer);
 		$address->addData([
 			'firstname' => $this->fbUser()->nameFirst()
