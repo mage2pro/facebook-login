@@ -14,6 +14,6 @@ class Credentials extends \Df\Core\Settings {
 	 */
 	protected function prefix() {return 'dfe_facebook/credentials/';}
 
-	/** @return \Dfe\Facebook\Settings\Credentials */
+	/** @return $this */
 	public static function s() {static $r; return $r ? $r : $r = df_o(__CLASS__);}
 }

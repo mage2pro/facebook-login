@@ -11,6 +11,6 @@ class Login extends \Df\Core\Settings {
 	 */
 	protected function prefix() {return 'dfe_facebook/login/';}
 
-	/** @return \Dfe\Facebook\Settings\Login */
+	/** @return $this */
 	public static function s() {static $r; return $r ? $r : $r = df_o(__CLASS__);}
 }
