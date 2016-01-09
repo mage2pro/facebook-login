@@ -1,6 +1,6 @@
 {
-	"name": "dfe/facebook"
-	,"description": "«Facebook Login» & «Facebook Like & Share» extensions"
+	"name": "dfe/facebook-login"
+	,"description": "The «Facebook Login» extension."
 	,"type": "magento2-module"
 	,"homepage": "https://mage2.pro/c/extensions"
 	,"license": "proprietary"
