@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\Facebook;
+namespace Dfe\FacebookLogin;
 use Dfe\FacebookLogin\Settings\Credentials;
 class User extends \Df\Core\O {
 	/**
@@ -295,7 +295,7 @@ class User extends \Df\Core\O {
 	/**
 	 * @param string $appScopedId
 	 * @param string $token
-	 * @return User
+	 * @return $this
 	 */
 	public static function i($appScopedId, $token) {
 		return new self([self::$P__APP_SCOPED_ID => $appScopedId, self::$P__TOKEN => $token]);

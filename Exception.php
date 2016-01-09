@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\Facebook;
+namespace Dfe\FacebookLogin;
 class Exception extends \Df\Core\Exception {
 	/**
 	 * 2015-10-10
