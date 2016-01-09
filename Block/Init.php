@@ -1,6 +1,6 @@
 <?php
-namespace Dfe\Facebook\Block;
-use Dfe\Facebook\Settings;
+namespace Dfe\FacebookLogin\Block;
+use Dfe\FacebookLogin\Settings;
 class Init extends Template {
 	/**
 	 * @override

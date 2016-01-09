@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\Facebook\Setup;
+namespace Dfe\FacebookLogin\Setup;
 use Magento\Framework\DB\Adapter;
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;

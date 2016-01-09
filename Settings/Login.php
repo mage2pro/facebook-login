@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\Facebook\Settings;
+namespace Dfe\FacebookLogin\Settings;
 class Login extends \Df\Core\Settings {
 	/** @return bool */
 	public function enable() {return $this->b('enable');}

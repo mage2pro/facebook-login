@@ -1,14 +1,12 @@
 <?php
-namespace Dfe\Facebook\Block;
+namespace Dfe\FacebookLogin\Block;
 class Login extends \Magento\Framework\View\Element\Html\Link {
 	/**
 	 * @override
 	 * @see \Magento\Framework\View\Element\Html\Link::toHtml()
 	 * @return string
 	 */
-	public function toHtml() {
-		return !df_customer_logged_in() ? parent::toHtml() : '';
-	}
+	public function toHtml() {return !df_customer_logged_in() ? parent::toHtml() : '';}
 
 	/**
 	 * @override

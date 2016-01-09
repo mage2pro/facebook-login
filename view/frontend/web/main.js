@@ -10,7 +10,6 @@ require([
 		// Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
 		$li.hide();
 		FB.getLoginStatus(function(response) {
-			debugger;
 			switch (response.status) {
 				case 'connected':
 					/**

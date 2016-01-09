@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\Facebook;
-use Dfe\Facebook\Settings\Credentials;
+use Dfe\FacebookLogin\Settings\Credentials;
 class User extends \Df\Core\O {
 	/**
 	 * 2015-10-12

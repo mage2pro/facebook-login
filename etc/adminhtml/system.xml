@@ -4,53 +4,8 @@
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd"
 >
     <system>
-        <!--
-            2015-07-10
-            Минимальная длина идентификатора tab — 3 символа:
-            https://github.com/magento/magento2/blob/1.0.0-beta/app/code/Magento/Config/etc/system_file.xsd#L405
-            Поэтому ставим символ подчёркивания вначале.
-        -->
-        <tab id='_df' translate='label' sortOrder='-100'>
-            <label>Mage2.PRO</label>
-        </tab>
-        <section
-            id='dfe_facebook'
-            translate='label'
-            type='text'
-            showInDefault='1'
-            showInWebsite='1'
-            showInStore='1'
-        >
-            <tab>_df</tab>
-            <label>Facebook</label>
-            <class>separator-top</class>
-            <!--
-                2015-10-05
-                https://mage2.pro/t/114
-            -->
-            <resource>Dfe_Facebook::config</resource>
-            <group
-                id='credentials'
-                translate='label'
-                type='text'
-                sortOrder='1'
-                showInDefault='1'
-                showInWebsite='1'
-                showInStore='0'
-            >
-                <label>OAuth Credentials</label>
-                <field
-                    id='app_id'
-                    translate='label'
-                    type='text'
-                    sortOrder='1'
-                    showInDefault='1'
-                    showInWebsite='1'
-                    showInStore='0'
-                >
-                    <label>App ID</label>
-                    <comment><![CDATA[<a href='https://discourse.pro/t/15'>how to get it?</a>]]></comment>
-                </field>
+        <section id='dfe_facebook'>
+            <group id='credentials'>
                 <field
                     id='app_secret'
                     translate='label'
@@ -65,11 +20,6 @@
                     <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                 </field>
             </group>
-            <!--
-                2015-09-25
-                Первые 2 цифры sortOrder соответствуют порядковому номеру первой буквы модуля
-                в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
-            -->
             <group
                 id='login'
                 translate='label'
@@ -91,35 +41,6 @@
                 >
                     <label>Enable?</label>
                     <backend_model>Df\Config\Backend\Checkbox</backend_model>
-                    <comment><![CDATA[]]></comment>
-                </field>
-            </group>
-            <!--
-                2015-09-25
-                Первые 2 цифры sortOrder соответствуют порядковому номеру первой буквы модуля
-                в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
-            -->
-            <group
-                id='like'
-                translate='label'
-                type='text'
-                sortOrder='120'
-                showInDefault='1'
-                showInWebsite='1'
-                showInStore='1'
-            >
-                <label><![CDATA[Like & Share]]></label>
-                <field
-                    id='product'
-                    translate='label'
-                    type='Df\Framework\Data\Form\Element\Checkbox'
-                    sortOrder='1'
-                    showInDefault='1'
-                    showInWebsite='1'
-                    showInStore='1'
-                >
-                    <label>Enable on Product Pages?</label>
-					<backend_model>Df\Config\Backend\Checkbox</backend_model>
                     <comment><![CDATA[]]></comment>
                 </field>
             </group>

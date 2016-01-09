@@ -1,6 +1,6 @@
 <?php
-namespace Dfe\Facebook\Controller\Index;
-use Dfe\Facebook\Setup\InstallSchema;
+namespace Dfe\FacebookLogin\Controller\Index;
+use Dfe\FacebookLogin\Setup\InstallSchema;
 class Index extends \Magento\Framework\App\Action\Action {
 	/**
 	 * @override
@@ -215,10 +215,10 @@ class Index extends \Magento\Framework\App\Action\Action {
 		df_dispatch('customer_register_success', ['account_controller' => $this, 'customer' => $customer]);
 	}
 
-	/** @return \Dfe\Facebook\User */
+	/** @return \Dfe\FacebookLogin\User */
 	private function fbUser() {
 		if (!isset($this->{__METHOD__})) {
-			$this->{__METHOD__} = \Dfe\Facebook\User::i(df_request('user'), df_request('token'));
+			$this->{__METHOD__} = \Dfe\FacebookLogin\User::i(df_request('user'), df_request('token'));
 		}
 		return $this->{__METHOD__};
 	}
