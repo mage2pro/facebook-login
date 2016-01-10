@@ -2,7 +2,7 @@
 	"name": "dfe/facebook-login"
 	,"description": "The «Facebook Login» extension."
 	,"type": "magento2-module"
-	,"homepage": "https://mage2.pro/c/extensions"
+	,"homepage": "https://mage2.pro/t/136"
 	,"license": "proprietary"
 	,"authors": [{
 		"name": "Dmitry Fedyuk",
@@ -11,5 +11,5 @@
 		"role": "Developer"
 	}]
 	,"require": {"df/all": "dev-master"}
-	,"extra": {"map": [["*", "Dfe/Facebook"]]}
+	,"extra": {"map": [["*", "Dfe/FacebookLogin"]]}
 }
