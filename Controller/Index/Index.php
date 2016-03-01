@@ -73,7 +73,12 @@ class Index extends \Magento\Framework\App\Action\Action {
 				 */
 				$select->where('? = website_id', df_store_m()->getStore()->getWebsiteId());
 			}
-			/** @var int $customerId */
+			/** @var int|false $customerId */
+			/**
+			 * 2016-03-01
+			 * @uses \Zend_Db_Adapter_Abstract::fetchOne() возвращает false при пустом результате запроса.
+			 * https://mage2.pro/t/853
+			 */
 			$customerId = df_conn()->fetchOne($select);
 			if (!$customerId) {
 				$this->register($result);
