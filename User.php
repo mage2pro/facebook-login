@@ -101,7 +101,7 @@ class User extends \Df\Core\O {
 			/** @var array(string => string) $responseA */
 			parse_str($response, $responseA);
 			/** @var string $result */
-			$result = df_a($responseA, 'access_token');
+			$result = dfa($responseA, 'access_token');
 			df_result_string_not_empty($result);
 			$this->{__METHOD__} = $result;
 		}
@@ -133,7 +133,7 @@ class User extends \Df\Core\O {
 			/** @var array(string => mixed) $response */
 			$response = $this->request('picture', ['redirect' => 'false']);
 			/** @var string $result */
-			$result = df_a_deep($response, 'data/url');
+			$result = dfa_deep($response, 'data/url');
 			df_result_string($result);
 			$this->{__METHOD__} = $result;
 		}
@@ -161,7 +161,7 @@ class User extends \Df\Core\O {
 	 * @param string $key
 	 * @return string|null
 	 */
-	private function r($key) {return df_a($this->responseA(), $key);}
+	private function r($key) {return dfa($this->responseA(), $key);}
 
 	/**
 	 * @param string $path
@@ -183,7 +183,7 @@ class User extends \Df\Core\O {
 		$result = df_json_decode($responseAsJson);
 		df_result_array($result);
 		/** @var array(string => string)|null $error */
-		$error = df_a($result, 'error');
+		$error = dfa($result, 'error');
 		if ($error) {
 			throw new Exception($error);
 		}
