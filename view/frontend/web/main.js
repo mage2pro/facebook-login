@@ -35,8 +35,15 @@ require([
 						}
 					};
 					addFields({
-						url: window.location.href
-						,token: response.authResponse.accessToken
+						token: response.authResponse.accessToken
+						/**
+						 * 2016-06-05
+						 * Запоминаем адрес страницы, на которой находился посетитель
+						 * непосредственно перед авторизацией.
+						 * Когда сервис авторизации вернёт посетителя обратно в наш магазин,
+						 * мы перенаправим посетителя на эту страницу.
+						 */
+						,url: window.location.href
 						/** https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus */
 						,user: response.authResponse.userID
 					});

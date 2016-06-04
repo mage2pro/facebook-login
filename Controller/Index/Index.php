@@ -41,11 +41,11 @@ class Index extends ReturnT {
 	];}
 
 	/**
-	 * 2016-06-04
+	 * 2016-06-05
 	 * @override
-	 * @see \Df\Customer\External\ReturnT::redirectUrl()
+	 * @see \Df\Customer\External\ReturnT::redirectUrlKey()
 	 * @used-by \Df\Customer\External\ReturnT::execute()
 	 * @return string
 	 */
-	protected function redirectUrl() {return df_request('url');}
+	protected function redirectUrlKey() {return 'url';}
 }
