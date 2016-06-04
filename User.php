@@ -1,8 +1,9 @@
 <?php
 namespace Dfe\FacebookLogin;
+use Df\Customer\External\Customer;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
-class User extends \Df\Core\O {
+class User extends Customer {
 	/**
 	 * 2015-10-12
 	 * Facebook может не вернуть дату, а также вернуть её лишь частично:
@@ -12,9 +13,12 @@ class User extends \Df\Core\O {
 	 * However, people can control who can see the year they were born
 	 * separately from the month and day
 	 * so this string can be only the year (YYYY) or the month + day (MM/DD)»
+	 * @override
+	 * @see \Df\Customer\External\Customer::_dob()
+	 * @used-by \Df\Customer\External\Customer::dob()
 	 * @return \DateTime|null
 	 */
-	public function dob() {
+	protected function _dob() {
 		if (!isset($this->{__METHOD__})) {
 			/** @var \DateTime|null $result */
 			$result = null;
@@ -54,23 +58,27 @@ class User extends \Df\Core\O {
 	 * https://developers.facebook.com/docs/graph-api/reference/user
 	 * «The person's primary email address listed on their profile.
 	 * This field will not be returned if no valid email address is available».
+	 * @override
+	 * @see \Df\Customer\External\Customer::_email()
+	 * @used-by \Df\Customer\External\Customer::email()
 	 * @return string|null
 	 */
-	public function email() {
+	protected function _email() {
 		if (!isset($this->{__METHOD__})) {
 			/** @var string $result */
-			$result = $this->emailRaw();
+			$result = $this->r('email');
 			$this->{__METHOD__} = df_n_set(df_contains($result, '@') ? $result : null);
 		}
 		return df_n_get($this->{__METHOD__});
 	}
 
-	/** @return string */
-	public function gender() {return $this->r('gender');}
-
-	/** @return int */
-	public function genderCode() {
-		switch ($this->gender()) {
+	/**
+	 * @override
+	 * @see \Df\Customer\External\Customer::gender()
+	 * @return int
+	 */
+	public function gender() {
+		switch ($this->r('gender')) {
 			case 'male':
 				$result = Gender::MALE;
 				break;
@@ -83,11 +91,9 @@ class User extends \Df\Core\O {
 		return $result;
 	}
 
-	/** @return string */
-	public function locale() {return $this->r('locale');}
-
 	/**
 	 * https://developers.facebook.com/docs/facebook-login/access-tokens#extending
+	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
 	public function longLivedAccessToken() {
@@ -109,24 +115,44 @@ class User extends \Df\Core\O {
 		return $this->{__METHOD__};
 	}
 
-	/** @return string */
+	/**
+	 * @override
+	 * @see \Df\Customer\External\Customer::nameFirst()
+	 * @return string
+	 */
 	public function nameFirst() {return $this->r('first_name');}
 
-	/** @return string */
+	/**
+	 * @see \Df\Customer\External\Customer::nameLast()
+	 * @return string
+	 */
 	public function nameLast() {return $this->r('last_name');}
 
-	/** @return string */
+	/**
+	 * @see \Df\Customer\External\Customer::nameMiddle()
+	 * @return string
+	 */
 	public function nameMiddle() {return $this->r('middle_name');}
 
-	/** @return string */
-	public function nameFormat() {return $this->r('name_format');}
-
-	/** @return string */
+	/**
+	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
+	 * @return string
+	 */
 	public function nameFull() {return $this->r('name');}
+
+	/**
+	 * 2016-06-04
+	 * @override
+	 * @see \Df\Customer\External\Customer::password()
+	 * @used-by \Df\Customer\External\ReturnT::register()
+	 * @return string
+	 */
+	public function password() {return substr($this->tokenForBusiness(), 0, 8);}
 
 	/**
 	 * https://developers.facebook.com/docs/graph-api/reference/user/picture/
 	 * https://developers.facebook.com/docs/graph-api/reference/profile-picture-source/
+	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
 	public function picture() {
@@ -141,11 +167,12 @@ class User extends \Df\Core\O {
 		return $this->{__METHOD__};
 	}
 
-	/** @return string */
+	/**
+	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerIdFieldValue()
+	 * @used-by Dfe\FacebookLogin\User::password()
+	 * @return string
+	 */
 	public function tokenForBusiness() {return $this->r('token_for_business');}
-
-	/** @return string */
-	public function url() {return $this->r('link');}
 
 	/**
 	 * 2015-10-10
@@ -153,10 +180,7 @@ class User extends \Df\Core\O {
 	 * не является глобальным: он разный для разных приложений.
 	 * @return string
 	 */
-	private function appScopedId() {return $this[self::$P__APP_SCOPED_ID];}
-
-	/** @return string */
-	private function emailRaw() {return $this->r('email');}
+	private function appScopedId() {return df_request('user');}
 
 	/**
 	 * @param string $key
@@ -274,32 +298,6 @@ class User extends \Df\Core\O {
 	}
 
 	/** @return string */
-	private function token() {return $this[self::$P__TOKEN];}
-
-	/**
-	 * 2015-10-07
-	 * @override
-	 * @see \Df\Core\O::_construct()
-	 * @used-by \Df\Core\O::__construct()
-	 * @return void
-	 */
-	protected function _construct() {
-		parent::_construct();
-		$this->_prop(self::$P__APP_SCOPED_ID, RM_V_STRING_NE);
-		$this->_prop(self::$P__TOKEN, RM_V_STRING_NE);
-	}
-	/** @var string */
-	private static $P__APP_SCOPED_ID = 'app_scoped_id';
-	/** @var string */
-	private static $P__TOKEN = 'token';
-
-	/**
-	 * @param string $appScopedId
-	 * @param string $token
-	 * @return $this
-	 */
-	public static function i($appScopedId, $token) {
-		return new self([self::$P__APP_SCOPED_ID => $appScopedId, self::$P__TOKEN => $token]);
-	}
+	private function token() {return df_request('token');}
 }
 
