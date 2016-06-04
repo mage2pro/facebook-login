@@ -42,6 +42,7 @@ class Index extends ReturnT {
 
 	/**
 	 * 2016-06-05
+	 * https://code.dmitry-fedyuk.com/m2e/facebook-login/blob/7c2b601/view/frontend/web/main.js#L46
 	 * @override
 	 * @see \Df\Customer\External\ReturnT::redirectUrlKey()
 	 * @used-by \Df\Customer\External\ReturnT::execute()
