@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin;
+use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
 class User extends \Df\Core\O {
 	/**
@@ -71,13 +72,13 @@ class User extends \Df\Core\O {
 	public function genderCode() {
 		switch ($this->gender()) {
 			case 'male':
-				$result = 1;
+				$result = Gender::MALE;
 				break;
 			case 'female':
-				$result = 2;
+				$result = Gender::FEMALE;
 				break;
 			default:
-				$result = 3;
+				$result = Gender::UNKNOWN;
 		}
 		return $result;
 	}
