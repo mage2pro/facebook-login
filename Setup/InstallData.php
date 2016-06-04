@@ -1,49 +1,33 @@
 <?php
 namespace Dfe\FacebookLogin\Setup;
-use Magento\Framework\Setup\InstallDataInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
-use Magento\Framework\Setup\ModuleDataSetupInterface;
-class InstallData implements InstallDataInterface {
+class InstallData extends \Df\Customer\External\Install\Data {
 	/**
-	 * 2015-10-06
+	 * 2016-06-05
 	 * @override
-	 * @see InstallDataInterface::install()
-	 * @param ModuleDataSetupInterface $setup
-	 * @param ModuleContextInterface $context
+	 * @see \Df\Customer\External\Install\Data::_install()
+	 * @used-by \Df\Customer\External\Install\Data::install()
 	 * @return void
 	 */
-	public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context) {
-		$this->attribute(InstallSchema::F__FULL_NAME, 'Facebook User Full Name');
-		$this->attribute(InstallSchema::F__PICTURE, 'Facebook User Profile Picture');
-		$this->attribute(
-			InstallSchema::F__LONG_LIVED_ACCESS_TOKEN, 'Facebook API Long-lived Access Token'
-		);
-		$this->attribute(InstallSchema::F__TOKEN_FOR_BUSINESS, 'Facebook API Token for Business');
+	protected function _install() {
+		$this->attribute(InstallSchema::F__PICTURE, 'User Profile Picture');
+		$this->attribute(InstallSchema::F__LONG_LIVED_ACCESS_TOKEN, 'Long-lived Access Token');
 	}
 
 	/**
-	 * 2015-10-10
-	 * @param string $name
-	 * @param string $label
-	 * @return void
+	 * 2016-06-05
+	 * @override
+	 * @see \Df\Customer\External\Install\Data::labelPrefix()
+	 * @used-by \Df\Customer\External\Install\Data::attribute()
+	 * @return string
 	 */
-	private function attribute($name, $label) {
-		/** @var int $ordering */
-		static $ordering = 1000;
-		df_eav_setup()->addAttribute('customer', $name, [
-			'type' => 'static',
-			'label' => $label,
-			'input' => 'text',
-			'sort_order' => $ordering,
-			'position' => $ordering++,
-			'visible' => false,
-			'system' => false,
-			'required' => false
-		]);
-		/** @var int $attributeId */
-		$attributeId = df_first(df_fetch_col('eav_attribute', 'attribute_id', 'attribute_code', $name));
-		df_conn()->insert(df_table('customer_form_attribute'), [
-			'form_code' => 'adminhtml_customer', 'attribute_id' => $attributeId
-		]);
-	}
+	protected function labelPrefix() {return 'Facebook';}
+
+	/**
+	 * 2016-06-05
+	 * @override
+	 * @see \Df\Customer\External\Install\Data::schemaClass()
+	 * @used-by \Df\Customer\External\Install\Data::schema()
+	 * @return string
+	 */
+	protected function schemaClass() {return InstallSchema::class;}
 }

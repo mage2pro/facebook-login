@@ -29,15 +29,6 @@ class Index extends ReturnT {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @see \Df\Customer\External\ReturnT::customerIdFieldValue()
-	 * @used-by \Df\Customer\External\ReturnT::customer()
-	 * @return string
-	 */
-	protected function customerIdFieldValue() {return $this->c()->tokenForBusiness();}
-
-	/**
-	 * 2016-06-04
-	 * @override
 	 * @see \Df\Customer\External\ReturnT::customerData()
 	 * @used-by \Df\Customer\External\ReturnT::customer()
 	 * @used-by \Df\Customer\External\ReturnT::register()

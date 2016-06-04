@@ -123,12 +123,14 @@ class User extends Customer {
 	public function nameFirst() {return $this->r('first_name');}
 
 	/**
+	 * @override
 	 * @see \Df\Customer\External\Customer::nameLast()
 	 * @return string
 	 */
 	public function nameLast() {return $this->r('last_name');}
 
 	/**
+	 * @override
 	 * @see \Df\Customer\External\Customer::nameMiddle()
 	 * @return string
 	 */
@@ -139,15 +141,6 @@ class User extends Customer {
 	 * @return string
 	 */
 	public function nameFull() {return $this->r('name');}
-
-	/**
-	 * 2016-06-04
-	 * @override
-	 * @see \Df\Customer\External\Customer::password()
-	 * @used-by \Df\Customer\External\ReturnT::register()
-	 * @return string
-	 */
-	public function password() {return substr($this->tokenForBusiness(), 0, 8);}
 
 	/**
 	 * https://developers.facebook.com/docs/graph-api/reference/user/picture/
@@ -172,7 +165,7 @@ class User extends Customer {
 	 * @used-by Dfe\FacebookLogin\User::password()
 	 * @return string
 	 */
-	public function tokenForBusiness() {return $this->r('token_for_business');}
+	public function id() {return $this->r('token_for_business');}
 
 	/**
 	 * 2015-10-10
