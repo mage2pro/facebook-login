@@ -1,6 +1,5 @@
 require([
-	'jquery'
-	, 'Magento_Customer/js/customer-data'
+	'jquery', 'Magento_Customer/js/customer-data'
 ], function($, customerData) {$(function() {
 	/** @type {jQuery} HTMLLIElement */
 	var $li = $('li.dfe-facebook-login');

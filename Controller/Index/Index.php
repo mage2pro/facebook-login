@@ -34,11 +34,17 @@ class Index extends ReturnT {
 	 * @used-by \Df\Customer\External\ReturnT::register()
 	 * @return array(string => mixed)
 	 */
-	protected function customerData() {return [
-		InstallSchema::F__FULL_NAME => $this->c()->nameFull()
-		, InstallSchema::F__LONG_LIVED_ACCESS_TOKEN => $this->c()->longLivedAccessToken()
-		, InstallSchema::F__PICTURE => $this->c()->picture()
-	];}
+	protected function customerData() {return $this->customerDataCustom() + parent::customerData();}
+
+	/**
+	 * 2016-06-06
+	 * Перечень свойств покупателя, которые надо обновить в Magento
+	 * после их изменения в сторонней системе авторизации.
+	 * @see \Df\Customer\External\ReturnT::customerFieldsToSync()
+	 * @used-by \Df\Customer\External\ReturnT::customer()
+	 * @return string[]
+	 */
+	protected function customerFieldsToSync() {return array_keys($this->customerDataCustom());}
 
 	/**
 	 * 2016-06-05
@@ -49,4 +55,21 @@ class Index extends ReturnT {
 	 * @return string
 	 */
 	protected function redirectUrlKey() {return 'url';}
+
+	/**
+	 * 2016-06-06
+	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
+	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerFieldsToSync()
+	 * @return array(mixed => mixed)
+	 */
+	private function customerDataCustom() {
+		if (!isset($this->{__METHOD__})) {
+			$this->{__METHOD__} = [
+				InstallSchema::F__FULL_NAME => $this->c()->nameFull()
+				,InstallSchema::F__LONG_LIVED_ACCESS_TOKEN => $this->c()->longLivedAccessToken()
+				,InstallSchema::F__PICTURE => $this->c()->picture()
+			];
+		}
+		return $this->{__METHOD__};
+	}
 }
