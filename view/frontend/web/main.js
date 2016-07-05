@@ -1,6 +1,8 @@
 require([
-	'jquery', 'Magento_Customer/js/customer-data'
-], function($, customerData) {$(function() {
+	'jquery'
+	, 'Df_Core/js/redirectWithPost'
+	, 'Magento_Customer/js/customer-data'
+], function($, redirectWithPost, customerData) {$(function() {
 	/** @type {jQuery} HTMLLIElement */
 	var $li = $('li.dfe-facebook-login');
 	$li.removeAttr('style');
@@ -22,18 +24,7 @@ require([
 					 * Мы то же самое делаем вручную.
 					 */
 					customerData.invalidate(['*']);
-					var $form = $('<form/>').attr({
-						action: $('meta[name=dfe_facebook_url_login]').attr('content')
-						,method: 'post'
-					});
-					var addFields = function(fields) {
-						for (var name in fields) {
-							$form.append($('<input/>').attr({
-								type: 'hidden', name: name, value: fields[name]
-							}));
-						}
-					};
-					addFields({
+					redirectWithPost($('meta[name=dfe_facebook_url_login]').attr('content'), {
 						token: response.authResponse.accessToken
 						/**
 						 * 2016-06-05
@@ -47,8 +38,6 @@ require([
 						/** https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus */
 						,user: response.authResponse.userID
 					});
-					$('body').append($form);
-					$form.submit();
 					break;
 				/**
 				 * 2015-10-10
