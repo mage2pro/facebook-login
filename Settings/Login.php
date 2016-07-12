@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin\Settings;
+/** @method static Login s() */
 class Login extends \Df\Core\Settings {
 	/** @return bool */
 	public function enable() {return $this->b('enable');}
@@ -10,7 +11,4 @@ class Login extends \Df\Core\Settings {
 	 * @return string
 	 */
 	protected function prefix() {return 'dfe_facebook/login/';}
-
-	/** @return self */
-	public static function s() {static $r; return $r ? $r : $r = df_o(__CLASS__);}
 }

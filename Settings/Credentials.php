@@ -1,9 +1,7 @@
 <?php
 namespace Dfe\FacebookLogin\Settings;
+/** @method static Credentials s() */
 class Credentials extends \Df\Facebook\Settings {
 	/** @return string */
 	public function appSecret() {return $this->p('app_secret');}
-
-	/** @return self */
-	public static function s() {static $r; return $r ? $r : $r = df_o(__CLASS__);}
 }
