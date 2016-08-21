@@ -4,10 +4,10 @@ class Exception extends \Df\Core\Exception {
 	/**
 	 * 2015-10-10
 	 * @override
-	 * @see \Df\Core\Exception::getMessageRm()
+	 * @see \Df\Core\Exception::message()
 	 * @return string
 	 */
-	public function getMessageRm() {
+	public function message() {
 		return "Facebook API error of type {$this->fbType()}: «{$this->fbMessage()}».";
 	}
 
