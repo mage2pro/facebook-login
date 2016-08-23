@@ -26,6 +26,13 @@ class InstallSchema extends \Df\Customer\External\Install\Schema {
 	protected function _install() {
 		// Адрес пустой картинки. У меня — 172 символа:
 		// https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=17835c9c962c70d05cc25d75008438a3&oe=5698842F
+		/**
+		 * 2016-08-22
+		 * Помимо добавления поля в таблицу «customer_entity» надо ещё добавить атрибут
+		 * что мы делаем в методе @see \Dfe\FacebookLogin\Setup\InstallData::_install()
+		 * иначе данные не будут сохраняться:
+		 * https://github.com/magento/magento2/blob/2.1.0/app/code/Magento/Eav/Model/Entity/AbstractEntity.php#L1262-L1265
+		 */
 		$this->column(self::F__PICTURE, 'varchar(255) DEFAULT NULL');
 		// В настоящее время мне Facebook возващает токены длиной 185 символов.
 		// Места отвёл с запасом.
