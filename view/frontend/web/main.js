@@ -1,6 +1,6 @@
 require([
 	'jquery'
-	, 'Df_Core/js/redirectWithPost'
+	, 'Df_Core/my/redirectWithPost'
 	, 'Magento_Customer/js/customer-data'
 ], function($, redirectWithPost, customerData) {$(function() {
 	/** @type {jQuery} HTMLLIElement */
