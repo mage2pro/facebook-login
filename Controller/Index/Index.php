@@ -2,11 +2,8 @@
 namespace Dfe\FacebookLogin\Controller\Index;
 use Df\Customer\External\ReturnT;
 use Dfe\FacebookLogin\User;
-use Dfe\FacebookLogin\Setup\InstallSchema;
-use Magento\Customer\Model\Session;
-/**
- * @method User c()
- */
+use Dfe\FacebookLogin\Setup\InstallSchema as Schema;
+/** @method User c() */
 class Index extends ReturnT {
 	/**
 	 * 2016-06-04
@@ -24,7 +21,7 @@ class Index extends ReturnT {
 	 * @used-by \Df\Customer\External\ReturnT::customer()
 	 * @return string
 	 */
-	protected function customerIdFieldName() {return InstallSchema::F__TOKEN_FOR_BUSINESS;}
+	protected function customerIdFieldName() {return Schema::F__TOKEN_FOR_BUSINESS;}
 
 	/**
 	 * 2016-06-04
@@ -62,14 +59,9 @@ class Index extends ReturnT {
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerFieldsToSync()
 	 * @return array(mixed => mixed)
 	 */
-	private function customerDataCustom() {
-		if (!isset($this->{__METHOD__})) {
-			$this->{__METHOD__} = [
-				InstallSchema::F__FULL_NAME => $this->c()->nameFull()
-				,InstallSchema::F__LONG_LIVED_ACCESS_TOKEN => $this->c()->longLivedAccessToken()
-				,InstallSchema::F__PICTURE => $this->c()->picture()
-			];
-		}
-		return $this->{__METHOD__};
-	}
+	private function customerDataCustom() {return dfc($this, function() {return [
+		Schema::F__FULL_NAME => $this->c()->nameFull()
+		,Schema::F__LONG_LIVED_ACCESS_TOKEN => $this->c()->longLivedAccessToken()
+		,Schema::F__PICTURE => $this->c()->picture()
+	];});}
 }
