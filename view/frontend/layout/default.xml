@@ -14,18 +14,10 @@
 	</head>
 	<body>
 		<referenceBlock name='header.links'>
-<!--
-2016-11-21
-Вынуждены указывать имя модуля в значении атрибута «template»,
-потому что класс модуля не имеет префикса «Block»,
-и в этом случае метод \Magento\Framework\View\Element\AbstractBlock::extractModuleName()
-работает некорректно (возвращает пустую строку):
-https://github.com/magento/magento2/blob/2.1.2/lib/internal/Magento/Framework/View/Element/AbstractBlock.php#L846-L860
--->
 			<block
 				class='Dfe\FacebookLogin\Button'
 				name='Dfe_FacebookLogin_Button'
-				template='Dfe_FacebookLogin::main.phtml'
+				template='main.phtml'
 				ifconfig='dfe_facebook/login/enable'
 				before='-'
 			/>
