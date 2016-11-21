@@ -6,52 +6,6 @@ use Dfe\FacebookLogin\Settings\Credentials;
 class User extends Customer {
 	/**
 	 * 2015-10-12
-	 * Facebook может не вернуть дату, а также вернуть её лишь частично:
-	 * https://developers.facebook.com/docs/graph-api/reference/user
-	 * «The person's birthday.
-	 * This is a fixed format string, like MM/DD/YYYY.
-	 * However, people can control who can see the year they were born
-	 * separately from the month and day
-	 * so this string can be only the year (YYYY) or the month + day (MM/DD)»
-	 * @override
-	 * @see \Df\Customer\External\Customer::_dob()
-	 * @used-by \Df\Customer\External\Customer::dob()
-	 * @return \DateTime|null
-	 */
-	protected function _dob() {
-		if (!isset($this->{__METHOD__})) {
-			/** @var \DateTime|null $result */
-			$result = null;
-			/** @var string|null $raw */
-			$raw = $this->r('birthday');
-			if ($raw) {
-				/** @var string[] $rawA */
-				$rawA = df_int(explode('/', $raw));
-				/** @var int $count */
-				$count = count($rawA);
-				/** @var int $year */
-				/** @var int $month */
-				/** @var int $day */
-				if (1 === $count) {
-					$year = $raw;
-					$month = 1;
-					$day = 1;
-				}
-				else {
-					$month = $rawA[0];
-					$day = $rawA[1];
-					$year = 2 === $count ? 1900 : $rawA[2];
-				}
-				$result = new \DateTime;
-				$result->setDate($year, $month, $day);
-			}
-			$this->{__METHOD__} = df_n_set($result);
-		}
-		return df_n_get($this->{__METHOD__});
-	}
-
-	/**
-	 * 2015-10-12
 	 * Пользователь мог быть зарегистрирован на Facebook по номеру телефона,
 	 * и тогда почтового адреса мы не узнаем
 	 * (хотя у пользователя всё равно есть на самом деле адрес на домене facebook.com).
@@ -59,18 +13,15 @@ class User extends Customer {
 	 * «The person's primary email address listed on their profile.
 	 * This field will not be returned if no valid email address is available».
 	 * @override
-	 * @see \Df\Customer\External\Customer::_email()
-	 * @used-by \Df\Customer\External\Customer::email()
+	 * @see \Df\Customer\External\Customer::email()
+	 * @used-by \Df\Customer\External\ReturnT::customerData()
 	 * @return string|null
 	 */
-	protected function _email() {
-		if (!isset($this->{__METHOD__})) {
-			/** @var string $result */
-			$result = $this->r('email');
-			$this->{__METHOD__} = df_n_set(df_contains($result, '@') ? $result : null);
-		}
-		return df_n_get($this->{__METHOD__});
-	}
+	public function email() {return dfc($this, function() {
+		/** @var string|null $r */
+		$r = $this->r('email');
+		return df_contains($r, '@') ? $r : null;
+	});}
 
 	/**
 	 * @override
@@ -162,10 +113,56 @@ class User extends Customer {
 
 	/**
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerIdFieldValue()
-	 * @used-by Dfe\FacebookLogin\User::password()
+	 * @used-by \Dfe\FacebookLogin\User::password()
 	 * @return string
 	 */
 	public function id() {return $this->r('token_for_business');}
+
+	/**
+	 * 2015-10-12
+	 * Facebook может не вернуть дату, а также вернуть её лишь частично:
+	 * https://developers.facebook.com/docs/graph-api/reference/user
+	 * «The person's birthday.
+	 * This is a fixed format string, like MM/DD/YYYY.
+	 * However, people can control who can see the year they were born
+	 * separately from the month and day
+	 * so this string can be only the year (YYYY) or the month + day (MM/DD)»
+	 * @override
+	 * @see \Df\Customer\External\Customer::_dob()
+	 * @used-by \Df\Customer\External\Customer::dob()
+	 * @return \DateTime|null
+	 */
+	protected function _dob() {
+		if (!isset($this->{__METHOD__})) {
+			/** @var \DateTime|null $result */
+			$result = null;
+			/** @var string|null $raw */
+			$raw = $this->r('birthday');
+			if ($raw) {
+				/** @var string[] $rawA */
+				$rawA = df_int(explode('/', $raw));
+				/** @var int $count */
+				$count = count($rawA);
+				/** @var int $year */
+				/** @var int $month */
+				/** @var int $day */
+				if (1 === $count) {
+					$year = $raw;
+					$month = 1;
+					$day = 1;
+				}
+				else {
+					$month = $rawA[0];
+					$day = $rawA[1];
+					$year = 2 === $count ? 1900 : $rawA[2];
+				}
+				$result = new \DateTime;
+				$result->setDate($year, $month, $day);
+			}
+			$this->{__METHOD__} = df_n_set($result);
+		}
+		return df_n_get($this->{__METHOD__});
+	}
 
 	/**
 	 * 2015-10-10
