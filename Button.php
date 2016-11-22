@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin;
-class Button extends \Magento\Framework\View\Element\Html\Link {
+class Button extends \Magento\Framework\View\Element\Template {
 	/**
 	 * @override
 	 * @see \Magento\Framework\View\Element\Html\Link::toHtml()
@@ -15,6 +15,6 @@ class Button extends \Magento\Framework\View\Element\Html\Link {
 	 */
 	protected function _construct() {
 		parent::_construct();
-		df_metadata('dfe_facebook_url_login', $this->getUrl('dfe-facebook'));
+		df_metadata('dfe_facebook_url_login', $this->getUrl(df_route(__CLASS__)));
 	}
 }
