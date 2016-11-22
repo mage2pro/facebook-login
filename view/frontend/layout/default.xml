@@ -1,23 +1,13 @@
 <?xml version='1.0'?>
 <page 
 	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-	xsi:noNamespaceSchemaLocation='urn:magento:framework:View/Layout/etc/page_configuration.xsd'>
-	<head>
-		<!--
-			2015-10-05
-			На текущий момент ядро никак не использует возможность defer,
-			но она прекрасно работает:
-			выполнение нашего скрипта замораживается до окончания загрузки страницы.
-            http://www.w3schools.com/tags/att_script_defer.asp
-		-->
-		<script src='Dfe_FacebookLogin::main.js' defer='defer'/>
-	</head>
+	xsi:noNamespaceSchemaLocation='urn:magento:framework:View/Layout/etc/page_configuration.xsd'
+>
 	<body>
 		<referenceBlock name='header.links'>
 			<block
 				class='Dfe\FacebookLogin\Button'
 				name='Dfe_FacebookLogin_Button'
-				template='main.phtml'
 				ifconfig='dfe_facebook/login/enable'
 				before='-'
 			/>

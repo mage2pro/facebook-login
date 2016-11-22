@@ -1,20 +1,33 @@
 <?php
 namespace Dfe\FacebookLogin;
-class Button extends \Magento\Framework\View\Element\Template {
+use Magento\Framework\View\Element\AbstractBlock;
+class Button extends AbstractBlock {
 	/**
+	 * 2016-11-22
 	 * @override
-	 * @see \Magento\Framework\View\Element\Html\Link::toHtml()
+	 * @see AbstractBlock::_toHtml()
 	 * @return string
 	 */
-	public function toHtml() {return df_customer_logged_in() ? '' : parent::toHtml();}
-
-	/**
-	 * @override
-	 * @see \Magento\Framework\View\Element\Html\Link::_construct()
-	 * @return void
-	 */
-	protected function _construct() {
-		parent::_construct();
-		df_metadata('dfe_facebook_url_login', $this->getUrl(df_route(__CLASS__)));
+	protected function _toHtml() {
+		/** @var string $result */
+		if (df_customer_logged_in()) {
+			$result = '';
+		}
+		else {
+			/** @var string $domId */
+			$domId = df_uid(4, 'dfe-facebook-login-');
+			$result =
+				df_x_magento_init(__CLASS__, 'main', [
+					'domId' => $domId, 'redirect' => $this->getUrl(df_route(__CLASS__))
+				])
+				.df_tag('li', ['id' => $domId, 'style' => 'display:none'],
+					df_tag('fb:login-button', [
+						'onlogin' => 'dfeFacebookLogin()', 'scope' => 'public_profile,email'
+					])
+				)
+				.\Df\Facebook\I::init()
+			;
+		}
+		return $result;
 	}
 }
