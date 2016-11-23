@@ -7,8 +7,8 @@
 		<referenceBlock name='header.links'>
 			<block
 				class='Dfe\FacebookLogin\Button'
-				name='Dfe_FacebookLogin_Button'
-				ifconfig='dfe_facebook/login/enable'
+				name='Dfe_FacebookLogin_Button-header.links'
+				ifconfig='dfe_facebook/login/locations/header'
 				before='-'
 			/>
 		</referenceBlock>

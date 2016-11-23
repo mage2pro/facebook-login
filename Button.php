@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin;
+use Dfe\FacebookLogin\Settings as S;
 use Magento\Framework\View\Element\AbstractBlock;
 class Button extends AbstractBlock {
 	/**
@@ -10,7 +11,11 @@ class Button extends AbstractBlock {
 	 */
 	protected function _toHtml() {
 		/** @var string $result */
-		if (df_customer_logged_in()) {
+		/** @var string $result */
+		if (!S::s()->enable()) {
+			$result = '';
+		}
+		else if (df_customer_logged_in()) {
 			$result = '';
 		}
 		else {
