@@ -12,15 +12,17 @@ define([
 	 */
 	function(config) {
 		/** @type {jQuery} HTMLDivElement */
-		var $li = $(document.getElementById(config.domId));
+		var $container = $(document.getElementById(config.domId));
 		// 2015-10-08
 		// Чтобы кнопка при авторизации не елозила по экрану.
 		// http://www.question2answer.org/qa/15546/facebook-changed-height-login-button-template-design-breaks?show=15561#a15561
-		$li.removeAttr('style').css({display: 'inline-block', 'margin-right': '15px', width: '50px'});
+		$container.removeAttr('style').css({
+			display: 'inline-block', 'margin-right': '15px', width: '50px'
+		});
 		window.dfeFacebookLogin = function() {
 			// 2015-10-08
 			// Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
-			$li.hide();
+			$container.hide();
 			FB.getLoginStatus(function(response) {
 				switch (response.status) {
 					case 'connected':
@@ -46,7 +48,7 @@ define([
 							 * https://code.dmitry-fedyuk.com/m2e/facebook-login/blob/7c2b601d/Controller/Index/Index.php#L50
 							 */
 							,url: window.location.href
-							/** https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus */
+							// https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus
 							,user: response.authResponse.userID
 						});
 						break;
@@ -60,7 +62,7 @@ define([
 					 */
 					case 'not_authorized':
 					default:
-						$li.show();
+						$container.show();
 				}
 			});
 		};

@@ -16,7 +16,7 @@ class Button extends \Df\Sso\Button {
 			df_x_magento_init(__CLASS__, 'main', [
 				'domId' => $domId, 'redirect' => $this->getUrl(df_route(__CLASS__))
 			])
-			.df_tag('li', ['id' => $domId, 'style' => 'display:none'],
+			.df_tag('div', ['id' => $domId, 'style' => 'display:none'],
 				df_tag('fb:login-button', [
 					'onlogin' => 'dfeFacebookLogin()', 'scope' => 'public_profile,email'
 				])
