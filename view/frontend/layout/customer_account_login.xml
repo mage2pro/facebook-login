@@ -12,9 +12,7 @@ https://github.com/mage2pro/core/blob/1.9.18/Sso/view/frontend/layout/customer_a
 		<referenceContainer name='df.customer.login.before'>
 			<block
 				class='Dfe\FacebookLogin\Button'
-				name='Dfe_FacebookLogin_Button-customer.account.login'
 				ifconfig='dfe_facebook/login/locations/loginPage'
-				before='-'
 			/>
 		</referenceContainer>
 	</body>
