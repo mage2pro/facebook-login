@@ -12,7 +12,7 @@
 		"role": "Developer"
 	}]
 	,"require": {
-		"mage2pro/core": "^1.9.17"
+		"mage2pro/core": "^1.9.18"
 		, "mage2pro/facebook": "^1.0.5"
 	}
 	,"autoload": {"files": ["registration.php"], "psr-4": {"Dfe\\FacebookLogin\\": ""}}

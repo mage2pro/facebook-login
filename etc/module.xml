@@ -6,6 +6,7 @@
 	<module name='Dfe_FacebookLogin' setup_version='1.0.0'>
 		<sequence>
 			<module name='Df_Core'/>
+			<module name='Df_Sso'/>
 		</sequence>
 	</module>
 </config>

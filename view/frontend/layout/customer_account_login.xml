@@ -1,9 +1,15 @@
 <?xml version='1.0'?>
 <page
 	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-	xsi:noNamespaceSchemaLocation='urn:magento:framework:View/Layout/etc/page_configuration.xsd'>
+	xsi:noNamespaceSchemaLocation='urn:magento:framework:View/Layout/etc/page_configuration.xsd'
+>
 	<body>
-		<referenceContainer name='content'>
+<!--
+2016-11-23
+The «df.customer.login.before» container is added by the «Df_Sso» module:
+https://github.com/mage2pro/core/blob/1.9.18/Sso/view/frontend/layout/customer_account_login.xml?ts=4#L17-L22
+-->
+		<referenceContainer name='df.customer.login.before'>
 			<block
 				class='Dfe\FacebookLogin\Button'
 				name='Dfe_FacebookLogin_Button-customer.account.login'
