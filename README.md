@@ -11,3 +11,11 @@ rm -rf var/di var/generation && bin/magento setup:di:compile
 - [Ask a question](https://mage2.pro/c/extensions/facebook-login)
 - [Report an issue](https://github.com/mage2pro/facebook-login/issues)
 
+## Screenshots
+
+![](https://mage2.pro/uploads/default/original/1X/9d55c5338c7bf62bd8bb7196469bc4239cb09591.png)
+
+## Video
+
+https://www.youtube.com/watch?v=BZ-W8rpM_mc
+
