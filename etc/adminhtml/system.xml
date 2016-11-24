@@ -3,47 +3,47 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="urn:magento:module:Df_Config:etc/system_file.xsd"
 >
-    <system>
-        <section id='dfe_facebook'>
-            <group id='credentials'>
-                <field
-                    id='app_secret'
-                    translate='label'
-                    type='obscure'
-                    sortOrder='2'
-                    showInDefault='1'
-                    showInWebsite='1'
-                    showInStore='0'
-                >
-                    <label>App Secret</label>
-                    <comment><![CDATA[<a href='https://discourse.pro/t/15'>How to get it?</a>]]></comment>
-                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
-                </field>
-            </group>
-            <group
-                id='login'
-                translate='label'
-                type='text'
-                sortOrder='60'
-                showInDefault='1'
-                showInWebsite='1'
-                showInStore='1'
-            >
-                <label>Frontend Login</label>
-                <dfExtension>Dfe\FacebookLogin\Ext</dfExtension>
-            	<frontend_model>Df\Config\Block\System\Config\Form\Fieldset\Ext</frontend_model>
-                <field
-                    id='enable'
-                    translate='label'
-                    type='Df\Framework\Form\Element\Checkbox'
-                    sortOrder='1'
-                    showInDefault='1'
-                    showInWebsite='1'
-                    showInStore='1'
-                >
-                    <label>Enable?</label>
-                    <backend_model>Df\Config\Backend\Checkbox</backend_model>
-                </field>
+	<system>
+		<section id='dfe_facebook'>
+			<group id='credentials'>
+				<field
+					id='app_secret'
+					translate='label'
+					type='obscure'
+					sortOrder='2'
+					showInDefault='1'
+					showInWebsite='1'
+					showInStore='0'
+				>
+					<label>App Secret</label>
+					<comment><![CDATA[<a href='https://discourse.pro/t/15'>How to get it?</a>]]></comment>
+					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+				</field>
+			</group>
+			<group
+				id='login'
+				translate='label'
+				type='text'
+				sortOrder='60'
+				showInDefault='1'
+				showInWebsite='1'
+				showInStore='1'
+			>
+				<label>Frontend Login</label>
+				<dfExtension>Dfe\FacebookLogin\Ext</dfExtension>
+				<frontend_model>Df\Config\Block\System\Config\Form\Fieldset\Ext</frontend_model>
+				<field
+					id='enable'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+					sortOrder='1'
+					showInDefault='1'
+					showInWebsite='1'
+					showInStore='1'
+				>
+					<label>Enable?</label>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+				</field>
 				<group
 					id='locations'
 					translate='label'
@@ -128,7 +128,7 @@
 						</field>
 					</group>
 				</group>
-            </group>
-        </section>
-    </system>
+			</group>
+		</section>
+	</system>
 </config>
