@@ -5,11 +5,12 @@
 >
 	<body>
 		<referenceBlock name='header.links'>
-			<block
-				before='-'
-				class='Dfe\FacebookLogin\Button'
-				ifconfig='dfe_facebook/login/locations/header'
-			/>
+			<block before='-' class='Dfe\FacebookLogin\Button'>
+				<arguments>
+					<argument name='dfConfigPrefix' xsi:type='string'
+					>dfe_facebook/login/locations/header</argument>
+				</arguments>
+			</block>
 		</referenceBlock>
 	</body>
 </page>

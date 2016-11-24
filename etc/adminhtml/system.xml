@@ -55,45 +55,78 @@
 				>
 					<depends><field id='enable'>1</field></depends>
 					<label>Button Locations</label>
-					<field
+					<group
 						id='header'
 						translate='label'
-						type='Df\Framework\Form\Element\Checkbox'
+						type='text'
 						sortOrder='1'
 						showInDefault='1'
 						showInWebsite='1'
 						showInStore='1'
 					>
-						<label>Show in Header?</label>
-						<backend_model>Df\Config\Backend\Checkbox</backend_model>
-						<comment><![CDATA[Shows the <b>Facebook «Log In»</b> button in the header of the frontend pages, near to the standard «<b>Sign In</b>» and «<b>Create an Account</b>» links.]]></comment>
-					</field>
-					<field
+						<label>Header</label>
+						<field
+							id='enable'
+							translate='label'
+							type='Df\Framework\Form\Element\Checkbox'
+							sortOrder='1'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Enable?</label>
+							<backend_model>Df\Config\Backend\Checkbox</backend_model>
+							<comment><![CDATA[Shows the <b>Facebook «Log In»</b> button in the header of the frontend pages, near to the standard «<b>Sign In</b>» and «<b>Create an Account</b>» links.]]></comment>
+						</field>
+					</group>
+					<group
 						id='loginPage'
 						translate='label'
-						type='Df\Framework\Form\Element\Checkbox'
+						type='text'
 						sortOrder='2'
 						showInDefault='1'
 						showInWebsite='1'
 						showInStore='1'
 					>
-						<label>Show on Login Page?</label>
-						<backend_model>Df\Config\Backend\Checkbox</backend_model>
-						<comment><![CDATA[Shows the <b>Facebook «Log In»</b> button on the «<b>Customer Login</b>» page, above the standard «<b>Registered Customers</b>» and «<b>New Customers</b>» blocks.]]></comment>
-					</field>
-					<field
+						<label>Login Page</label>
+						<field
+							id='enable'
+							translate='label'
+							type='Df\Framework\Form\Element\Checkbox'
+							sortOrder='1'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Enable?</label>
+							<backend_model>Df\Config\Backend\Checkbox</backend_model>
+							<comment><![CDATA[Shows the <b>Facebook «Log In»</b> button on the «<b>Customer Login</b>» page, above the standard «<b>Registered Customers</b>» and «<b>New Customers</b>» blocks.]]></comment>
+						</field>
+					</group>
+					<group
 						id='registratonPage'
 						translate='label'
-						type='Df\Framework\Form\Element\Checkbox'
+						type='text'
 						sortOrder='3'
 						showInDefault='1'
 						showInWebsite='1'
 						showInStore='1'
 					>
-						<label>Show on Registration Page?</label>
-						<backend_model>Df\Config\Backend\Checkbox</backend_model>
-						<comment><![CDATA[Shows the <b>Facebook «Log In»</b> button on the «<b>Create New Customer Account</b>» page, above the standard registration form.]]></comment>
-					</field>
+						<label>Registration Page</label>
+						<field
+							id='enable'
+							translate='label'
+							type='Df\Framework\Form\Element\Checkbox'
+							sortOrder='1'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Enable?</label>
+							<backend_model>Df\Config\Backend\Checkbox</backend_model>
+							<comment><![CDATA[Shows the <b>Facebook «Log In»</b> button on the «<b>Create New Customer Account</b>» page, above the standard registration form.]]></comment>
+						</field>
+					</group>
 				</group>
             </group>
         </section>
