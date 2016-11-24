@@ -12,7 +12,7 @@ final class Settings extends \Df\Config\Settings {
 	 * @used-by \Df\Config\Settings::v()
 	 * @return string
 	 */
-	protected function prefix() {return 'dfe_facebook/login';}
+	protected function prefix() {return 'df_facebook/login';}
 }
 
 

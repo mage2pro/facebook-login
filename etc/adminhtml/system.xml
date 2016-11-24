@@ -4,7 +4,7 @@
 	xsi:noNamespaceSchemaLocation="urn:magento:module:Df_Config:etc/system_file.xsd"
 >
 	<system>
-		<section id='dfe_facebook'>
+		<section id='df_facebook'>
 			<group id='credentials'>
 				<field
 					id='app_secret'
@@ -97,6 +97,22 @@
 </ul>]]></comment>
 							<depends><field id='enable'>1</field></depends>
 						</field>
+						<field
+							id='label'
+							translate='label'
+							type='text'
+							sortOrder='3'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Label</label>
+							<depends>
+								<field id='enable'>1</field>
+								<field id='type' negative='1'>button-native</field>
+							</depends>
+							<validate>required-entry</validate>
+						</field>
 					</group>
 					<group
 						id='loginPage'
@@ -139,6 +155,22 @@
 </ul>]]></comment>
 							<depends><field id='enable'>1</field></depends>
 						</field>
+						<field
+							id='label'
+							translate='label'
+							type='text'
+							sortOrder='3'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Label</label>
+							<depends>
+								<field id='enable'>1</field>
+								<field id='type' negative='1'>button-native</field>
+							</depends>
+							<validate>required-entry</validate>
+						</field>
 					</group>
 					<group
 						id='registratonPage'
@@ -180,6 +212,22 @@
 	<li><b>link</b>: a text link will be used instead of a button.</li>
 </ul>]]></comment>
 							<depends><field id='enable'>1</field></depends>
+						</field>
+						<field
+							id='label'
+							translate='label'
+							type='text'
+							sortOrder='3'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Label</label>
+							<depends>
+								<field id='enable'>1</field>
+								<field id='type' negative='1'>button-native</field>
+							</depends>
+							<validate>required-entry</validate>
 						</field>
 					</group>
 				</group>
