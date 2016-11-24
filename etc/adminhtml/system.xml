@@ -79,6 +79,24 @@
 							<backend_model>Df\Config\Backend\Checkbox</backend_model>
 							<comment><![CDATA[Shows the authentication button (or link) in the header of the frontend pages, near to the standard «<b>Sign In</b>» and «<b>Create an Account</b>» links.]]></comment>
 						</field>
+						<field
+							id='type'
+							translate='label'
+							type='select'
+							sortOrder='2'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Type</label>
+							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
+							<comment><![CDATA[<ul class='df-note'>
+	<li><b>unified button</b>: the button will have the same design as the others Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons.</li>
+	<li><b>native button</b>: the button will have a native design provided by Amazon.</li>
+	<li><b>link</b>: a text link will be used instead of a button.</li>
+</ul>]]></comment>
+							<depends><field id='enable'>1</field></depends>
+						</field>
 					</group>
 					<group
 						id='loginPage'
@@ -103,6 +121,24 @@
 							<backend_model>Df\Config\Backend\Checkbox</backend_model>
 							<comment><![CDATA[Shows the authentication button (or link) on the «<b>Customer Login</b>» page, above the standard «<b>Registered Customers</b>» and «<b>New Customers</b>» blocks.]]></comment>
 						</field>
+						<field
+							id='type'
+							translate='label'
+							type='select'
+							sortOrder='2'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Type</label>
+							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
+							<comment><![CDATA[<ul class='df-note'>
+	<li><b>unified button</b>: the button will have the same design as the others Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons.</li>
+	<li><b>native button</b>: the button will have a native design provided by Amazon.</li>
+	<li><b>link</b>: a text link will be used instead of a button.</li>
+</ul>]]></comment>
+							<depends><field id='enable'>1</field></depends>
+						</field>
 					</group>
 					<group
 						id='registratonPage'
@@ -126,6 +162,24 @@
 							<label>Enable?</label>
 							<backend_model>Df\Config\Backend\Checkbox</backend_model>
 							<comment><![CDATA[Shows the authentication button (or link) on the «<b>Create New Customer Account</b>» page, above the standard registration form.]]></comment>
+						</field>
+						<field
+							id='type'
+							translate='label'
+							type='select'
+							sortOrder='2'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Type</label>
+							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
+							<comment><![CDATA[<ul class='df-note'>
+	<li><b>unified button</b>: the button will have the same design as the others Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons.</li>
+	<li><b>native button</b>: the button will have a native design provided by Amazon.</li>
+	<li><b>link</b>: a text link will be used instead of a button.</li>
+</ul>]]></comment>
+							<depends><field id='enable'>1</field></depends>
 						</field>
 					</group>
 				</group>
