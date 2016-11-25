@@ -10,5 +10,5 @@ class Size extends \Df\Config\SourceT {
 	 * @see \Dfe\FacebookLogin\Settings\Button::nativeSize()
 	 * @return array(string => string)
 	 */
-	protected function map() {return dfa_combine_self(['small', 'medium', 'large', 'xlarge']);}
+	protected function map() {return dfa_combine_self(['icon', 'small', 'medium', 'large', 'xlarge']);}
 }
