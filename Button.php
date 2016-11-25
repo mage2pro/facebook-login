@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin;
-use Dfe\FacebookLogin\Settings as S;
+/** @method \Dfe\FacebookLogin\Settings\Button s() */
 class Button extends \Df\Sso\Button {
 	/**
 	 * 2016-11-23
@@ -57,7 +57,7 @@ class Button extends \Df\Sso\Button {
 				// 2016-11-25
 				// «Picks one of the size options for the button.»
 				// Allowed values: «small», «medium», «large», «xlarge».
-				,'data-size' => 'small'
+				,'data-size' => $this->s()->nativeSize()
 			])
 		)
 		.\Df\Facebook\I::init()
