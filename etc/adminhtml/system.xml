@@ -98,10 +98,27 @@
 							<depends><field id='enable'>1</field></depends>
 						</field>
 						<field
+							id='nativeSize'
+							translate='label'
+							type='select'
+							sortOrder='3'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Size</label>
+							<source_model>Dfe\FacebookLogin\Source\Button\Size</source_model>
+							<comment><![CDATA[You can examine the sizes in the Facebook's <a target='_blank' href='https://developers.facebook.com/docs/facebook-login/web/login-button#plugin-configurator'>Plugin Configurator</a>.]]></comment>
+							<depends>
+								<field id='enable'>1</field>
+								<field id='type'>button-native</field>
+							</depends>
+						</field>
+						<field
 							id='label'
 							translate='label'
 							type='text'
-							sortOrder='3'
+							sortOrder='4'
 							showInDefault='1'
 							showInWebsite='1'
 							showInStore='1'
@@ -156,10 +173,27 @@
 							<depends><field id='enable'>1</field></depends>
 						</field>
 						<field
+							id='nativeSize'
+							translate='label'
+							type='select'
+							sortOrder='3'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Size</label>
+							<source_model>Dfe\FacebookLogin\Source\Button\Size</source_model>
+							<comment><![CDATA[You can examine the sizes in the Facebook's <a target='_blank' href='https://developers.facebook.com/docs/facebook-login/web/login-button#plugin-configurator'>Plugin Configurator</a>.]]></comment>
+							<depends>
+								<field id='enable'>1</field>
+								<field id='type'>button-native</field>
+							</depends>
+						</field>
+						<field
 							id='label'
 							translate='label'
 							type='text'
-							sortOrder='3'
+							sortOrder='4'
 							showInDefault='1'
 							showInWebsite='1'
 							showInStore='1'
@@ -214,10 +248,27 @@
 							<depends><field id='enable'>1</field></depends>
 						</field>
 						<field
+							id='nativeSize'
+							translate='label'
+							type='select'
+							sortOrder='3'
+							showInDefault='1'
+							showInWebsite='1'
+							showInStore='1'
+						>
+							<label>Size</label>
+							<source_model>Dfe\FacebookLogin\Source\Button\Size</source_model>
+							<comment><![CDATA[You can examine the sizes in the Facebook's <a target='_blank' href='https://developers.facebook.com/docs/facebook-login/web/login-button#plugin-configurator'>Plugin Configurator</a>.]]></comment>
+							<depends>
+								<field id='enable'>1</field>
+								<field id='type'>button-native</field>
+							</depends>
+						</field>
+						<field
 							id='label'
 							translate='label'
 							type='text'
-							sortOrder='3'
+							sortOrder='4'
 							showInDefault='1'
 							showInWebsite='1'
 							showInStore='1'
