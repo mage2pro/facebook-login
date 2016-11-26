@@ -111,7 +111,7 @@
 							<comment><![CDATA[You can examine the sizes in the Facebook's <a target='_blank' href='https://developers.facebook.com/docs/facebook-login/web/login-button#plugin-configurator'>Plugin Configurator</a>.]]></comment>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type'>button-native</field>
+								<field id='type'>N</field>
 							</depends>
 						</field>
 						<field
@@ -126,7 +126,7 @@
 							<label>Label</label>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type' negative='1'>button-native</field>
+								<field id='type' negative='1'>N</field>
 							</depends>
 							<validate>required-entry</validate>
 						</field>
@@ -186,7 +186,7 @@
 							<comment><![CDATA[You can examine the sizes in the Facebook's <a target='_blank' href='https://developers.facebook.com/docs/facebook-login/web/login-button#plugin-configurator'>Plugin Configurator</a>.]]></comment>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type'>button-native</field>
+								<field id='type'>N</field>
 							</depends>
 						</field>
 						<field
@@ -201,7 +201,7 @@
 							<label>Label</label>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type' negative='1'>button-native</field>
+								<field id='type' negative='1'>N</field>
 							</depends>
 							<validate>required-entry</validate>
 						</field>
@@ -261,7 +261,7 @@
 							<comment><![CDATA[You can examine the sizes in the Facebook's <a target='_blank' href='https://developers.facebook.com/docs/facebook-login/web/login-button#plugin-configurator'>Plugin Configurator</a>.]]></comment>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type'>button-native</field>
+								<field id='type'>N</field>
 							</depends>
 						</field>
 						<field
@@ -276,7 +276,7 @@
 							<label>Label</label>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type' negative='1'>button-native</field>
+								<field id='type' negative='1'>N</field>
 							</depends>
 							<validate>required-entry</validate>
 						</field>

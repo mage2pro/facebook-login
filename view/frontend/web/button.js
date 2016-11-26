@@ -23,8 +23,12 @@ define([
 			// 2015-10-08
 			// Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
 			$container.hide();
+			// 2016-11-26
+			// https://developers.facebook.com/docs/facebook-login/web#checklogin
 			FB.getLoginStatus(function(response) {
 				switch (response.status) {
+					// 2016-11-26
+					// «The person is logged into Facebook, and has logged into your app.»
 					case 'connected':
 						/**
 						 * 2015-10-08
@@ -59,8 +63,13 @@ define([
 					 * и отказывал Facebook в аутентификации,
 					 * но в обоих этих случаях окно авторизации просто молча закрывается,
 					 * а сюда управление не попадает.
+					 * 2016-11-26
+					 * «The person is logged into Facebook, but has not logged into your app.»
 					 */
 					case 'not_authorized':
+					// 2016-11-26
+					// «The person is logged into Facebook, but has not logged into your app.»
+					case 'unknown':
 					default:
 						$container.show();
 				}

@@ -10,6 +10,7 @@
 					<header>
 						<label>Login with Facebook</label>
 						<nativeSize>small</nativeSize>
+						<type>U</type>
 					</header>
 					<loginPage>
 						<label>Login with Facebook</label>
@@ -19,6 +20,7 @@
 («Sign In», «Create an Account»).
 -->
 						<nativeSize>large</nativeSize>
+						<type>U</type>
 					</loginPage>
 					<registratonPage>
 						<label>Login with Facebook</label>
@@ -28,6 +30,7 @@
 («Sign In», «Create an Account»).
 -->
 						<nativeSize>large</nativeSize>
+						<type>U</type>
 					</registratonPage>
 				</button>
 			</login>
