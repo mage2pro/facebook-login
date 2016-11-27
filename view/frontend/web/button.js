@@ -8,16 +8,21 @@ define([
 	 * @param {Object} config
 	 * @param {String} config.domId
 	 * @param {String} config.redirect
+	 * @param {String} config.selector
 	 * @param {String} config.type
 	 * @returns void
 	 */
 	function(config) {
-		/** @type {jQuery} HTMLDivElement */
-		var $container = $(document.getElementById(config.domId));
-		window.dfeFacebookLogin = function() {
+		window.dfeFacebookLogin = window.dfeFacebookLogin || function() {
+			/** @type {jQuery} HTMLDivElement[] */
+			var $containers = $(config.selector);
 			// 2015-10-08
-			// Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
-			$container.hide();
+			// Скрываем кнопку, чтобы в процессе аутентификации она не мелькала.
+			// 2016-11-27
+			// На странице может быть расположено сразу 2 кнопки аутентификации Facebook:
+			// в шапке и, например, в в блоке регистрации.
+			// Скрывать надо все эти кнопки, а не только нажатую.
+			$containers.hide();
 			// 2016-11-26
 			// https://developers.facebook.com/docs/facebook-login/web#checklogin
 			FB.getLoginStatus(function(response) {
@@ -66,10 +71,12 @@ define([
 					// «The person is logged into Facebook, but has not logged into your app.»
 					case 'unknown':
 					default:
-						$container.show();
+						$containers.show();
 				}
 			});
 		};
+		/** @type {jQuery} HTMLDivElement */
+		var $container = $(document.getElementById(config.domId));
 		// 2015-10-08
 		// Чтобы кнопка при авторизации не елозила по экрану.
 		// http://www.question2answer.org/qa/15546/facebook-changed-height-login-button-template-design-breaks?show=15561#a15561
