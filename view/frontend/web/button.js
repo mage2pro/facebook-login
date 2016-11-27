@@ -8,6 +8,7 @@ define([
 	 * @param {Object} config
 	 * @param {String} config.domId
 	 * @param {String} config.redirect
+	 * @param {String} config.type
 	 * @returns void
 	 */
 	function(config) {
@@ -16,9 +17,10 @@ define([
 		// 2015-10-08
 		// Чтобы кнопка при авторизации не елозила по экрану.
 		// http://www.question2answer.org/qa/15546/facebook-changed-height-login-button-template-design-breaks?show=15561#a15561
-		$container.removeAttr('style').css({
-			display: 'inline-block', 'margin-right': '15px', width: '50px'
-		});
+		$container.removeAttr('style');
+		if ('N' === config.type) {
+			$container.css({display: 'inline-block', 'margin-right': '15px', width: '50px'});
+		}
 		window.dfeFacebookLogin = function() {
 			// 2015-10-08
 			// Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
