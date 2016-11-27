@@ -9,7 +9,7 @@ class Button extends \Df\Sso\Button\Js {
 	 * @used-by \Df\Sso\Button::loggedOut()
 	 * @return array(string => string)
 	 */
-	protected function attributes() {return ['style' => 'display:none'];}
+	final protected function attributes() {return ['style' => 'display:none'];}
 
 	/**
 	 * 2016-11-26
@@ -27,7 +27,7 @@ class Button extends \Df\Sso\Button\Js {
 	 * @used-by \Df\Sso\Button::html()
 	 * @return string
 	 */
-	protected function htmlN() {return df_tag('div', [
+	final protected function htmlN() {return df_tag('div', [
 		// 2016-11-25
 		// I took this value from the Plugin Configurator.
 		'class' => 'fb-login-button'
@@ -68,5 +68,5 @@ class Button extends \Df\Sso\Button\Js {
 	 * @used-by \Df\Sso\Button::_toHtml()
 	 * @return string
 	 */
-	protected function loggedOut() {return parent::loggedOut()	. \Df\Facebook\I::init();}
+	final protected function loggedOut() {return parent::loggedOut()	. \Df\Facebook\I::init();}
 }

@@ -14,13 +14,6 @@ define([
 	function(config) {
 		/** @type {jQuery} HTMLDivElement */
 		var $container = $(document.getElementById(config.domId));
-		// 2015-10-08
-		// Чтобы кнопка при авторизации не елозила по экрану.
-		// http://www.question2answer.org/qa/15546/facebook-changed-height-login-button-template-design-breaks?show=15561#a15561
-		$container.removeAttr('style');
-		if ('N' === config.type) {
-			$container.css({display: 'inline-block', 'margin-right': '15px', width: '50px'});
-		}
 		window.dfeFacebookLogin = function() {
 			// 2015-10-08
 			// Скрываем кнопку, чтобы в процессе авторизации она не мелькала.
@@ -77,5 +70,19 @@ define([
 				}
 			});
 		};
+		// 2015-10-08
+		// Чтобы кнопка при авторизации не елозила по экрану.
+		// http://www.question2answer.org/qa/15546/facebook-changed-height-login-button-template-design-breaks?show=15561#a15561
+		$container.removeAttr('style');
+		switch (config.type) {
+			case 'L':
+				$('a', $container).click(window.dfeFacebookLogin);
+				break;
+			case 'N':
+				$container.css({display: 'inline-block', 'margin-right': '15px', width: '50px'});
+				break;
+			case 'U':
+				break;
+		}
 	});
 });
