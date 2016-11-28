@@ -6,23 +6,49 @@ define([
 ], function(df, redirectWithPost, $, customerData) {return (
 	/**
 	 * @param {Object} config
-	 * @param {String} config.domId
 	 * @param {String} config.redirect
 	 * @param {String} config.selector
+	 * @param {?String} config.style
 	 * @param {String} config.type
+	 * @param {HTMLDivElement} element
 	 * @returns void
 	 */
-	function(config) {
+	function(config, element) {
+		/**
+		 * 2016-11-28
+		 * Система клонирует меню из блока «header.links» в видимый только в мобильном режиме
+		 * (но присутствующий в DOM и в настольном режиме) блок «store.links»:
+				$('.panel.header > .header.links').clone().appendTo('#store\\.links');
+		 * https://github.com/magento/magento2/blob/2.1.2/app/design/frontend/Magento/blank/web/js/theme.js#L26-L26
+		 * https://mage2.pro/t/2336
+		 * По этой причине у нас сразу 2 одинаковых кнопки в шапке: одна видимая и вторая — невидимая.
+		 * Обе эти кнопки инициализируются независимо (сюда мы попадаем для каждой из этих кнопок отдельно),
+		 * но имеют одинаковые идентификаторы.
+		 * При этом код document.getElementById('<идентификатор>') или $('#<идентификатор>')
+		 * вернёт только первую из кнопок.
+		 * Найти вторую можно по селектору: $(config.selector)
+		 * При этом такой поиск по селектору может вернуть и третью кнопку,
+		 * потому что на страницах регистрации и аутентификации наша кнопка аутентификации
+		 * может быть одновременно расположена как в шапке, так и над блоком регистрации/аутентификации.
+		 */
+		/** @type {jQuery} HTMLDivElement */
+		var $c = $(element);
+		if ($c.closest('.nav-sections').length) {
+			element.id += '-nav-sections';
+		}
+		else if ($c.closest('.page-header').length) {
+			element.id += '-page-header';
+		}
 		window.dfeFacebookLogin = window.dfeFacebookLogin || function() {
 			/** @type {jQuery} HTMLDivElement[] */
-			var $containers = $(config.selector);
+			var $cs = $(config.selector);
 			// 2015-10-08
 			// Скрываем кнопку, чтобы в процессе аутентификации она не мелькала.
 			// 2016-11-27
 			// На странице может быть расположено сразу 2 кнопки аутентификации Facebook:
 			// в шапке и, например, в в блоке регистрации.
 			// Скрывать надо все эти кнопки, а не только нажатую.
-			$containers.hide();
+			$cs.hide();
 			// 2016-11-26
 			// https://developers.facebook.com/docs/facebook-login/web#checklogin
 			FB.getLoginStatus(function(response) {
@@ -71,25 +97,21 @@ define([
 					// «The person is logged into Facebook, but has not logged into your app.»
 					case 'unknown':
 					default:
-						$containers.show();
+						$cs.show();
 				}
 			});
 		};
-		/** @type {jQuery} HTMLDivElement */
-		var $container = $(document.getElementById(config.domId));
 		// 2015-10-08
 		// Чтобы кнопка при авторизации не елозила по экрану.
 		// http://www.question2answer.org/qa/15546/facebook-changed-height-login-button-template-design-breaks?show=15561#a15561
-		$container.removeAttr('style');
+		$c.removeAttr('style');
 		switch (config.type) {
 			case 'L':
-				$('a', $container).click(window.dfeFacebookLogin);
+			case 'U':
+				$('a', $c).click(window.dfeFacebookLogin);
 				break;
 			case 'N':
-				$container.css({display: 'inline-block', 'margin-right': '15px', width: '50px'});
-				break;
-			case 'U':
-				break;
+				$c.css({display: 'inline-block', 'margin-right': '15px', width: '50px'});
 		}
 	});
 });

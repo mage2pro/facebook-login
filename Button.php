@@ -5,11 +5,11 @@ class Button extends \Df\Sso\Button\Js {
 	/**
 	 * 2016-11-26
 	 * @override
-	 * @see \Df\Sso\Button::attributes()
+	 * @see \Df\Sso\Button\Js::attributes()
 	 * @used-by \Df\Sso\Button::loggedOut()
 	 * @return array(string => string)
 	 */
-	final protected function attributes() {return ['style' => 'display:none'];}
+	final protected function attributes() {return parent::attributes() + ['style' => 'display:none'];}
 
 	/**
 	 * 2016-11-26
@@ -64,9 +64,9 @@ class Button extends \Df\Sso\Button\Js {
 	/**
 	 * 2016-11-23
 	 * @override
-	 * @see \Df\Sso\Button\Js::loggedOut()
+	 * @see \Df\Sso\Button::loggedOut()
 	 * @used-by \Df\Sso\Button::_toHtml()
 	 * @return string
 	 */
-	final protected function loggedOut() {return parent::loggedOut()	. \Df\Facebook\I::init();}
+	final protected function loggedOut() {return parent::loggedOut() . \Df\Facebook\I::init();}
 }
