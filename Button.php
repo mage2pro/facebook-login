@@ -60,7 +60,7 @@ class Button extends \Df\Sso\Button\Js {
 	 * @used-by \Df\Sso\Button::attributes()
 	 * @return string
 	 */
-	final protected function cssClass2() {return 'fb-login-button';}
+	final protected function cssClass2() {return !$this->isNative() ? '' : 'fb-login-button';}
 
 	/**
 	 * 2016-11-23
