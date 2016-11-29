@@ -126,7 +126,6 @@
 							<label>Label</label>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type' negative='1'>N</field>
 							</depends>
 							<validate>required-entry</validate>
 						</field>
@@ -201,7 +200,6 @@
 							<label>Label</label>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type' negative='1'>N</field>
 							</depends>
 							<validate>required-entry</validate>
 						</field>
@@ -276,7 +274,6 @@
 							<label>Label</label>
 							<depends>
 								<field id='enable'>1</field>
-								<field id='type' negative='1'>N</field>
 							</depends>
 							<validate>required-entry</validate>
 						</field>

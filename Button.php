@@ -4,15 +4,6 @@ namespace Dfe\FacebookLogin;
 class Button extends \Df\Sso\Button\Js {
 	/**
 	 * 2016-11-26
-	 * @override
-	 * @see \Df\Sso\Button\Js::attributes()
-	 * @used-by \Df\Sso\Button::loggedOut()
-	 * @return array(string => string)
-	 */
-	final protected function attributes() {return parent::attributes() + ['style' => 'display:none'];}
-
-	/**
-	 * 2016-11-26
 	 * Facebook uses the <fb:login-button> in its own example:
 	 * https://developers.facebook.com/docs/facebook-login/web#example
 	 * I also had used it before now.
@@ -22,18 +13,16 @@ class Button extends \Df\Sso\Button\Js {
 	 *
 	 * All the settings descriptions below are taken from the official documentation:
 	 * https://developers.facebook.com/docs/facebook-login/web/login-button#settings
+	 *
 	 * @override
-	 * @see \Df\Sso\Button\Js::htmlN()
-	 * @used-by \Df\Sso\Button::html()
-	 * @return string
+	 * @see \Df\Sso\Button\Js::attributesN()
+	 * @used-by \Df\Sso\Button::attributes()
+	 * @return array(string => string)
 	 */
-	final protected function htmlN() {return df_tag('div', [
-		// 2016-11-25
-		// I took this value from the Plugin Configurator.
-		'class' => 'fb-login-button'
+	final protected function attributesN() {return parent::attributesN() + [
 		// 2016-11-25
 		// «If enabled, the button will change to a logout button when the user is logged in.»
-		,'data-auto-logout-link' => 'false'
+		'data-auto-logout-link' => 'false'
 		// 2016-11-25
 		// «Determines what audience will be selected by default,
 		// when requesting write permissions.»
@@ -59,7 +48,19 @@ class Button extends \Df\Sso\Button\Js {
 		// «Picks one of the size options for the button.»
 		// Allowed values: «small», «medium», «large», «xlarge».
 		,'data-size' => $this->s()->nativeSize()
-	]);}
+		,'style' => 'display:none'
+	];}
+
+	/**
+	 * 2016-11-29
+	 * I took this value from the Plugin Configurator:
+	 * https://developers.facebook.com/docs/facebook-login/web/login-button#plugin-configurator
+	 * @override
+	 * @see \Df\Sso\Button::cssClass2()
+	 * @used-by \Df\Sso\Button::attributes()
+	 * @return string
+	 */
+	final protected function cssClass2() {return 'fb-login-button';}
 
 	/**
 	 * 2016-11-23

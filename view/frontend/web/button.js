@@ -10,7 +10,7 @@ define([
 	 * @param {String} config.selector
 	 * @param {?String} config.style
 	 * @param {String} config.type
-	 * @param {HTMLDivElement} element
+	 * @param {HTMLAnchorElement} element
 	 * @returns void
 	 */
 	function(config, element) {
@@ -31,7 +31,7 @@ define([
 		 * потому что на страницах регистрации и аутентификации наша кнопка аутентификации
 		 * может быть одновременно расположена как в шапке, так и над блоком регистрации/аутентификации.
 		 */
-		/** @type {jQuery} HTMLDivElement */
+		/** @type {jQuery} HTMLAnchorElement */
 		var $c = $(element);
 		if ($c.closest('.nav-sections').length) {
 			element.id += '-nav-sections';
@@ -108,7 +108,7 @@ define([
 		switch (config.type) {
 			case 'L':
 			case 'U':
-				$('a', $c).click(window.dfeFacebookLogin);
+				$c.click(window.dfeFacebookLogin);
 				break;
 			case 'N':
 				$c.css({display: 'inline-block', 'margin-right': '15px', width: '50px'});
