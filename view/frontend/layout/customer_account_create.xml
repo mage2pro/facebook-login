@@ -6,10 +6,10 @@
 	<body>
 <!--
 2016-11-23
-The «df.customer.sso» container is added by the «Df_Sso» module:
+The «df.sso» container is added by the «Df_Sso» module:
 https://github.com/mage2pro/core/blob/1.9.32/Sso/view/frontend/layout/customer_account_login.xml?ts=4#L17-L22
 -->
-		<referenceContainer name='df.customer.sso'>
+		<referenceContainer name='df.sso'>
 			<block class='Dfe\FacebookLogin\Button'>
 				<arguments>
 <!--
