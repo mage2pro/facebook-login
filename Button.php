@@ -48,7 +48,6 @@ class Button extends \Df\Sso\Button\Js {
 		// «Picks one of the size options for the button.»
 		// Allowed values: «small», «medium», «large», «xlarge».
 		,'data-size' => $this->s()->nativeSize()
-		,'style' => 'display:none'
 	];}
 
 	/**

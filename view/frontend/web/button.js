@@ -8,7 +8,6 @@ define([
 	 * @param {Object} config
 	 * @param {String} config.redirect
 	 * @param {String} config.selector
-	 * @param {?String} config.style
 	 * @param {String} config.type
 	 * @param {HTMLAnchorElement} element
 	 * @returns void
@@ -40,15 +39,19 @@ define([
 			element.id += '-page-header';
 		}
 		window.dfeFacebookLogin = window.dfeFacebookLogin || function() {
-			/** @type {jQuery} HTMLDivElement[] */
-			var $cs = $(config.selector);
 			// 2015-10-08
 			// Скрываем кнопку, чтобы в процессе аутентификации она не мелькала.
 			// 2016-11-27
 			// На странице может быть расположено сразу 2 кнопки аутентификации Facebook:
 			// в шапке и, например, в в блоке регистрации.
 			// Скрывать надо все эти кнопки, а не только нажатую.
-			$cs.hide();
+			// 2016-11-30
+			// Скрывать надо только кнопки native: только они мелькают и елозят.
+			// Причём если на странице сразу несколько (две) кнопок Facebook native,
+			// то мелькают и елозят все, а не только нажатая.
+			/** @type {jQuery} HTMLDivElement[] */
+			var $native = $(config.selector).filter('.N');
+			$native.hide();
 			// 2016-11-26
 			// https://developers.facebook.com/docs/facebook-login/web#checklogin
 			FB.getLoginStatus(function(response) {
@@ -97,21 +100,17 @@ define([
 					// «The person is logged into Facebook, but has not logged into your app.»
 					case 'unknown':
 					default:
-						$cs.show();
+						$native.show();
 				}
 			});
 		};
-		// 2015-10-08
-		// Чтобы кнопка при авторизации не елозила по экрану.
-		// http://www.question2answer.org/qa/15546/facebook-changed-height-login-button-template-design-breaks?show=15561#a15561
-		$c.removeAttr('style');
-		switch (config.type) {
-			case 'L':
-			case 'U':
-				$c.click(window.dfeFacebookLogin);
-				break;
-			case 'N':
-				$c.css({display: 'inline-block', 'margin-right': '15px', width: '50px'});
-		}
+		'N' === config.type
+			// 2016-11-30
+			// Чтобы кнопка native при загрузке елозила по экрану,
+			// мы в разметке изначально указываем ['style' => 'display:none'],
+			// а затем уже после загрузки JavaScript удаляем это значение атрибута «style».
+			? $c.removeAttr('style')
+			: $c.click(window.dfeFacebookLogin)
+		;
 	});
 });
