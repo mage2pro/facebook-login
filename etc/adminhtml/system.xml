@@ -91,7 +91,7 @@
 							<label>Type</label>
 							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
 							<comment><![CDATA[<ul class='df-note'>
-	<li><b>unified button</b>: the button will have the same design as the others Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons.</li>
+	<li><b>unified button</b>: the button will look similar to the other Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons and to the standard Magento 2 Luma buttons.</li>
 	<li><b>native button</b>: the button will have a native design provided by Amazon.</li>
 	<li><b>link</b>: a text link will be used instead of a button.</li>
 </ul>]]></comment>
@@ -165,7 +165,7 @@
 							<label>Type</label>
 							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
 							<comment><![CDATA[<ul class='df-note'>
-	<li><b>unified button</b>: the button will have the same design as the others Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons.</li>
+	<li><b>unified button</b>: the button will look similar to the other Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons and to the standard Magento 2 Luma buttons.</li>
 	<li><b>native button</b>: the button will have a native design provided by Amazon.</li>
 	<li><b>link</b>: a text link will be used instead of a button.</li>
 </ul>]]></comment>
@@ -239,7 +239,7 @@
 							<label>Type</label>
 							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
 							<comment><![CDATA[<ul class='df-note'>
-	<li><b>unified button</b>: the button will have the same design as the others Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons.</li>
+	<li><b>unified button</b>: the button will look similar to the other Mage2.PRO <a href='https://mage2.pro/tags/frontend-single-sign-on' target='_blank'>frontend single sign-on</a> buttons and to the standard Magento 2 Luma buttons.</li>
 	<li><b>native button</b>: the button will have a native design provided by Amazon.</li>
 	<li><b>link</b>: a text link will be used instead of a button.</li>
 </ul>]]></comment>
