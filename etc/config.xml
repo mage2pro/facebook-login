@@ -8,12 +8,12 @@
 			<login>
 				<button>
 					<header>
-						<label>Login</label>
+						<label>with Facebook</label>
 						<nativeSize>small</nativeSize>
 						<type>U</type>
 					</header>
 					<loginPage>
-						<label>Login</label>
+						<label>with Facebook</label>
 <!--
 2016-11-25
 Размер «large» ближе всего по размеру (чуть меньше) к стандартным кнопкам Magento на той же странице
@@ -23,7 +23,7 @@
 						<type>U</type>
 					</loginPage>
 					<registratonPage>
-						<label>Login</label>
+						<label>with Facebook</label>
 <!--
 2016-11-25
 Размер «large» ближе всего по размеру (чуть меньше) к стандартным кнопкам Magento на той же странице
