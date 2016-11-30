@@ -1,5 +1,11 @@
 // 2016-11-29
 a.df-sso-button.U.dfe-facebook-login-button {
-	&:before {content: "\f09a";}
 	background: #3b5998;
+	&:before {
+		content: "\f09a";
+		// 2016-11-30
+		// line-height + margin-top should be equal to 3.2 rem (32px)
+		line-height: 3.1rem !important;
+		margin-top: 0.1rem;
+	}
 }
