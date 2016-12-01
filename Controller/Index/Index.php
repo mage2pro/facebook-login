@@ -8,8 +8,8 @@ class Index extends ReturnT {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @see \Df\Customer\External\ReturnT::customerClass()
-	 * @used-by \Df\Customer\External\ReturnT::c()
+	 * @see ReturnT::customerClass()
+	 * @used-by ReturnT::c()
 	 * @return string
 	 */
 	protected function customerClass() {return User::class;}
@@ -17,8 +17,8 @@ class Index extends ReturnT {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @see \Df\Customer\External\ReturnT::customerIdFieldName()
-	 * @used-by \Df\Customer\External\ReturnT::customer()
+	 * @see ReturnT::customerIdFieldName()
+	 * @used-by ReturnT::customer()
 	 * @return string
 	 */
 	protected function customerIdFieldName() {return Schema::F__TOKEN_FOR_BUSINESS;}
@@ -26,9 +26,9 @@ class Index extends ReturnT {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @see \Df\Customer\External\ReturnT::customerData()
-	 * @used-by \Df\Customer\External\ReturnT::customer()
-	 * @used-by \Df\Customer\External\ReturnT::register()
+	 * @see ReturnT::customerData()
+	 * @used-by ReturnT::customer()
+	 * @used-by ReturnT::register()
 	 * @return array(string => mixed)
 	 */
 	protected function customerData() {return $this->customerDataCustom() + parent::customerData();}
@@ -37,8 +37,8 @@ class Index extends ReturnT {
 	 * 2016-06-06
 	 * Перечень свойств покупателя, которые надо обновить в Magento
 	 * после их изменения в сторонней системе авторизации.
-	 * @see \Df\Customer\External\ReturnT::customerFieldsToSync()
-	 * @used-by \Df\Customer\External\ReturnT::customer()
+	 * @see ReturnT::customerFieldsToSync()
+	 * @used-by ReturnT::customer()
 	 * @return string[]
 	 */
 	protected function customerFieldsToSync() {return array_keys($this->customerDataCustom());}
@@ -47,16 +47,16 @@ class Index extends ReturnT {
 	 * 2016-06-05
 	 * https://code.dmitry-fedyuk.com/m2e/facebook-login/blob/7c2b601/view/frontend/web/main.js#L46
 	 * @override
-	 * @see \Df\Customer\External\ReturnT::redirectUrlKey()
-	 * @used-by \Df\Customer\External\ReturnT::execute()
+	 * @see ReturnT::redirectUrlKey()
+	 * @used-by ReturnT::execute()
 	 * @return string
 	 */
 	protected function redirectUrlKey() {return 'url';}
 
 	/**
 	 * 2016-06-06
-	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
-	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerFieldsToSync()
+	 * @used-by customerData()
+	 * @used-by customerFieldsToSync()
 	 * @return array(mixed => mixed)
 	 */
 	private function customerDataCustom() {return dfc($this, function() {return [
