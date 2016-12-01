@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin\Controller\Index;
-use Df\Sso\ReturnT as _P;
+use Df\Sso\CustomerReturn as _P;
 use Dfe\FacebookLogin\Customer;
 use Dfe\FacebookLogin\Setup\InstallSchema as Schema;
 /** @method Customer c() */

@@ -13,7 +13,7 @@ class Customer extends \Df\Sso\Customer {
 	 * This field will not be returned if no valid email address is available».
 	 * @override
 	 * @see \Df\Sso\Customer::email()
-	 * @used-by \Df\Sso\ReturnT::customerData()
+	 * @used-by \Df\Sso\CustomerReturn::customerData()
 	 * @return string|null
 	 */
 	public function email() {return dfc($this, function() {
