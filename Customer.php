@@ -1,9 +1,8 @@
 <?php
 namespace Dfe\FacebookLogin;
-use Df\Sso\Customer;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
-class User extends Customer {
+class Customer extends \Df\Sso\Customer {
 	/**
 	 * 2015-10-12
 	 * Пользователь мог быть зарегистрирован на Facebook по номеру телефона,
@@ -113,7 +112,7 @@ class User extends Customer {
 
 	/**
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerIdFieldValue()
-	 * @used-by \Dfe\FacebookLogin\User::password()
+	 * @used-by \Dfe\FacebookLogin\Customer::password()
 	 * @return string
 	 */
 	public function id() {return $this->r('token_for_business');}

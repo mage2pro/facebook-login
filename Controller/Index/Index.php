@@ -1,9 +1,9 @@
 <?php
 namespace Dfe\FacebookLogin\Controller\Index;
 use Df\Sso\ReturnT as _P;
-use Dfe\FacebookLogin\User;
+use Dfe\FacebookLogin\Customer;
 use Dfe\FacebookLogin\Setup\InstallSchema as Schema;
-/** @method User c() */
+/** @method Customer c() */
 class Index extends _P {
 	/**
 	 * 2016-06-04
@@ -12,7 +12,7 @@ class Index extends _P {
 	 * @used-by _P::c()
 	 * @return string
 	 */
-	protected function customerClass() {return User::class;}
+	protected function customerClass() {return Customer::class;}
 
 	/**
 	 * 2016-06-04
