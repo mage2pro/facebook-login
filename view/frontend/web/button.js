@@ -64,7 +64,7 @@ define([
 						 * Мы вынуждены вручную удалять устаревшие данные посетителя из Local Storage,
 						 * потому что стандартный способ ядра у нас работать не будет.
 						 * Стандартный способ ядра смотрите здесь:
-						 * https://github.com/magento/magento2/blob/54b85e93af25ec83e933d851d762548c07a1092c/app/code/Magento/Customer/view/frontend/web/js/customer-data.js#L197-L204
+						 * https://github.com/magento/magento2/blob/1.0.0-beta4/app/code/Magento/Customer/view/frontend/web/js/customer-data.js#L184-L191
 						 * Стандартный способ на отсылку форм на сервер анализирует адрес отсылки,
 						 * и по этому адресу определяет, какие ключи Local Storage устарели.
 						 * Мы то же самое делаем вручную.
