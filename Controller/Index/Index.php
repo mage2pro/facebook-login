@@ -1,15 +1,15 @@
 <?php
 namespace Dfe\FacebookLogin\Controller\Index;
-use Df\Customer\External\ReturnT;
+use Df\Customer\External\ReturnT as _P;
 use Dfe\FacebookLogin\User;
 use Dfe\FacebookLogin\Setup\InstallSchema as Schema;
 /** @method User c() */
-class Index extends ReturnT {
+class Index extends _P {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @see ReturnT::customerClass()
-	 * @used-by ReturnT::c()
+	 * @see _P::customerClass()
+	 * @used-by _P::c()
 	 * @return string
 	 */
 	protected function customerClass() {return User::class;}
@@ -17,8 +17,8 @@ class Index extends ReturnT {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @see ReturnT::customerIdFieldName()
-	 * @used-by ReturnT::customer()
+	 * @see _P::customerIdFieldName()
+	 * @used-by _P::customer()
 	 * @return string
 	 */
 	protected function customerIdFieldName() {return Schema::F__TOKEN_FOR_BUSINESS;}
@@ -26,9 +26,9 @@ class Index extends ReturnT {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @see ReturnT::customerData()
-	 * @used-by ReturnT::customer()
-	 * @used-by ReturnT::register()
+	 * @see _P::customerData()
+	 * @used-by _P::customer()
+	 * @used-by _P::register()
 	 * @return array(string => mixed)
 	 */
 	protected function customerData() {return $this->customerDataCustom() + parent::customerData();}
@@ -37,8 +37,8 @@ class Index extends ReturnT {
 	 * 2016-06-06
 	 * Перечень свойств покупателя, которые надо обновить в Magento
 	 * после их изменения в сторонней системе авторизации.
-	 * @see ReturnT::customerFieldsToSync()
-	 * @used-by ReturnT::customer()
+	 * @see _P::customerFieldsToSync()
+	 * @used-by _P::customer()
 	 * @return string[]
 	 */
 	protected function customerFieldsToSync() {return array_keys($this->customerDataCustom());}
@@ -47,8 +47,8 @@ class Index extends ReturnT {
 	 * 2016-06-05
 	 * https://code.dmitry-fedyuk.com/m2e/facebook-login/blob/7c2b601/view/frontend/web/main.js#L46
 	 * @override
-	 * @see ReturnT::redirectUrlKey()
-	 * @used-by ReturnT::execute()
+	 * @see _P::redirectUrlKey()
+	 * @used-by _P::execute()
 	 * @return string
 	 */
 	protected function redirectUrlKey() {return 'url';}
