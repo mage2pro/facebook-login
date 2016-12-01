@@ -1,10 +1,10 @@
 <?php
 namespace Dfe\FacebookLogin\Setup;
-class InstallSchema extends \Df\Customer\External\Install\Schema {
+class InstallSchema extends \Df\Sso\Install\Schema {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @used-by \Df\Customer\External\InstallSchema::install()
+	 * @used-by \Df\Sso\Install\Schema::install()
 	 * @return string
 	 */
 	public function fId() {return self::F__TOKEN_FOR_BUSINESS;}
@@ -12,14 +12,14 @@ class InstallSchema extends \Df\Customer\External\Install\Schema {
 	/**
 	 * 2016-06-04
 	 * @override
-	 * @used-by \Df\Customer\External\InstallSchema::install()
+	 * @used-by \Df\Sso\Install\Schema::install()
 	 * @return string
 	 */
 	public function fName() {return self::F__FULL_NAME;}
 
 	/**
 	 * 2016-06-05
-	 * @used-by \Df\Customer\External\Install\Schema::install()
+	 * @used-by \Df\Sso\Install\Schema::install()
 	 * @see \Dfe\FacebookLogin\Setup\InstallSchema::_install()
 	 * @return void
 	 */

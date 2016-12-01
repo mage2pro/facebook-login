@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin;
-use Df\Customer\External\Customer;
+use Df\Sso\Customer;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
 class User extends Customer {
@@ -13,8 +13,8 @@ class User extends Customer {
 	 * «The person's primary email address listed on their profile.
 	 * This field will not be returned if no valid email address is available».
 	 * @override
-	 * @see \Df\Customer\External\Customer::email()
-	 * @used-by \Df\Customer\External\ReturnT::customerData()
+	 * @see \Df\Sso\Customer::email()
+	 * @used-by \Df\Sso\ReturnT::customerData()
 	 * @return string|null
 	 */
 	public function email() {return dfc($this, function() {
@@ -25,7 +25,7 @@ class User extends Customer {
 
 	/**
 	 * @override
-	 * @see \Df\Customer\External\Customer::gender()
+	 * @see \Df\Sso\Customer::gender()
 	 * @return int
 	 */
 	public function gender() {
@@ -68,21 +68,21 @@ class User extends Customer {
 
 	/**
 	 * @override
-	 * @see \Df\Customer\External\Customer::nameFirst()
+	 * @see \Df\Sso\Customer::nameFirst()
 	 * @return string
 	 */
 	public function nameFirst() {return $this->r('first_name');}
 
 	/**
 	 * @override
-	 * @see \Df\Customer\External\Customer::nameLast()
+	 * @see \Df\Sso\Customer::nameLast()
 	 * @return string
 	 */
 	public function nameLast() {return $this->r('last_name');}
 
 	/**
 	 * @override
-	 * @see \Df\Customer\External\Customer::nameMiddle()
+	 * @see \Df\Sso\Customer::nameMiddle()
 	 * @return string
 	 */
 	public function nameMiddle() {return $this->r('middle_name');}
@@ -128,8 +128,8 @@ class User extends Customer {
 	 * separately from the month and day
 	 * so this string can be only the year (YYYY) or the month + day (MM/DD)»
 	 * @override
-	 * @see \Df\Customer\External\Customer::_dob()
-	 * @used-by \Df\Customer\External\Customer::dob()
+	 * @see \Df\Sso\Customer::_dob()
+	 * @used-by \Df\Sso\Customer::dob()
 	 * @return \DateTime|null
 	 */
 	protected function _dob() {
