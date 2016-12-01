@@ -1,7 +1,8 @@
 <?php
 namespace Dfe\FacebookLogin;
+use Df\Sso\Button\Js as _P;
 /** @method \Dfe\FacebookLogin\Settings\Button s() */
-class Button extends \Df\Sso\Button\Js {
+class Button extends _P {
 	/**
 	 * 2016-11-26
 	 * Facebook uses the <fb:login-button> in its own example:
@@ -15,8 +16,8 @@ class Button extends \Df\Sso\Button\Js {
 	 * https://developers.facebook.com/docs/facebook-login/web/login-button#settings
 	 *
 	 * @override
-	 * @see \Df\Sso\Button\Js::attributesN()
-	 * @used-by \Df\Sso\Button::attributes()
+	 * @see _P::attributesN()
+	 * @used-by _P::attributes()
 	 * @return array(string => string)
 	 */
 	final protected function attributesN() {return parent::attributesN() + [
