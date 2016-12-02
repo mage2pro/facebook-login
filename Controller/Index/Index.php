@@ -1,19 +1,9 @@
 <?php
 namespace Dfe\FacebookLogin\Controller\Index;
 use Df\Sso\CustomerReturn as _P;
-use Dfe\FacebookLogin\Customer;
 use Dfe\FacebookLogin\Setup\InstallSchema as Schema;
-/** @method Customer c() */
+/** @method \Dfe\FacebookLogin\Customer c() */
 class Index extends _P {
-	/**
-	 * 2016-06-04
-	 * @override
-	 * @see _P::customerIdFieldName()
-	 * @used-by _P::customer()
-	 * @return string
-	 */
-	protected function customerIdFieldName() {return Schema::F__TOKEN_FOR_BUSINESS;}
-
 	/**
 	 * 2016-06-04
 	 * @override
@@ -32,17 +22,9 @@ class Index extends _P {
 	 * @used-by _P::customer()
 	 * @return string[]
 	 */
-	protected function customerFieldsToSync() {return array_keys($this->customerDataCustom());}
-
-	/**
-	 * 2016-06-05
-	 * https://code.dmitry-fedyuk.com/m2e/facebook-login/blob/7c2b601/view/frontend/web/main.js#L46
-	 * @override
-	 * @see _P::redirectUrlKey()
-	 * @used-by _P::execute()
-	 * @return string
-	 */
-	protected function redirectUrlKey() {return 'url';}
+	protected function customerFieldsToSync() {return
+	    array_merge(array_keys($this->customerDataCustom()), parent::customerFieldsToSync())
+	;}
 
 	/**
 	 * 2016-06-06
