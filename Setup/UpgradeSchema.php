@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin\Setup;
-class InstallSchema extends \Df\Sso\Install\Schema {
+class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	/**
 	 * 2016-06-04
 	 * 2015-10-10
@@ -9,7 +9,7 @@ class InstallSchema extends \Df\Sso\Install\Schema {
 	 * https://mage2.pro/t/129
 	 * Поэтому приходиться укладываться в 30.
 	 * @override
-	 * @used-by \Df\Sso\Install\Schema::_process()
+	 * @used-by \Df\Sso\Upgrade\Schema::_process()
 	 * @return string
 	 */
 	public static function fId() {return 'dfe_fb__token_for_business';}
@@ -17,8 +17,8 @@ class InstallSchema extends \Df\Sso\Install\Schema {
 	/**
 	 * 2016-06-05
 	 * @override
-	 * @see \Df\Sso\Install\Schema::_process()
-	 * @used-by \Df\Framework\Install::process()
+	 * @see \Df\Sso\Upgrade\Schema::_process()
+	 * @used-by \Df\Framework\Upgrade::process()
 	 * @return void
 	 */
 	protected function _process() {
@@ -32,7 +32,7 @@ class InstallSchema extends \Df\Sso\Install\Schema {
 			/**
 			 * 2016-08-22
 			 * Помимо добавления поля в таблицу «customer_entity» надо ещё добавить атрибут
-			 * что мы делаем в методе @see \Dfe\FacebookLogin\Setup\InstallData::_install()
+			 * что мы делаем в методе @see \Dfe\FacebookLogin\Setup\UpgradeData::_install()
 			 * иначе данные не будут сохраняться:
 			 * https://github.com/magento/magento2/blob/2.1.0/app/code/Magento/Eav/Model/Entity/AbstractEntity.php#L1262-L1265
 			 */
@@ -48,7 +48,7 @@ class InstallSchema extends \Df\Sso\Install\Schema {
 	 * «The person's full name»
 	 * https://developers.facebook.com/docs/graph-api/reference/user
 	 * @used-by _install()
-	 * @used-by \Dfe\FacebookLogin\Setup\InstallData::_install()
+	 * @used-by \Dfe\FacebookLogin\Setup\UpgradeData::_install()
 	 */
 	const F__FULL_NAME = 'dfe_fb__full_name';
 	/**

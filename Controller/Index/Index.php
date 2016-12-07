@@ -1,7 +1,7 @@
 <?php
 namespace Dfe\FacebookLogin\Controller\Index;
 use Df\Sso\CustomerReturn as _P;
-use Dfe\FacebookLogin\Setup\InstallSchema as Schema;
+use Dfe\FacebookLogin\Setup\UpgradeSchema as Schema;
 /** @method \Dfe\FacebookLogin\Customer c() */
 class Index extends _P {
 	/**
