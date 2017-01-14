@@ -59,7 +59,7 @@ class Customer extends \Df\Sso\Customer {
 			parse_str($response, $responseA);
 			/** @var string $result */
 			$result = dfa($responseA, 'access_token');
-			df_result_string_not_empty($result);
+			df_result_sne($result);
 			$this->{__METHOD__} = $result;
 		}
 		return $this->{__METHOD__};
@@ -104,7 +104,7 @@ class Customer extends \Df\Sso\Customer {
 			$response = $this->request('picture', ['redirect' => 'false']);
 			/** @var string $result */
 			$result = dfa_deep($response, 'data/url');
-			df_result_string($result);
+			df_result_s($result);
 			$this->{__METHOD__} = $result;
 		}
 		return $this->{__METHOD__};
