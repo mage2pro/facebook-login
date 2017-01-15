@@ -98,17 +98,9 @@ class Customer extends \Df\Sso\Customer {
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
-	public function picture() {
-		if (!isset($this->{__METHOD__})) {
-			/** @var array(string => mixed) $response */
-			$response = $this->request('picture', ['redirect' => 'false']);
-			/** @var string $result */
-			$result = dfa_deep($response, 'data/url');
-			df_result_s($result);
-			$this->{__METHOD__} = $result;
-		}
-		return $this->{__METHOD__};
-	}
+	public function picture() {return dfc($this, function() {return
+		df_result_sne(dfa_deep($this->request('picture', ['redirect' => 'false']), 'data/url'))
+	;});}
 
 	/**
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerIdFieldValue()
