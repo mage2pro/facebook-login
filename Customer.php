@@ -46,24 +46,16 @@ class Customer extends \Df\Sso\Customer {
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
-	public function longLivedAccessToken() {
-		if (!isset($this->{__METHOD__})) {
-			/** @var string $response */
-			$response = $this->requestBasic('/oauth/access_token', [
-				'grant_type' => 'fb_exchange_token'
-				,'client_id' => Credentials::s()->appId()
-				,'client_secret' => Credentials::s()->appSecret()
-				,'fb_exchange_token' => $this->token()
-			]);
-			/** @var array(string => string) $responseA */
-			parse_str($response, $responseA);
-			/** @var string $result */
-			$result = dfa($responseA, 'access_token');
-			df_result_sne($result);
-			$this->{__METHOD__} = $result;
-		}
-		return $this->{__METHOD__};
-	}
+	public function longLivedAccessToken() {return dfc($this, function() {
+		/** @var array(string => string) $responseA */
+		parse_str($this->requestBasic('/oauth/access_token', [
+			'grant_type' => 'fb_exchange_token'
+			,'client_id' => Credentials::s()->appId()
+			,'client_secret' => Credentials::s()->appSecret()
+			,'fb_exchange_token' => $this->token()
+		]), $responseA);
+		return df_result_sne(dfa($responseA, 'access_token'));
+	});}
 
 	/**
 	 * @override
@@ -98,9 +90,9 @@ class Customer extends \Df\Sso\Customer {
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
-	public function picture() {return dfc($this, function() {return
-		df_result_sne(dfa_deep($this->request('picture', ['redirect' => 'false']), 'data/url'))
-	;});}
+	public function picture() {return dfc($this, function() {return df_result_sne(
+		dfa_deep($this->request('picture', ['redirect' => 'false']), 'data/url')
+	);});}
 
 	/**
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerIdFieldValue()
