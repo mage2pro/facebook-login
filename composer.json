@@ -1,7 +1,7 @@
 {
 	"name": "mage2pro/facebook-login"
 	,"version": "1.2.6"
-	,"description": "The «Facebook Login» extension."
+	,"description": "The «Facebook Login» extension for Magento 2."
 	,"type": "magento2-module"
 	,"homepage": "https://mage2.pro/c/extensions/facebook-login"
 	,"license": "MIT"
