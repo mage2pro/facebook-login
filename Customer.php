@@ -16,7 +16,7 @@ class Customer extends \Df\Sso\Customer {
 	 * @used-by \Df\Sso\CustomerReturn::customerData()
 	 * @return string|null
 	 */
-	public function email() {return dfc($this, function() {
+	function email() {return dfc($this, function() {
 		/** @var string|null $r */
 		$r = $this->r('email');
 		return df_contains($r, '@') ? $r : null;
@@ -27,7 +27,7 @@ class Customer extends \Df\Sso\Customer {
 	 * @see \Df\Sso\Customer::gender()
 	 * @return int
 	 */
-	public function gender() {
+	function gender() {
 		switch ($this->r('gender')) {
 			case 'male':
 				$result = Gender::MALE;
@@ -46,7 +46,7 @@ class Customer extends \Df\Sso\Customer {
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
-	public function longLivedAccessToken() {return dfc($this, function() {
+	function longLivedAccessToken() {return dfc($this, function() {
 		/** @var array(string => string) $responseA */
 		parse_str($this->requestBasic('/oauth/access_token', [
 			'grant_type' => 'fb_exchange_token'
@@ -62,27 +62,27 @@ class Customer extends \Df\Sso\Customer {
 	 * @see \Df\Sso\Customer::nameFirst()
 	 * @return string
 	 */
-	public function nameFirst() {return $this->r('first_name');}
+	function nameFirst() {return $this->r('first_name');}
 
 	/**
 	 * @override
 	 * @see \Df\Sso\Customer::nameLast()
 	 * @return string
 	 */
-	public function nameLast() {return $this->r('last_name');}
+	function nameLast() {return $this->r('last_name');}
 
 	/**
 	 * @override
 	 * @see \Df\Sso\Customer::nameMiddle()
 	 * @return string
 	 */
-	public function nameMiddle() {return $this->r('middle_name');}
+	function nameMiddle() {return $this->r('middle_name');}
 
 	/**
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
-	public function nameFull() {return $this->r('name');}
+	function nameFull() {return $this->r('name');}
 
 	/**
 	 * https://developers.facebook.com/docs/graph-api/reference/user/picture/
@@ -90,7 +90,7 @@ class Customer extends \Df\Sso\Customer {
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
-	public function picture() {return dfc($this, function() {return df_result_sne(
+	function picture() {return dfc($this, function() {return df_result_sne(
 		dfa_deep($this->request('picture', ['redirect' => 'false']), 'data/url')
 	);});}
 
@@ -99,7 +99,7 @@ class Customer extends \Df\Sso\Customer {
 	 * @used-by \Dfe\FacebookLogin\Customer::password()
 	 * @return string
 	 */
-	public function id() {return $this->r('token_for_business');}
+	function id() {return $this->r('token_for_business');}
 
 	/**
 	 * 2015-10-12

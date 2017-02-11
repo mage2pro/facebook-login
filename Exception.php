@@ -7,7 +7,7 @@ final class Exception extends \Df\Core\Exception {
 	 * @see \Df\Core\Exception::message()
 	 * @return string
 	 */
-	public function message() {return
+	function message() {return
 		"Facebook API error of type {$this->fbType()}: «{$this->fbMessage()}»."
 	;}
 
