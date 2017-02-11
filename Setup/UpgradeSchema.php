@@ -12,7 +12,7 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	 * @used-by \Df\Sso\Upgrade\Schema::_process()
 	 * @return string
 	 */
-	public static function fId() {return 'dfe_fb__token_for_business';}
+	static function fId() {return 'dfe_fb__token_for_business';}
 
 	/**
 	 * 2016-06-05
