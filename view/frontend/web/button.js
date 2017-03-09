@@ -78,7 +78,7 @@ define([
 							 * непосредственно перед авторизацией.
 							 * Когда сервис авторизации вернёт посетителя обратно в наш магазин,
 							 * мы перенаправим посетителя на эту страницу.
-							 * https://code.dmitry-fedyuk.com/m2e/facebook-login/blob/7c2b601d/Controller/Index/Index.php#L50
+							 * https://github.com/mage2pro/facebook-login/blob/7c2b601d/Controller/Index/Index.php#L50
 							 *
 							 * 2016-12-02
 							 * Ключ должен быть именно «url»:
