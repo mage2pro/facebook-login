@@ -1,7 +1,11 @@
 <?php
 namespace Dfe\FacebookLogin;
 use Df\Sso\Button\Js as _P;
-/** @method \Dfe\FacebookLogin\Settings\Button s() */
+/**
+ * 2016-11-23
+ * @final Unable to use the PHP «final» keyword here because of the M2 code generation.
+ * @method \Dfe\FacebookLogin\Settings\Button s()
+ */
 class Button extends _P {
 	/**
 	 * 2016-11-26
