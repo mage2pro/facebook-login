@@ -1,7 +1,7 @@
 <?php
 // 2016-11-25
 namespace Dfe\FacebookLogin\Source\Button;
-final class Size extends \Df\Config\SourceT {
+final class Size extends \Df\Config\Source {
 	/**
 	 * 2016-11-25
 	 * @override
