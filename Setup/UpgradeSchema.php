@@ -19,7 +19,6 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	 * @override
 	 * @see \Df\Sso\Upgrade\Schema::_process()
 	 * @used-by \Df\Framework\Upgrade::process()
-	 * @return void
 	 */
 	protected function _process() {
 		parent::_process();

@@ -6,7 +6,6 @@ class UpgradeData extends \Df\Sso\Upgrade\Data {
 	 * @override
 	 * @see \Df\Sso\Upgrade\Data::_process()
 	 * @used-by \Df\Framework\Upgrade::process()
-	 * @return void
 	 */
 	protected function _process() {
 		parent::_process();
