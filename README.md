@@ -1,4 +1,11 @@
-## Installation
+## How to buy
+The extension is free, but if you need my installation and support service, you can [buy it](https://mage2.pro/t/136).
+
+## How to install
+### 1. Free installation service (if you have bought the extension)
+Just order my [free installation service](https://mage2.pro/t/3585).
+
+### 2. Self-installation
 ```
 composer require mage2pro/facebook-login:*
 bin/magento setup:upgrade
