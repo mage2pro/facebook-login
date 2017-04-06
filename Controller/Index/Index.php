@@ -16,7 +16,7 @@ class Index extends _P {
 	 * @used-by _P::register()
 	 * @return array(string => mixed)
 	 */
-	protected function customerData() {return $this->customerDataCustom() + parent::customerData();}
+	final protected function customerData() {return $this->customerDataCustom() + parent::customerData();}
 
 	/**
 	 * 2016-06-06
@@ -26,7 +26,7 @@ class Index extends _P {
 	 * @used-by _P::customer()
 	 * @return string[]
 	 */
-	protected function customerFieldsToSync() {return
+	final protected function customerFieldsToSync() {return
 	    array_merge(array_keys($this->customerDataCustom()), parent::customerFieldsToSync())
 	;}
 
