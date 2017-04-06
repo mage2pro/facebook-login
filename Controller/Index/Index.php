@@ -2,7 +2,11 @@
 namespace Dfe\FacebookLogin\Controller\Index;
 use Df\Sso\CustomerReturn as _P;
 use Dfe\FacebookLogin\Setup\UpgradeSchema as Schema;
-/** @method \Dfe\FacebookLogin\Customer c() */
+/**
+ * 2016-06-04
+ * @final Unable to use the PHP «final» keyword here because of the M2 code generation.
+ * @method \Dfe\FacebookLogin\Customer c()
+ */
 class Index extends _P {
 	/**
 	 * 2016-06-04
