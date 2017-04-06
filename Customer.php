@@ -47,14 +47,14 @@ class Customer extends \Df\Sso\Customer {
 	 * @return string
 	 */
 	function longLivedAccessToken() {return dfc($this, function() {
-		/** @var array(string => string) $responseA */
-		parse_str($this->requestBasic('/oauth/access_token', [
+		/** @var Credentials $s */
+		$s = Credentials::s();
+		return df_result_sne(dfa($this->responseJson($this->requestBasic('/oauth/access_token', [
 			'grant_type' => 'fb_exchange_token'
-			,'client_id' => Credentials::s()->appId()
-			,'client_secret' => Credentials::s()->appSecret()
+			,'client_id' => $s->appId()
+			,'client_secret' => $s->appSecret()
 			,'fb_exchange_token' => $this->token()
-		]), $responseA);
-		return df_result_sne(dfa($responseA, 'access_token'));
+		])), 'access_token'));
 	});}
 
 	/**
@@ -177,15 +177,7 @@ class Customer extends \Df\Sso\Customer {
 				'sha256', $this->longLivedAccessToken(), Credentials::s()->appSecret()
 			)
 		]);
-		/** @var array(string => mixed) $result */
-		$result = df_json_decode($responseAsJson);
-		df_result_array($result);
-		/** @var array(string => string)|null $error */
-		$error = dfa($result, 'error');
-		if ($error) {
-			throw new Exception($error);
-		}
-		return $result;
+		return $this->responseJson($responseAsJson);
 	}
 
 	/**
@@ -268,6 +260,26 @@ class Customer extends \Df\Sso\Customer {
 			]);
 		}
 		return $this->{__METHOD__};
+	}
+
+	/**
+	 * 2017-04-06
+	 * @used-by longLivedAccessToken()
+	 * @used-by request()
+	 * @param string $json
+	 * @return array(satring => mixed)
+	 * @throws Exception
+	 */
+	private function responseJson($json) {
+		/** @var array(string => mixed) $result */
+		$result = df_json_decode($json);
+		df_result_array($result);
+		/** @var array(string => string)|null $error */
+		$error = dfa($result, 'error');
+		if ($error) {
+			throw new Exception($error);
+		}
+		return $result;
 	}
 
 	/** @return string */
