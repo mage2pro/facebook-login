@@ -30,8 +30,8 @@
 				showInStore='1'
 			>
 				<label>Frontend Login</label>
-				<dfExtension>Dfe\FacebookLogin\Ext</dfExtension>
-				<frontend_model>Df\Config\Block\System\Config\Form\Fieldset\Ext</frontend_model>
+				<dfExtension>Dfe_FacebookLogin</dfExtension>
+				<frontend_model>Df\Config\Fieldset</frontend_model>
 				<field
 					id='enable'
 					translate='label'
