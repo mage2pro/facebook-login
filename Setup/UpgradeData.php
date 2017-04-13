@@ -1,5 +1,7 @@
 <?php
 namespace Dfe\FacebookLogin\Setup;
+// 2016-06-05
+/** @final Unable to use the PHP «final» keyword here because of the M2 code generation. */
 class UpgradeData extends \Df\Sso\Upgrade\Data {
 	/**
 	 * 2016-06-05
@@ -7,7 +9,7 @@ class UpgradeData extends \Df\Sso\Upgrade\Data {
 	 * @see \Df\Sso\Upgrade\Data::_process()
 	 * @used-by \Df\Framework\Upgrade::process()
 	 */
-	protected function _process() {
+	final protected function _process() {
 		parent::_process();
 		if ($this->isInitial()) {
 			$this->attribute(UpgradeSchema::F__FULL_NAME, 'User Full Name');
@@ -23,5 +25,5 @@ class UpgradeData extends \Df\Sso\Upgrade\Data {
 	 * @used-by \Df\Sso\Upgrade\Data::attribute()
 	 * @return string
 	 */
-	protected function labelPrefix() {return 'Facebook';}
+	final protected function labelPrefix() {return 'Facebook';}
 }
