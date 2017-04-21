@@ -1,8 +1,5 @@
 define([
-	'df'
-	,'Df_Core/my/redirectWithPost'
-	,'jquery'
-	,'Magento_Customer/js/customer-data'
+	'df', 'Df_Core/my/redirectWithPost', 'jquery', 'Magento_Customer/js/customer-data'
 ], function(df, redirectWithPost, $, customerData) {return (
 	/**
 	 * @param {Object} config
@@ -13,23 +10,21 @@ define([
 	 * @returns void
 	 */
 	function(config, element) {
-		/**
-		 * 2016-11-28
-		 * Система клонирует меню из блока «header.links» в видимый только в мобильном режиме
-		 * (но присутствующий в DOM и в настольном режиме) блок «store.links»:
-				$('.panel.header > .header.links').clone().appendTo('#store\\.links');
-		 * https://github.com/magento/magento2/blob/2.1.2/app/design/frontend/Magento/blank/web/js/theme.js#L26-L26
-		 * https://mage2.pro/t/2336
-		 * По этой причине у нас сразу 2 одинаковых кнопки в шапке: одна видимая и вторая — невидимая.
-		 * Обе эти кнопки инициализируются независимо (сюда мы попадаем для каждой из этих кнопок отдельно),
-		 * но имеют одинаковые идентификаторы.
-		 * При этом код document.getElementById('<идентификатор>') или $('#<идентификатор>')
-		 * вернёт только первую из кнопок.
-		 * Найти вторую можно по селектору: $(config.selector)
-		 * При этом такой поиск по селектору может вернуть и третью кнопку,
-		 * потому что на страницах регистрации и аутентификации наша кнопка аутентификации
-		 * может быть одновременно расположена как в шапке, так и над блоком регистрации/аутентификации.
-		 */
+		// 2016-11-28
+		// Система клонирует меню из блока «header.links» в видимый только в мобильном режиме
+		// (но присутствующий в DOM и в настольном режиме) блок «store.links»:
+		//		$('.panel.header > .header.links').clone().appendTo('#store\\.links');
+		// https://github.com/magento/magento2/blob/2.1.2/app/design/frontend/Magento/blank/web/js/theme.js#L26-L26
+		// https://mage2.pro/t/2336
+		// По этой причине у нас сразу 2 одинаковых кнопки в шапке: одна видимая и вторая — невидимая.
+		// Обе эти кнопки инициализируются независимо (сюда мы попадаем для каждой из этих кнопок отдельно),
+		// но имеют одинаковые идентификаторы.
+		// При этом код document.getElementById('<идентификатор>') или $('#<идентификатор>')
+		// вернёт только первую из кнопок.
+		// Найти вторую можно по селектору: $(config.selector)
+		// При этом такой поиск по селектору может вернуть и третью кнопку,
+		// потому что на страницах регистрации и аутентификации наша кнопка аутентификации
+		// может быть одновременно расположена как в шапке, так и над блоком регистрации/аутентификации.
 		/** @type {jQuery} HTMLAnchorElement */
 		var $c = $(element);
 		if ($c.closest('.nav-sections').length) {
@@ -59,16 +54,14 @@ define([
 					// 2016-11-26
 					// «The person is logged into Facebook, and has logged into your app.»
 					case 'connected':
-						/**
-						 * 2015-10-08
-						 * Мы вынуждены вручную удалять устаревшие данные посетителя из Local Storage,
-						 * потому что стандартный способ ядра у нас работать не будет.
-						 * Стандартный способ ядра смотрите здесь:
-						 * https://github.com/magento/magento2/blob/1.0.0-beta4/app/code/Magento/Customer/view/frontend/web/js/customer-data.js#L184-L191
-						 * Стандартный способ на отсылку форм на сервер анализирует адрес отсылки,
-						 * и по этому адресу определяет, какие ключи Local Storage устарели.
-						 * Мы то же самое делаем вручную.
-						 */
+						// 2015-10-08
+						// Мы вынуждены вручную удалять устаревшие данные посетителя из Local Storage,
+						// потому что стандартный способ ядра у нас работать не будет.
+						// Стандартный способ ядра смотрите здесь:
+						// https://github.com/magento/magento2/blob/1.0.0-beta4/app/code/Magento/Customer/view/frontend/web/js/customer-data.js#L184-L191
+						// Стандартный способ на отсылку форм на сервер анализирует адрес отсылки,
+						// и по этому адресу определяет, какие ключи Local Storage устарели.
+						// Мы то же самое делаем вручную.
 						customerData.invalidate(['*']);
 						redirectWithPost(config.redirect, {
 							token: response.authResponse.accessToken
