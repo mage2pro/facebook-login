@@ -53,8 +53,8 @@
 					showInWebsite='1'
 					showInStore='1'
 				>
-					<label>Valid OAuth redirect URI</label>
-					<comment><![CDATA[Set it in your <a href='https://discourse.pro/t/topic/15' title='How to enable login with a Facebook account?' target='_blank'>Facebook App registration form (Step 13)</a>.]]></comment>
+					<label>Sign-On URL</label>
+					<comment><![CDATA[Set it in your <a href='https://mage2.pro/t/3825' title='How to enable login with a Facebook account?' target='_blank'>Facebook App registration form (Step 13)</a>.]]></comment>
 					<depends><field id='enable'>1</field></depends>
 				</field>
 				<group

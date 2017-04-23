@@ -1,6 +1,6 @@
 ## Screenshots and video
 **This extension is evolving** and the screenshots and the video below (made in **2015**) are outdated.  
-The actual screenshots and the backend settings you can see on the «**[Login with Amazon]( https://mage2.pro/t/topic/1763)**» and «**[Blackbaud NetCommunity](https://mage2.pro/t/topic/2173)**» extensions pages.  
+The actual screenshots and the backend settings you can see on the «**[Login with Amazon]( https://mage2.pro/t/1763)**» and «**[Blackbaud NetCommunity](https://mage2.pro/t/2173)**» extensions pages.  
 The «Facebook Login» now looks and behaves very closely to these extensions.
 
 ### An outdated screenshot (2015)
