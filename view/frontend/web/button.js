@@ -68,14 +68,21 @@ define([
 							/**
 							 * 2016-06-05
 							 * Запоминаем адрес страницы, на которой находился посетитель
-							 * непосредственно перед авторизацией.
-							 * Когда сервис авторизации вернёт посетителя обратно в наш магазин,
+							 * непосредственно перед аутентификацией.
+							 * Когда сервис аутентификации вернёт посетителя обратно в наш магазин,
 							 * мы перенаправим посетителя на эту страницу.
 							 * https://github.com/mage2pro/facebook-login/blob/7c2b601d/Controller/Index/Index.php#L50
 							 *
 							 * 2016-12-02
 							 * Ключ должен быть именно «url»:
 							 * @see \Df\Sso\CustomerReturn::redirectUrlKey()
+							 *
+							 * 2017-04-23
+							 * Обратите внимание, что сервис аутентификации возвращает посетителя
+							 * не по этому адресу, а по адресу «Valid OAuth redirect URIs»:
+							 * «How to enable login with a Facebook account»: https://discourse.pro/t/15
+							 * А по адресу «url» мы уже сами перенаправляем посетителя,
+							 * чтобы после аутентификации он остался на той же странице, где и был.
 							 */
 							,url: window.location.href
 							// https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus
