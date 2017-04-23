@@ -83,6 +83,20 @@ define([
 							 * «How to enable login with a Facebook account»: https://discourse.pro/t/15
 							 * А по адресу «url» мы уже сами перенаправляем посетителя,
 							 * чтобы после аутентификации он остался на той же странице, где и был.
+							 *
+							 * Вообще, протокол RFC 6749 допускает 2 способа возвращения покупателя
+							 * на сайт-клиент после аутентификации:
+							 * «the authorization server redirects the user-agent back to the client
+							 * using the redirection URI provided earlier
+							 * (in the request or during client registration)».
+							 * https://tools.ietf.org/html/rfc6749#section-4.1
+							 * Некоторые сервисы аутентификации (например, Amazon),
+							 * разрешают передавать адрес возвращения
+							 * непосредственно в запросе на аутентификацию.
+							 * Другие (как Facebook и Microsoft Azure Active Directory)
+							 * требуют указания фиксированного адреса возвращения
+							 * на этапе регистрации приложения,
+							 * и не допускают динамического изменения этого адреса.
 							 */
 							,url: window.location.href
 							// https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus
