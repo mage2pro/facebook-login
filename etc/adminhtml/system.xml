@@ -44,11 +44,24 @@
 					<label>Enable?</label>
 					<backend_model>Df\Config\Backend\Checkbox</backend_model>
 				</field>
+				<field
+					id='url'
+					translate='label'
+					type='Df\Sso\FE\CustomerReturn'
+					sortOrder='2'
+					showInDefault='1'
+					showInWebsite='1'
+					showInStore='1'
+				>
+					<label>Valid OAuth redirect URI</label>
+					<comment><![CDATA[Set it in your <a href='https://discourse.pro/t/topic/15' title='How to enable login with a Facebook account?' target='_blank'>Facebook App registration form (Step 13)</a>.]]></comment>
+					<depends><field id='enable'>1</field></depends>
+				</field>
 				<group
 					id='button'
 					translate='label'
 					type='text'
-					sortOrder='2'
+					sortOrder='3'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
