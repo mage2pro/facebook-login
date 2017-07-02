@@ -23,7 +23,6 @@
 			<group
 				id='login'
 				translate='label'
-				type='text'
 				sortOrder='60'
 				showInDefault='1'
 				showInWebsite='1'
@@ -60,7 +59,6 @@
 				<group
 					id='button'
 					translate='label'
-					type='text'
 					sortOrder='3'
 					showInDefault='1'
 					showInWebsite='1'
@@ -72,7 +70,6 @@
 					<group
 						id='header'
 						translate='label'
-						type='text'
 						sortOrder='1'
 						showInDefault='1'
 						showInWebsite='1'
@@ -146,7 +143,6 @@
 					<group
 						id='loginPage'
 						translate='label'
-						type='text'
 						sortOrder='2'
 						showInDefault='1'
 						showInWebsite='1'
@@ -220,7 +216,6 @@
 					<group
 						id='registratonPage'
 						translate='label'
-						type='text'
 						sortOrder='3'
 						showInDefault='1'
 						showInWebsite='1'
