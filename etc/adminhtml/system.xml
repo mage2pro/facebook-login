@@ -8,12 +8,10 @@
 			<group id='credentials'>
 				<field
 					id='app_secret'
+					showInDefault='1' showInStore='0' showInWebsite='1'
+					sortOrder='2'
 					translate='label'
 					type='obscure'
-					sortOrder='2'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='0'
 				>
 					<label>App Secret</label>
 					<comment><![CDATA[<a href='https://discourse.pro/t/15'>How to get it?</a>]]></comment>
@@ -22,35 +20,29 @@
 			</group>
 			<group
 				id='login'
-				translate='label'
+				showInDefault='1' showInStore='1' showInWebsite='1'
 				sortOrder='60'
-				showInDefault='1'
-				showInWebsite='1'
-				showInStore='1'
+				translate='label'
 			>
 				<label>Frontend Login</label>
 				<dfExtension>Dfe_FacebookLogin</dfExtension>
 				<frontend_model>Df\Config\Fieldset</frontend_model>
 				<field
 					id='enable'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='1'
 					translate='label'
 					type='Df\Framework\Form\Element\Checkbox'
-					sortOrder='1'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
 				>
 					<label>Enable?</label>
 					<backend_model>Df\Config\Backend\Checkbox</backend_model>
 				</field>
 				<field
 					id='url'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='2'
 					translate='label'
 					type='Df\Sso\FE\CustomerReturn'
-					sortOrder='2'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
 				>
 					<label>Sign-On URL</label>
 					<comment><![CDATA[Set it in your <a href='https://mage2.pro/t/3825' title='How to enable login with a Facebook account?' target='_blank'>Facebook App registration form (Step 13)</a>.]]></comment>
@@ -58,32 +50,26 @@
 				</field>
 				<group
 					id='button'
-					translate='label'
+					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='3'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
+					translate='label'
 				>
 					<comment><![CDATA[The authentication button (or link) setttings.]]></comment>
 					<depends><field id='enable'>1</field></depends>
 					<label>Button</label>
 					<group
 						id='header'
-						translate='label'
+						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='1'
-						showInDefault='1'
-						showInWebsite='1'
-						showInStore='1'
+						translate='label'
 					>
 						<label>Header</label>
 						<field
 							id='enable'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='1'
 							translate='label'
 							type='Df\Framework\Form\Element\Checkbox'
-							sortOrder='1'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Enable?</label>
 							<backend_model>Df\Config\Backend\Checkbox</backend_model>
@@ -91,12 +77,10 @@
 						</field>
 						<field
 							id='type'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='2'
 							translate='label'
 							type='select'
-							sortOrder='2'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Type</label>
 							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
@@ -109,12 +93,10 @@
 						</field>
 						<field
 							id='nativeSize'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='3'
 							translate='label'
 							type='select'
-							sortOrder='3'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Size</label>
 							<source_model>Dfe\FacebookLogin\Source\Button\Size</source_model>
@@ -126,12 +108,10 @@
 						</field>
 						<field
 							id='label'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='4'
 							translate='label'
 							type='text'
-							sortOrder='4'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Label</label>
 							<depends>
@@ -142,21 +122,17 @@
 					</group>
 					<group
 						id='loginPage'
-						translate='label'
+						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='2'
-						showInDefault='1'
-						showInWebsite='1'
-						showInStore='1'
+						translate='label'
 					>
 						<label>Login Page</label>
 						<field
 							id='enable'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='1'
 							translate='label'
 							type='Df\Framework\Form\Element\Checkbox'
-							sortOrder='1'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Enable?</label>
 							<backend_model>Df\Config\Backend\Checkbox</backend_model>
@@ -164,12 +140,10 @@
 						</field>
 						<field
 							id='type'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='2'
 							translate='label'
 							type='select'
-							sortOrder='2'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Type</label>
 							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
@@ -182,12 +156,10 @@
 						</field>
 						<field
 							id='nativeSize'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='3'
 							translate='label'
 							type='select'
-							sortOrder='3'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Size</label>
 							<source_model>Dfe\FacebookLogin\Source\Button\Size</source_model>
@@ -199,12 +171,10 @@
 						</field>
 						<field
 							id='label'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='4'
 							translate='label'
 							type='text'
-							sortOrder='4'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Label</label>
 							<depends>
@@ -215,21 +185,17 @@
 					</group>
 					<group
 						id='registratonPage'
-						translate='label'
+						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='3'
-						showInDefault='1'
-						showInWebsite='1'
-						showInStore='1'
+						translate='label'
 					>
 						<label>Registration Page</label>
 						<field
 							id='enable'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='1'
 							translate='label'
 							type='Df\Framework\Form\Element\Checkbox'
-							sortOrder='1'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Enable?</label>
 							<backend_model>Df\Config\Backend\Checkbox</backend_model>
@@ -237,12 +203,10 @@
 						</field>
 						<field
 							id='type'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='2'
 							translate='label'
 							type='select'
-							sortOrder='2'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Type</label>
 							<source_model>Df\Sso\Source\Button\Type\UNL</source_model>
@@ -255,12 +219,10 @@
 						</field>
 						<field
 							id='nativeSize'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='3'
 							translate='label'
 							type='select'
-							sortOrder='3'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Size</label>
 							<source_model>Dfe\FacebookLogin\Source\Button\Size</source_model>
@@ -272,12 +234,10 @@
 						</field>
 						<field
 							id='label'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='4'
 							translate='label'
 							type='text'
-							sortOrder='4'
-							showInDefault='1'
-							showInWebsite='1'
-							showInStore='1'
 						>
 							<label>Label</label>
 							<depends>
