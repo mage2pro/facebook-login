@@ -1,26 +1,15 @@
 <?php
 namespace Dfe\FacebookLogin\Setup;
+// 2015-10-10
+/** @final Unable to use the PHP «final» keyword here because of the M2 code generation. */
 class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
-	/**
-	 * 2016-06-04
-	 * 2015-10-10
-	 * В таблице eav_attribute длина кода свойства ограничивается 255 символами,
-	 * однако в ядре в настоящее время есть дефект, ограничивающий длину 30 символами:
-	 * https://mage2.pro/t/129
-	 * Поэтому приходиться укладываться в 30.
-	 * @override
-	 * @used-by \Df\Sso\Upgrade\Schema::_process()
-	 * @return string
-	 */
-	static function fId() {return 'dfe_fb__token_for_business';}
-
 	/**
 	 * 2016-06-05
 	 * @override
 	 * @see \Df\Sso\Upgrade\Schema::_process()
 	 * @used-by \Df\Framework\Upgrade::process()
 	 */
-	protected function _process() {
+	final protected function _process() {
 		parent::_process();
 		if ($this->isInitial()) {
 			// 2015-10-10
@@ -41,6 +30,20 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 			$this->column(self::F__LONG_LIVED_ACCESS_TOKEN, 'varchar(255) DEFAULT NULL');
 		}
 	}
+
+	/**
+	 * 2016-06-04
+	 * 2015-10-10
+	 * В таблице eav_attribute длина кода свойства ограничивается 255 символами,
+	 * однако в ядре в настоящее время есть дефект, ограничивающий длину 30 символами:
+	 * https://mage2.pro/t/129
+	 * Поэтому приходиться укладываться в 30.
+	 * @override
+	 * @see \Df\Sso\Upgrade\Schema::fId()
+	 * @used-by \Df\Sso\Upgrade\Schema::_process()
+	 * @return string
+	 */
+	final static function fId() {return 'dfe_fb__token_for_business';}
 
 	/**
 	 * 2015-10-10
