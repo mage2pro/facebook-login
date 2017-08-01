@@ -14,7 +14,7 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 		if ($this->isInitial()) {
 			// 2015-10-10
 			// Не хочу проблем из-за идиотов с длинными именами, поэтому пусть будет 255.
-			$this->column(self::F__FULL_NAME, 'varchar(255) DEFAULT NULL');
+			$this->columnCE(self::F__FULL_NAME, 'varchar(255) DEFAULT NULL');
 			// Адрес пустой картинки. У меня — 172 символа:
 			// https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=17835c9c962c70d05cc25d75008438a3&oe=5698842F
 			/**
@@ -24,10 +24,10 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 			 * иначе данные не будут сохраняться:
 			 * https://github.com/magento/magento2/blob/2.1.0/app/code/Magento/Eav/Model/Entity/AbstractEntity.php#L1262-L1265
 			 */
-			$this->column(self::F__PICTURE, 'varchar(255) DEFAULT NULL');
+			$this->columnCE(self::F__PICTURE, 'varchar(255) DEFAULT NULL');
 			// В настоящее время мне Facebook возващает токены длиной 185 символов.
 			// Места отвёл с запасом.
-			$this->column(self::F__LONG_LIVED_ACCESS_TOKEN, 'varchar(255) DEFAULT NULL');
+			$this->columnCE(self::F__LONG_LIVED_ACCESS_TOKEN, 'varchar(255) DEFAULT NULL');
 		}
 	}
 
