@@ -270,15 +270,11 @@ class Customer extends \Df\Sso\Customer {
 	 * @throws Exception
 	 */
 	private function responseJson($json) {
-		/** @var array(string => mixed) $result */
-		$result = df_json_decode($json);
-		df_result_array($result);
-		/** @var array(string => string)|null $error */
-		$error = dfa($result, 'error');
-		if ($error) {
+		df_result_array($r= df_json_decode($json)); /** @var array(string => mixed) $r */
+		if ($error = dfa($r, 'error')) { /** @var array(string => string)|null $error */
 			throw new Exception($error);
 		}
-		return $result;
+		return $r;
 	}
 
 	/** @return string */
