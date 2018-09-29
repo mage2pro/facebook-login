@@ -1,6 +1,6 @@
 define([
 	'df', 'Df_Core/my/redirectWithPost', 'jquery', 'Magento_Customer/js/customer-data'
-], function(df, redirectWithPost, $, customerData) {return (
+], function(df, rPost, $, customerData) {return (
 	/**
 	 * @param {Object} config
 	 * @param {String} config.redirect
@@ -63,7 +63,7 @@ define([
 						// и по этому адресу определяет, какие ключи Local Storage устарели.
 						// Мы то же самое делаем вручную.
 						customerData.invalidate(['*']);
-						redirectWithPost(config.redirect, {
+						rPost(config.redirect, {
 							token: response.authResponse.accessToken
 							/**
 							 * 2016-06-05
