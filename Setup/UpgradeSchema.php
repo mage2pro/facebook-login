@@ -12,8 +12,7 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	final protected function _process() {
 		parent::_process();
 		if ($this->isInitial()) {
-			// 2015-10-10
-			// Не хочу проблем из-за идиотов с длинными именами, поэтому пусть будет 255.
+			// 2015-10-10 Не хочу проблем из-за идиотов с длинными именами, поэтому пусть будет 255.
 			$this->columnCE(self::F__FULL_NAME, 'varchar(255) DEFAULT NULL');
 			// Адрес пустой картинки. У меня — 172 символа:
 			// https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=17835c9c962c70d05cc25d75008438a3&oe=5698842F
