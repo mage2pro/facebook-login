@@ -13,7 +13,7 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 		parent::_process();
 		if ($this->isInitial()) {
 			// 2015-10-10 Не хочу проблем из-за идиотов с длинными именами, поэтому пусть будет 255.
-			df_dbc_c(self::F__FULL_NAME);
+			df_dbc_c(self::F__FULL_NAME, '[Facebook] Full Name');
 			// Адрес пустой картинки. У меня — 172 символа:
 			// https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=17835c9c962c70d05cc25d75008438a3&oe=5698842F
 			/**
@@ -23,10 +23,10 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 			 * иначе данные не будут сохраняться:
 			 * https://github.com/magento/magento2/blob/2.1.0/app/code/Magento/Eav/Model/Entity/AbstractEntity.php#L1262-L1265
 			 */
-			df_dbc_c(self::F__PICTURE);
+			df_dbc_c(self::F__PICTURE, '[Facebook] Picture');
 			// В настоящее время мне Facebook возващает токены длиной 185 символов.
 			// Места отвёл с запасом.
-			df_dbc_c(self::F__LONG_LIVED_ACCESS_TOKEN);
+			df_dbc_c(self::F__LONG_LIVED_ACCESS_TOKEN, '[Facebook] Long Lived Access Token');
 		}
 	}
 
