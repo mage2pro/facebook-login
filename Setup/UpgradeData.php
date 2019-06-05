@@ -12,9 +12,9 @@ class UpgradeData extends \Df\Sso\Upgrade\Data {
 	final protected function _process() {
 		parent::_process();
 		if ($this->isInitial()) {
-			$this->attribute(UpgradeSchema::F__FULL_NAME, 'User Full Name');
-			$this->attribute(UpgradeSchema::F__PICTURE, 'User Profile Picture');
-			$this->attribute(UpgradeSchema::F__LONG_LIVED_ACCESS_TOKEN, 'Long-lived Access Token');
+			$this->att(UpgradeSchema::F__FULL_NAME, 'User Full Name');
+			$this->att(UpgradeSchema::F__PICTURE, 'User Profile Picture');
+			$this->att(UpgradeSchema::F__LONG_LIVED_ACCESS_TOKEN, 'Long-lived Access Token');
 		}
 	}
 
