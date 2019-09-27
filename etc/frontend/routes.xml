@@ -4,7 +4,7 @@
 	xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd"
 >
 	<router id='standard'>
-		<route id='Dfe_FacebookLogin' frontName='dfe-facebook'>
+		<route frontName='dfe-facebook' id='Dfe_FacebookLogin'>
 			<module name='Dfe_FacebookLogin'/>
 		</route>
 	</router>
