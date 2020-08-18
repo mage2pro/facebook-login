@@ -2,7 +2,7 @@
 namespace Dfe\FacebookLogin;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
-class Customer extends \Df\Sso\Customer {
+final class Customer extends \Df\Sso\Customer {
 	/**
 	 * 2015-10-12
 	 * Пользователь мог быть зарегистрирован на Facebook по номеру телефона,
@@ -16,11 +16,7 @@ class Customer extends \Df\Sso\Customer {
 	 * @used-by \Df\Sso\CustomerReturn::customerData()
 	 * @return string|null
 	 */
-	function email() {return dfc($this, function() {
-		/** @var string|null $r */
-		$r = $this->r('email');
-		return df_contains($r, '@') ? $r : null;
-	});}
+	function email() {return dfc($this, function() {return df_contains($r = $this->r('email'), '@') ? $r : null;});}
 
 	/**
 	 * @override
@@ -30,15 +26,15 @@ class Customer extends \Df\Sso\Customer {
 	function gender() {
 		switch ($this->r('gender')) {
 			case 'male':
-				$result = Gender::MALE;
+				$r = Gender::MALE;
 				break;
 			case 'female':
-				$result = Gender::FEMALE;
+				$r = Gender::FEMALE;
 				break;
 			default:
-				$result = Gender::UNKNOWN;
+				$r = Gender::UNKNOWN;
 		}
-		return $result;
+		return $r;
 	}
 
 	/**
@@ -47,8 +43,7 @@ class Customer extends \Df\Sso\Customer {
 	 * @return string
 	 */
 	function longLivedAccessToken() {return dfc($this, function() {
-		/** @var Credentials $s */
-		$s = Credentials::s();
+		$s = Credentials::s(); /** @var Credentials $s */
 		return df_result_sne(dfa($this->responseJson($this->requestBasic('/oauth/access_token', [
 			'grant_type' => 'fb_exchange_token'
 			,'client_id' => $s->appId()
@@ -185,23 +180,21 @@ class Customer extends \Df\Sso\Customer {
 	 * @return string
 	 */
 	private function requestBasic($path, array $params) {
-		/** @var \Zend\Uri\Http $uri */
-		$uri = new \Zend\Uri\Http('https://graph.facebook.com');
+		/** @var \Laminas\Uri\Http $uri */
+		$uri = new \Laminas\Uri\Http('https://graph.facebook.com');
 		$uri->setPath($path);
 		$uri->setQuery($params);
 		/** http://stackoverflow.com/a/3367977 */
-		/** @var \Zend\Http\Client\Adapter\Curl $adapter */
-		$adapter = new \Zend\Http\Client\Adapter\Curl;
+		$adapter = new \Laminas\Http\Client\Adapter\Curl; /** @var \Laminas\Http\Client\Adapter\Curl $adapter */
 		$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
-		/** @var \Zend\Http\Client $httpClient */
-		$httpClient = new \Zend\Http\Client();
+		$httpClient = new \Laminas\Http\Client(); /** @var \Laminas\Http\Client $httpClient */
 		$httpClient
 			->setAdapter($adapter)
 			->setHeaders([])
 			->setUri($uri)
 			->setOptions(['timeout' => 10])
 		;
-		/** @var \Zend\Http\Response $response */
+		/** @var \Laminas\Http\Response $response */
 		$response = $httpClient->send();
 		return $response->getBody();
 	}
@@ -280,4 +273,3 @@ class Customer extends \Df\Sso\Customer {
 	/** @return string */
 	private function token() {return df_request('token');}
 }
-
