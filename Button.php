@@ -25,33 +25,33 @@ class Button extends _P {
 	 * @return array(string => string)
 	 */
 	final protected function attributesN() {return parent::attributesN() + [
-		// 2016-11-25
-		// «If enabled, the button will change to a logout button when the user is logged in.»
+		# 2016-11-25
+		# «If enabled, the button will change to a logout button when the user is logged in.»
 		'data-auto-logout-link' => 'false'
-		// 2016-11-25
-		// «Determines what audience will be selected by default,
-		// when requesting write permissions.»
+		# 2016-11-25
+		# «Determines what audience will be selected by default,
+		# when requesting write permissions.»
 		,'data-default_audience' => 'friends'
-		// 2016-11-25
-		// «A JavaScript function to trigger when the login process is complete.»
+		# 2016-11-25
+		# «A JavaScript function to trigger when the login process is complete.»
 		,'data-onlogin' => 'dfeFacebookLogin()'
-		// 2016-11-25
-		// «The maximum number of rows of profile photos in the Facepile
-		// when show_faces is enabled.
-		// The actual number of rows shown may be shorter
-		// if there aren't enough faces to fill the number you specify.»
+		# 2016-11-25
+		# «The maximum number of rows of profile photos in the Facepile
+		# when show_faces is enabled.
+		# The actual number of rows shown may be shorter
+		# if there aren't enough faces to fill the number you specify.»
 		,'data-max-rows' => 1
-		// 2016-11-25
-		// «The list of permissions to request during login.»
+		# 2016-11-25
+		# «The list of permissions to request during login.»
 		,'data-scope' => 'public_profile,email'
-		// 2016-11-25
-		// «Determines whether a Facepile of logged-in friends is shown below the button.
-		// When this is enabled, a logged-in user will only see the Facepile,
-		// and no login or logout button.»
+		# 2016-11-25
+		# «Determines whether a Facepile of logged-in friends is shown below the button.
+		# When this is enabled, a logged-in user will only see the Facepile,
+		# and no login or logout button.»
 		,'data-show-faces' => 'false'
-		// 2016-11-25
-		// «Picks one of the size options for the button.»
-		// Allowed values: «small», «medium», «large», «xlarge».
+		# 2016-11-25
+		# «Picks one of the size options for the button.»
+		# Allowed values: «small», «medium», «large», «xlarge».
 		,'data-size' => $this->s()->nativeSize()
 	];}
 

@@ -1,5 +1,5 @@
 <?php
-// 2016-11-25
+# 2016-11-25
 /** @used-by \Df\Sso\Button::s() */
 namespace Dfe\FacebookLogin\Settings;
 class Button extends \Df\Sso\Settings\Button {

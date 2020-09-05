@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin\Setup;
-// 2016-06-05
+# 2016-06-05
 /** @final Unable to use the PHP «final» keyword here because of the M2 code generation. */
 class UpgradeData extends \Df\Sso\Upgrade\Data {
 	/**
