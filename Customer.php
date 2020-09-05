@@ -180,21 +180,21 @@ final class Customer extends \Df\Sso\Customer {
 	 * @return string
 	 */
 	private function requestBasic($path, array $params) {
-		/** @var \Laminas\Uri\Http $uri */
-		$uri = new \Laminas\Uri\Http('https://graph.facebook.com');
+		/** @var \Zend\Uri\Http $uri */
+		$uri = new \Zend\Uri\Http('https://graph.facebook.com');
 		$uri->setPath($path);
 		$uri->setQuery($params);
 		/** http://stackoverflow.com/a/3367977 */
-		$adapter = new \Laminas\Http\Client\Adapter\Curl; /** @var \Laminas\Http\Client\Adapter\Curl $adapter */
+		$adapter = new \Zend\Http\Client\Adapter\Curl; /** @var \Zend\Http\Client\Adapter\Curl $adapter */
 		$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
-		$httpClient = new \Laminas\Http\Client(); /** @var \Laminas\Http\Client $httpClient */
+		$httpClient = new \Zend\Http\Client(); /** @var \Zend\Http\Client $httpClient */
 		$httpClient
 			->setAdapter($adapter)
 			->setHeaders([])
 			->setUri($uri)
 			->setOptions(['timeout' => 10])
 		;
-		/** @var \Laminas\Http\Response $response */
+		/** @var \Zend\Http\Response $response */
 		$response = $httpClient->send();
 		return $response->getBody();
 	}
