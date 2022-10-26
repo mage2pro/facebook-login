@@ -32,8 +32,8 @@ class Index extends _P {
 
 	/**
 	 * 2016-06-06
-	 * @used-by customerData()
-	 * @used-by customerFieldsToSync()
+	 * @used-by self::customerData()
+	 * @used-by self::customerFieldsToSync()
 	 * @return array(mixed => mixed)
 	 */
 	private function customerDataCustom() {return dfc($this, function() {return [

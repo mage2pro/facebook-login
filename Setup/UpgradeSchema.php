@@ -45,10 +45,8 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	final static function fId() {return 'dfe_fb__token_for_business';}
 
 	/**
-	 * 2015-10-10
-	 * «The person's full name»
-	 * https://developers.facebook.com/docs/graph-api/reference/user
-	 * @used-by _install()
+	 * 2015-10-10 «The person's full name» https://developers.facebook.com/docs/graph-api/reference/user
+	 * @used-by self::_install()
 	 * @used-by \Dfe\FacebookLogin\Setup\UpgradeData::_install()
 	 */
 	const F__FULL_NAME = 'dfe_fb__full_name';
@@ -60,9 +58,7 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	 */
 	const F__LONG_LIVED_ACCESS_TOKEN = 'dfe_fb__access_token';
 	/**
-	 * 2015-10-10
-	 * «A Picture for a Facebook User.»
-	 * https://developers.facebook.com/docs/graph-api/reference/user/picture/
+	 * 2015-10-10 «A Picture for a Facebook User» https://developers.facebook.com/docs/graph-api/reference/user/picture/
 	 */
 	const F__PICTURE = 'dfe_fb__picture';
 	/**

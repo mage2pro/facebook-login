@@ -24,7 +24,7 @@ class Button extends _P {
 	 * @used-by _P::attributes()
 	 * @return array(string => string)
 	 */
-	final protected function attributesN() {return parent::attributesN() + [
+	final protected function attributesN():array {return parent::attributesN() + [
 		# 2016-11-25
 		# «If enabled, the button will change to a logout button when the user is logged in.»
 		'data-auto-logout-link' => 'false'

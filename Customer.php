@@ -256,8 +256,8 @@ final class Customer extends \Df\Sso\Customer {
 
 	/**
 	 * 2017-04-06
-	 * @used-by longLivedAccessToken()
-	 * @used-by request()
+	 * @used-by self::longLivedAccessToken()
+	 * @used-by self::request()
 	 * @param string $json
 	 * @return array(satring => mixed)
 	 * @throws Exception
