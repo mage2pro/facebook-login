@@ -110,42 +110,22 @@ final class Customer extends \Df\Sso\Customer {
 	 * @used-by \Df\Sso\Customer::dob()
 	 * @return \DateTime|null
 	 */
-	protected function _dob() {
-		if (!isset($this->{__METHOD__})) {
-			/** @var \DateTime|null $result */
-			$result = null;
-			/** @var string|null $raw */
-			$raw = $this->r('birthday');
-			if ($raw) {
-				/** @var string[] $rawA */
-				$rawA = df_int(explode('/', $raw));
-				/** @var int $count */
-				$count = count($rawA);
-				/** @var int $year */
-				/** @var int $month */
-				/** @var int $day */
-				if (1 === $count) {
-					$year = $raw;
-					$month = 1;
-					$day = 1;
-				}
-				else {
-					$month = $rawA[0];
-					$day = $rawA[1];
-					$year = 2 === $count ? 1900 : $rawA[2];
-				}
-				$result = new \DateTime;
-				$result->setDate($year, $month, $day);
-			}
-			$this->{__METHOD__} = df_n_set($result);
+	protected function _dob() {return dfc($this, function() {
+		$r = null; /** @var \DateTime|null $r */
+		if ($raw = $this->r('birthday')) { /** @var string|null $raw */
+			$a = df_int(explode('/', $raw)); /** @var string[] $a */
+			$count = count($a); /** @var int $count */
+			$r = new \DateTime;
+			# 2022-10-27 https://3v4l.org/WEpEk
+			$r->setDate(...(1 === $count ? [$raw, 1, 1] : [2 === $count ? 1900 : $a[2], $a[0], $a[1]]));
 		}
-		return df_n_get($this->{__METHOD__});
-	}
+		return $r;
+	});}
 
 	/**
 	 * 2015-10-10
-	 * Полученный нами от браузера идентификатор пользователя Facebook
-	 * не является глобальным: он разный для разных приложений.
+	 * Полученный нами от браузера идентификатор пользователя Facebook не является глобальным:
+	 * он разный для разных приложений.
 	 * @return string
 	 */
 	private function appScopedId() {return df_request('user');}
@@ -204,55 +184,50 @@ final class Customer extends \Df\Sso\Customer {
 	 * @return array(string => mixed)
 	 * @throws Exception
 	 */
-	private function responseA() {
-		if (!isset($this->{__METHOD__})) {
-			$this->{__METHOD__} = $this->request('', [
-				/**
-				 * 2015-10-10
-				 * Все доступные поля перечислены здесь:
-				 * https://developers.facebook.com/docs/graph-api/reference/user
-				 *
-				 * Обратите внимание, что получить адрес страницы пользователя
-				 * мы в 2015 году уже не можем: http://stackoverflow.com/questions/29152500
-				 * «link» возвращает адрес типа
-				 * https://www.facebook.com/app_scoped_user_id/10206714043186313/
-				 * толку нам от него мало.
-				 */
-				'fields' => df_csv([
-					'email'
-					,'first_name'
-					,'gender'
-					,'last_name'
-					,'locale'
-					,'middle_name'
-					,'name'
-					,'name_format'
-					,'timezone'
-					/**
-					 * 2015-10-10
-					 * Предварительно надо настроить учётную запись на https://business.facebook.com/
-					 * https://developers.facebook.com/docs/apps/for-business
-					 * Иначе будет сбой: «Application must be associated with a business».
-					 */
-					,'token_for_business'
-					/**
-					 * 2015-10-12
-					 * 1) Администратор Magento в состоянии назначить дату рождения
-					 * обязательной для указания покупателями.
-					 * 2) Facebook может не вернуть дату, а также вернуть её лишь частично:
-					 * https://developers.facebook.com/docs/graph-api/reference/user
-					 * «The person's birthday.
-					 * This is a fixed format string, like MM/DD/YYYY.
-					 * However, people can control who can see the year they were born
-					 * separately from the month and day
-					 * so this string can be only the year (YYYY) or the month + day (MM/DD)»
-					 */
-					,'birthday'
-				])
-			]);
-		}
-		return $this->{__METHOD__};
-	}
+	private function responseA() {return dfc($this, function() {return $this->request('', [
+		/**
+		 * 2015-10-10
+		 * Все доступные поля перечислены здесь:
+		 * https://developers.facebook.com/docs/graph-api/reference/user
+		 *
+		 * Обратите внимание, что получить адрес страницы пользователя
+		 * мы в 2015 году уже не можем: http://stackoverflow.com/questions/29152500
+		 * «link» возвращает адрес типа
+		 * https://www.facebook.com/app_scoped_user_id/10206714043186313/
+		 * толку нам от него мало.
+		 */
+		'fields' => df_csv([
+			'email'
+			,'first_name'
+			,'gender'
+			,'last_name'
+			,'locale'
+			,'middle_name'
+			,'name'
+			,'name_format'
+			,'timezone'
+			/**
+			 * 2015-10-10
+			 * Предварительно надо настроить учётную запись на https://business.facebook.com/
+			 * https://developers.facebook.com/docs/apps/for-business
+			 * Иначе будет сбой: «Application must be associated with a business».
+			 */
+			,'token_for_business'
+			/**
+			 * 2015-10-12
+			 * 1) Администратор Magento в состоянии назначить дату рождения
+			 * обязательной для указания покупателями.
+			 * 2) Facebook может не вернуть дату, а также вернуть её лишь частично:
+			 * https://developers.facebook.com/docs/graph-api/reference/user
+			 * «The person's birthday.
+			 * This is a fixed format string, like MM/DD/YYYY.
+			 * However, people can control who can see the year they were born
+			 * separately from the month and day
+			 * so this string can be only the year (YYYY) or the month + day (MM/DD)»
+			 */
+			,'birthday'
+		])
+	]);});}
 
 	/**
 	 * 2017-04-06
