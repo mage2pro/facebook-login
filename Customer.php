@@ -147,6 +147,7 @@ final class Customer extends \Df\Sso\Customer {
 	}
 
 	/**
+	 * @used-by self::req()
 	 * @param array(string => mixed) $params
 	 */
 	private function requestBasic(string $path, array $params):string {
