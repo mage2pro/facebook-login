@@ -118,6 +118,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * 2015-10-10
 	 * Полученный нами от браузера идентификатор пользователя Facebook не является глобальным:
 	 * он разный для разных приложений.
+	 * @used-by self::request()
 	 */
 	private function appScopedId():string {return df_request('user');}
 
