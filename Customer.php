@@ -132,7 +132,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @return array(string => mixed)
 	 * @throws Exception
 	 */
-	private function request($path, array $params) {
+	private function request(string $path, array $params) {
 		# 2015-10-10
 		# Полученный нами от браузера идентификатор пользователя Facebook не является глобальным: н разный для разных приложений.
 		$appScopedId = df_request('user'); /** @var string $appScopedId */
