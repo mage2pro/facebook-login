@@ -199,18 +199,16 @@ final class Customer extends \Df\Sso\Customer {
 			# https://developers.facebook.com/docs/apps/for-business
 			# Иначе будет сбой: «Application must be associated with a business».
 			,'token_for_business'
-			/**
-			 * 2015-10-12
-			 * 1) Администратор Magento в состоянии назначить дату рождения
-			 * обязательной для указания покупателями.
-			 * 2) Facebook может не вернуть дату, а также вернуть её лишь частично:
-			 * https://developers.facebook.com/docs/graph-api/reference/user
-			 * «The person's birthday.
-			 * This is a fixed format string, like MM/DD/YYYY.
-			 * However, people can control who can see the year they were born
-			 * separately from the month and day
-			 * so this string can be only the year (YYYY) or the month + day (MM/DD)»
-			 */
+			# 2015-10-12
+			# 1) Администратор Magento в состоянии назначить дату рождения
+			# обязательной для указания покупателями.
+			# 2) Facebook может не вернуть дату, а также вернуть её лишь частично:
+			# https://developers.facebook.com/docs/graph-api/reference/user
+			# «The person's birthday.
+			# This is a fixed format string, like MM/DD/YYYY.
+			# However, people can control who can see the year they were born
+			# separately from the month and day
+			# so this string can be only the year (YYYY) or the month + day (MM/DD)»
 			,'birthday'
 		])
 	]);});}
