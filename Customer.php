@@ -210,11 +210,10 @@ final class Customer extends \Df\Sso\Customer {
 	 * 2017-04-06
 	 * @used-by self::longLivedAccessToken()
 	 * @used-by self::request()
-	 * @param string $json
 	 * @return array(satring => mixed)
 	 * @throws Exception
 	 */
-	private function responseJson($json) {
+	private function responseJson(string $json) {
 		df_assert_array($r = df_json_decode($json)); /** @var array(string => mixed) $r */
 		if ($error = dfa($r, 'error')) { /** @var array(string => string)|null $error */
 			throw new Exception($error);
