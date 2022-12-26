@@ -222,5 +222,5 @@ final class Customer extends \Df\Sso\Customer {
 	}
 
 	/** @return string */
-	private function token() {return df_request('token');}
+	private function token():string {return df_request('token');}
 }
