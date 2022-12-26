@@ -131,7 +131,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @return array(string => mixed)
 	 * @throws Exception
 	 */
-	private function request(string $path, array $params):array {
+	private function req(string $path, array $params):array {
 		# 2015-10-10
 		# Полученный нами от браузера идентификатор пользователя Facebook не является глобальным:
 		# он разный для разных приложений.
