@@ -37,6 +37,12 @@ final class Customer extends \Df\Sso\Customer {
 	}
 
 	/**
+	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerIdFieldValue()
+	 * @used-by \Dfe\FacebookLogin\Customer::password()
+	 */
+	function id():string {return $this->r('token_for_business');}
+
+	/**
 	 * https://developers.facebook.com/docs/facebook-login/access-tokens#extending
 	 * @used-by self::request()
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
@@ -83,12 +89,6 @@ final class Customer extends \Df\Sso\Customer {
 	function picture():string {return df_result_sne(dfa_deep($this->request('picture', ['redirect' => 'false']), 'data/url'));}
 
 	/**
-	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerIdFieldValue()
-	 * @used-by \Dfe\FacebookLogin\Customer::password()
-	 */
-	function id():string {return $this->r('token_for_business');}
-
-	/**
 	 * 2015-10-12
 	 * Facebook может не вернуть дату, а также вернуть её лишь частично:
 	 * https://developers.facebook.com/docs/graph-api/reference/user
@@ -104,7 +104,7 @@ final class Customer extends \Df\Sso\Customer {
 	 */
 	protected function _dob() {return dfc($this, function() {
 		$r = null; /** @var \DateTime|null $r */
-		if ($raw = $this->r('birthday')) { /** @var string|null $raw */
+		if ($raw = $this->r('birthday')) { /** @var string $raw */
 			$a = df_int(explode('/', $raw)); /** @var string[] $a */
 			$count = count($a); /** @var int $count */
 			$r = new \DateTime;
@@ -115,9 +115,16 @@ final class Customer extends \Df\Sso\Customer {
 	});}
 
 	/**
-	 * @return string|null
+	 * @used-by self::_dob()
+	 * @used-by self::email()
+	 * @used-by self::gender()
+	 * @used-by self::id()
+	 * @used-by self::nameFirst()
+	 * @used-by self::nameFull()
+	 * @used-by self::nameLast()
+	 * @used-by self::nameMiddle()
 	 */
-	private function r(string $k) {return dfa($this->responseA(), $k);}
+	private function r(string $k):string {return (string)dfa($this->responseA(), $k);}
 
 	/**
 	 * @param string $path
