@@ -69,9 +69,8 @@ final class Customer extends \Df\Sso\Customer {
 	 * @override
 	 * @see \Df\Sso\Customer::nameMiddle()
 	 * @used-by \Df\Sso\CustomerReturn::register()
-	 * @return string
 	 */
-	function nameMiddle() {return $this->r('middle_name');}
+	function nameMiddle():string {return $this->r('middle_name');}
 
 	/**
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
