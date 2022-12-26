@@ -47,7 +47,7 @@ final class Customer extends \Df\Sso\Customer {
 
 	/**
 	 * https://developers.facebook.com/docs/facebook-login/access-tokens#extending
-	 * @used-by self::request()
+	 * @used-by self::r()
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 */
 	function longLivedAccessToken():string {return dfc($this, function():string {
@@ -209,7 +209,7 @@ final class Customer extends \Df\Sso\Customer {
 	/**
 	 * 2017-04-06
 	 * @used-by self::longLivedAccessToken()
-	 * @used-by self::request()
+	 * @used-by self::r()
 	 * @return array(satring => mixed)
 	 * @throws Exception
 	 */
