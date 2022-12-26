@@ -150,7 +150,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @param array(string => mixed) $params
 	 * @return string
 	 */
-	private function requestBasic($path, array $params) {
+	private function requestBasic(string $path, array $params) {
 		/** @var \Zend\Uri\Http $uri */
 		$uri = new \Zend\Uri\Http('https://graph.facebook.com');
 		$uri->setPath($path);
