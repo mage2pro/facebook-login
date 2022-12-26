@@ -40,9 +40,8 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	 * @override
 	 * @see \Df\Sso\Upgrade\Schema::fId()
 	 * @used-by \Df\Sso\Upgrade\Schema::_process()
-	 * @return string
 	 */
-	final static function fId() {return 'dfe_fb__token_for_business';}
+	final static function fId():string {return 'dfe_fb__token_for_business';}
 
 	/**
 	 * 2015-10-10 «The person's full name» https://developers.facebook.com/docs/graph-api/reference/user

@@ -14,16 +14,15 @@ final class Customer extends \Df\Sso\Customer {
 	 * @override
 	 * @see \Df\Sso\Customer::email()
 	 * @used-by \Df\Sso\CustomerReturn::customerData()
-	 * @return string|null
 	 */
-	function email() {return dfc($this, function() {return df_contains($r = $this->r('email'), '@') ? $r : null;});}
+	function email():string {return df_contains($r = $this->r('email'), '@') ? $r : '';}
 
 	/**
 	 * @override
 	 * @see \Df\Sso\Customer::gender()
-	 * @return int
+	 * @used-by \Df\Sso\CustomerReturn::register()
 	 */
-	function gender() {
+	function gender():int {
 		switch ($this->r('gender')) {
 			case 'male':
 				$r = Gender::MALE;
@@ -55,20 +54,21 @@ final class Customer extends \Df\Sso\Customer {
 	/**
 	 * @override
 	 * @see \Df\Sso\Customer::nameFirst()
-	 * @return string
+	 * @used-by \Df\Sso\CustomerReturn::register()
 	 */
-	function nameFirst() {return $this->r('first_name');}
+	function nameFirst():string {return $this->r('first_name');}
 
 	/**
 	 * @override
 	 * @see \Df\Sso\Customer::nameLast()
-	 * @return string
+	 * @used-by \Df\Sso\CustomerReturn::register()
 	 */
-	function nameLast() {return $this->r('last_name');}
+	function nameLast():string {return $this->r('last_name');}
 
 	/**
 	 * @override
 	 * @see \Df\Sso\Customer::nameMiddle()
+	 * @used-by \Df\Sso\CustomerReturn::register()
 	 * @return string
 	 */
 	function nameMiddle() {return $this->r('middle_name');}
@@ -85,16 +85,15 @@ final class Customer extends \Df\Sso\Customer {
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
-	function picture() {return dfc($this, function() {return df_result_sne(
-		dfa_deep($this->request('picture', ['redirect' => 'false']), 'data/url')
-	);});}
+	function picture() {return dfc($this, function() {return df_result_sne(dfa_deep(
+		$this->request('picture', ['redirect' => 'false']), 'data/url'
+	));});}
 
 	/**
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerIdFieldValue()
 	 * @used-by \Dfe\FacebookLogin\Customer::password()
-	 * @return string
 	 */
-	function id() {return $this->r('token_for_business');}
+	function id():string {return $this->r('token_for_business');}
 
 	/**
 	 * 2015-10-12
@@ -238,7 +237,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @throws Exception
 	 */
 	private function responseJson($json) {
-		df_result_array($r= df_json_decode($json)); /** @var array(string => mixed) $r */
+		df_assert_array($r = df_json_decode($json)); /** @var array(string => mixed) $r */
 		if ($error = dfa($r, 'error')) { /** @var array(string => string)|null $error */
 			throw new Exception($error);
 		}

@@ -62,16 +62,14 @@ class Button extends _P {
 	 * @override
 	 * @see \Df\Sso\Button::cssClass2()
 	 * @used-by \Df\Sso\Button::attributes()
-	 * @return string
 	 */
-	final protected function cssClass2() {return !$this->isNative() ? '' : 'fb-login-button';}
+	final protected function cssClass2():string {return !$this->isNative() ? '' : 'fb-login-button';}
 
 	/**
 	 * 2016-11-23
 	 * @override
 	 * @see \Df\Sso\Button::loggedOut()
 	 * @used-by \Df\Sso\Button::_toHtml()
-	 * @return string
 	 */
-	final protected function loggedOut() {return parent::loggedOut() . \Df\Facebook\I::init();}
+	final protected function loggedOut():string {return parent::loggedOut() . \Df\Facebook\I::init();}
 }

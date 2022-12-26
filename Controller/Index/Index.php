@@ -12,21 +12,21 @@ class Index extends _P {
 	 * 2016-06-04
 	 * @override
 	 * @see _P::customerData()
-	 * @used-by _P::customer()
+	 * @used-by _P::mc()
 	 * @used-by _P::register()
 	 * @return array(string => mixed)
 	 */
-	final protected function customerData() {return $this->customerDataCustom() + parent::customerData();}
+	final protected function customerData():array {return $this->customerDataCustom() + parent::customerData();}
 
 	/**
 	 * 2016-06-06
 	 * Перечень свойств покупателя, которые надо обновить в Magento
 	 * после их изменения в сторонней системе авторизации.
 	 * @see _P::customerFieldsToSync()
-	 * @used-by _P::customer()
+	 * @used-by _P::mc()
 	 * @return string[]
 	 */
-	final protected function customerFieldsToSync() {return array_merge(
+	final protected function customerFieldsToSync():array {return array_merge(
 		array_keys($this->customerDataCustom()), parent::customerFieldsToSync()
 	);}
 

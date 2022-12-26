@@ -9,7 +9,7 @@ class UpgradeData extends \Df\Sso\Upgrade\Data {
 	 * @see \Df\Sso\Upgrade\Data::_process()
 	 * @used-by \Df\Framework\Upgrade::process()
 	 */
-	final protected function _process() {
+	final protected function _process():void {
 		parent::_process();
 		if ($this->isInitial()) {
 			$this->att(UpgradeSchema::F__FULL_NAME, 'User Full Name');
@@ -23,7 +23,6 @@ class UpgradeData extends \Df\Sso\Upgrade\Data {
 	 * @override
 	 * @see \Df\Sso\Upgrade\Data::labelPrefix()
 	 * @used-by \Df\Sso\Upgrade\Data::attribute()
-	 * @return string
 	 */
-	final protected function labelPrefix() {return 'Facebook';}
+	final protected function labelPrefix():string {return 'Facebook';}
 }
