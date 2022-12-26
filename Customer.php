@@ -134,7 +134,8 @@ final class Customer extends \Df\Sso\Customer {
 	 */
 	private function request(string $path, array $params):array {
 		# 2015-10-10
-		# Полученный нами от браузера идентификатор пользователя Facebook не является глобальным: н разный для разных приложений.
+		# Полученный нами от браузера идентификатор пользователя Facebook не является глобальным:
+		# он разный для разных приложений.
 		$appScopedId = df_request('user'); /** @var string $appScopedId */
 		$fullPath = '/' . implode('/', df_clean(['v2.5', $appScopedId, $path])); /** @var string $fullPath */
 		$responseAsJson = $this->requestBasic($fullPath, $params + [
