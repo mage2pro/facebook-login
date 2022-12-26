@@ -3,6 +3,7 @@ namespace Dfe\FacebookLogin;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
 use Zend\Http\Client as zClient;
+use Zend\Uri\Http as zHttp;
 final class Customer extends \Df\Sso\Customer {
 	/**
 	 * 2015-10-12
@@ -153,8 +154,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @param array(string => mixed) $params
 	 */
 	private function requestBasic(string $path, array $params):string {
-		/** @var \Zend\Uri\Http $uri */
-		$uri = new \Zend\Uri\Http('https://graph.facebook.com');
+		$uri = new zHttp('https://graph.facebook.com'); /** @var zHttp $uri */
 		$uri->setPath($path);
 		$uri->setQuery($params);
 		/** http://stackoverflow.com/a/3367977 */
