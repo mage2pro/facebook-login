@@ -154,9 +154,9 @@ final class Customer extends \Df\Sso\Customer {
 	 * @param array(string => mixed) $params
 	 */
 	private function requestBasic(string $path, array $params):string {
-		$uri = df_zuri('https://graph.facebook.com'); /** @var zHttp $uri */
-		$uri->setPath($path);
-		$uri->setQuery($params);
+		$u = df_zuri('https://graph.facebook.com'); /** @var zHttp $u */
+		$u->setPath($path);
+		$u->setQuery($params);
 		/** http://stackoverflow.com/a/3367977 */
 		$adapter = new \Zend\Http\Client\Adapter\Curl; /** @var \Zend\Http\Client\Adapter\Curl $adapter */
 		$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
@@ -164,7 +164,7 @@ final class Customer extends \Df\Sso\Customer {
 		$c
 			->setAdapter($adapter)
 			->setHeaders([])
-			->setUri($uri)
+			->setUri($u)
 			->setOptions(['timeout' => 10])
 		;
 		$response = $c->send(); /** @var \Zend\Http\Response $response */
