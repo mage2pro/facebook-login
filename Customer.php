@@ -127,6 +127,7 @@ final class Customer extends \Df\Sso\Customer {
 	private function r(string $k):string {return (string)dfa($this->responseA(), $k);}
 
 	/**
+	 * @used-by self::responseA()
 	 * @param array(string => mixed) $params
 	 * @return array(string => mixed)
 	 * @throws Exception
