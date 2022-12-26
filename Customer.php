@@ -86,7 +86,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * https://developers.facebook.com/docs/graph-api/reference/profile-picture-source/
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 */
-	function picture():string {return df_result_sne(dfa_deep($this->request('picture', ['redirect' => 'false']), 'data/url'));}
+	function picture():string {return df_result_sne(dfa_deep($this->req('picture', ['redirect' => 'false']), 'data/url'));}
 
 	/**
 	 * 2015-10-12
@@ -172,7 +172,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @return array(string => mixed)
 	 * @throws Exception
 	 */
-	private function responseA() {return dfc($this, function() {return $this->request('', [
+	private function responseA() {return dfc($this, function() {return $this->req('', [
 		/**
 		 * 2015-10-10
 		 * Все доступные поля перечислены здесь:
