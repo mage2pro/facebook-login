@@ -3,6 +3,7 @@ namespace Dfe\FacebookLogin;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
 use Zend\Http\Client as zClient;
+use Zend\Http\Client\Adapter\Curl;
 use Zend\Uri\Http as zHttp;
 final class Customer extends \Df\Sso\Customer {
 	/**
@@ -158,7 +159,7 @@ final class Customer extends \Df\Sso\Customer {
 		$u->setPath($path);
 		$u->setQuery($params);
 		/** http://stackoverflow.com/a/3367977 */
-		$adapter = new \Zend\Http\Client\Adapter\Curl; /** @var \Zend\Http\Client\Adapter\Curl $adapter */
+		$adapter = new Curl; /** @var Curl $adapter */
 		$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
 		$c = new zClient; /** @var zClient $c */
 		$c
