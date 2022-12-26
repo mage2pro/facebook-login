@@ -160,14 +160,14 @@ final class Customer extends \Df\Sso\Customer {
 		/** http://stackoverflow.com/a/3367977 */
 		$adapter = new \Zend\Http\Client\Adapter\Curl; /** @var \Zend\Http\Client\Adapter\Curl $adapter */
 		$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
-		$httpClient = new zClient; /** @var zClient $httpClient */
-		$httpClient
+		$c = new zClient; /** @var zClient $c */
+		$c
 			->setAdapter($adapter)
 			->setHeaders([])
 			->setUri($uri)
 			->setOptions(['timeout' => 10])
 		;
-		$response = $httpClient->send(); /** @var \Zend\Http\Response $response */
+		$response = $c->send(); /** @var \Zend\Http\Response $response */
 		return $response->getBody();
 	}
 
