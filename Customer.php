@@ -154,7 +154,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @param array(string => mixed) $params
 	 */
 	private function requestBasic(string $path, array $params):string {
-		$uri = new zHttp('https://graph.facebook.com'); /** @var zHttp $uri */
+		$uri = df_zuri('https://graph.facebook.com'); /** @var zHttp $uri */
 		$uri->setPath($path);
 		$uri->setQuery($params);
 		/** http://stackoverflow.com/a/3367977 */
