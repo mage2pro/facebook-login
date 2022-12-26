@@ -2,6 +2,7 @@
 namespace Dfe\FacebookLogin;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
+use Zend\Http\Client as zClient;
 final class Customer extends \Df\Sso\Customer {
 	/**
 	 * 2015-10-12
@@ -159,7 +160,7 @@ final class Customer extends \Df\Sso\Customer {
 		/** http://stackoverflow.com/a/3367977 */
 		$adapter = new \Zend\Http\Client\Adapter\Curl; /** @var \Zend\Http\Client\Adapter\Curl $adapter */
 		$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
-		$httpClient = new \Zend\Http\Client; /** @var \Zend\Http\Client $httpClient */
+		$httpClient = new zClient; /** @var zClient $httpClient */
 		$httpClient
 			->setAdapter($adapter)
 			->setHeaders([])
