@@ -177,7 +177,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @return array(string => mixed)
 	 * @throws Exception
 	 */
-	private function responseA() {return dfc($this, function() {return $this->req('', [
+	private function responseA():array {return dfc($this, function():array {return $this->req('', [
 		/**
 		 * 2015-10-10
 		 * Все доступные поля перечислены здесь:
