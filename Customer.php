@@ -74,9 +74,8 @@ final class Customer extends \Df\Sso\Customer {
 
 	/**
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
-	 * @return string
 	 */
-	function nameFull() {return $this->r('name');}
+	function nameFull():string {return $this->r('name');}
 
 	/**
 	 * https://developers.facebook.com/docs/graph-api/reference/user/picture/
