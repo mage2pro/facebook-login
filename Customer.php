@@ -79,7 +79,6 @@ final class Customer extends \Df\Sso\Customer {
 	 * https://developers.facebook.com/docs/graph-api/reference/user/picture/
 	 * https://developers.facebook.com/docs/graph-api/reference/profile-picture-source/
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
-	 * @return string
 	 */
 	function picture():string {return df_result_sne(dfa_deep($this->request('picture', ['redirect' => 'false']), 'data/url'));}
 
