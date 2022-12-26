@@ -39,9 +39,8 @@ final class Customer extends \Df\Sso\Customer {
 	/**
 	 * https://developers.facebook.com/docs/facebook-login/access-tokens#extending
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
-	 * @return string
 	 */
-	function longLivedAccessToken() {return dfc($this, function() {
+	function longLivedAccessToken():string {return dfc($this, function():string {
 		$s = Credentials::s(); /** @var Credentials $s */
 		return df_result_sne(dfa($this->responseJson($this->requestBasic('/oauth/access_token', [
 			'grant_type' => 'fb_exchange_token'
