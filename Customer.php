@@ -135,8 +135,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @throws Exception
 	 */
 	private function request($path, array $params) {
-		/** @var string $fullPath */
-		$fullPath = '/' . implode('/', df_clean(['v2.5', $this->appScopedId(), $path]));
+		$fullPath = '/' . implode('/', df_clean(['v2.5', $this->appScopedId(), $path])); /** @var string $fullPath */
 		$responseAsJson = $this->requestBasic($fullPath, $params + [
 			'access_token' => $this->longLivedAccessToken(),
 			'appsecret_proof' => hash_hmac('sha256', $this->longLivedAccessToken(), Credentials::s()->appSecret())
