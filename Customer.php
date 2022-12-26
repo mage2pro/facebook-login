@@ -127,7 +127,6 @@ final class Customer extends \Df\Sso\Customer {
 	private function r(string $k):string {return (string)dfa($this->responseA(), $k);}
 
 	/**
-	 * @param string $path
 	 * @param array(string => mixed) $params
 	 * @return array(string => mixed)
 	 * @throws Exception
@@ -146,11 +145,9 @@ final class Customer extends \Df\Sso\Customer {
 	}
 
 	/**
-	 * @param string $path
 	 * @param array(string => mixed) $params
-	 * @return string
 	 */
-	private function requestBasic(string $path, array $params) {
+	private function requestBasic(string $path, array $params):string {
 		/** @var \Zend\Uri\Http $uri */
 		$uri = new \Zend\Uri\Http('https://graph.facebook.com');
 		$uri->setPath($path);
