@@ -174,21 +174,16 @@ final class Customer extends \Df\Sso\Customer {
 
 	/**
 	 * Общую схему запроса взял здесь: https://github.com/thephpleague/oauth2-facebook
+	 * @used-by self::r()
 	 * @return array(string => mixed)
 	 * @throws Exception
 	 */
 	private function responseA():array {return dfc($this, function():array {return $this->req('', [
-		/**
-		 * 2015-10-10
-		 * Все доступные поля перечислены здесь:
-		 * https://developers.facebook.com/docs/graph-api/reference/user
-		 *
-		 * Обратите внимание, что получить адрес страницы пользователя
-		 * мы в 2015 году уже не можем: http://stackoverflow.com/questions/29152500
-		 * «link» возвращает адрес типа
-		 * https://www.facebook.com/app_scoped_user_id/10206714043186313/
-		 * толку нам от него мало.
-		 */
+		# 2015-10-10
+		# 1) Все доступные поля перечислены здесь: https://developers.facebook.com/docs/graph-api/reference/user
+		# 2) Получить адрес страницы пользователя мы в 2015 году уже не можем: http://stackoverflow.com/questions/29152500
+		# «link» возвращает адрес типа https://www.facebook.com/app_scoped_user_id/10206714043186313/
+		# Толку нам от него мало.
 		'fields' => df_csv([
 			'email'
 			,'first_name'
