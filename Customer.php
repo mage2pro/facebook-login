@@ -194,12 +194,10 @@ final class Customer extends \Df\Sso\Customer {
 			,'name'
 			,'name_format'
 			,'timezone'
-			/**
-			 * 2015-10-10
-			 * Предварительно надо настроить учётную запись на https://business.facebook.com/
-			 * https://developers.facebook.com/docs/apps/for-business
-			 * Иначе будет сбой: «Application must be associated with a business».
-			 */
+			# 2015-10-10
+			# Предварительно надо настроить учётную запись на https://business.facebook.com/
+			# https://developers.facebook.com/docs/apps/for-business
+			# Иначе будет сбой: «Application must be associated with a business».
 			,'token_for_business'
 			/**
 			 * 2015-10-12
