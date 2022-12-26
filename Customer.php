@@ -38,6 +38,7 @@ final class Customer extends \Df\Sso\Customer {
 
 	/**
 	 * https://developers.facebook.com/docs/facebook-login/access-tokens#extending
+	 * @used-by self::request()
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 */
 	function longLivedAccessToken():string {return dfc($this, function():string {
@@ -145,9 +146,7 @@ final class Customer extends \Df\Sso\Customer {
 		$fullPath = '/' . implode('/', df_clean(['v2.5', $this->appScopedId(), $path]));
 		$responseAsJson = $this->requestBasic($fullPath, $params + [
 			'access_token' => $this->longLivedAccessToken(),
-			'appsecret_proof' => hash_hmac(
-				'sha256', $this->longLivedAccessToken(), Credentials::s()->appSecret()
-			)
+			'appsecret_proof' => hash_hmac('sha256', $this->longLivedAccessToken(), Credentials::s()->appSecret())
 		]); /** @var string $responseAsJson */
 		return $this->responseJson($responseAsJson);
 	}
