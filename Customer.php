@@ -118,6 +118,7 @@ final class Customer extends \Df\Sso\Customer {
 	});}
 
 	/**
+	 * Общую схему запроса взял здесь: https://github.com/thephpleague/oauth2-facebook
 	 * @used-by self::_dob()
 	 * @used-by self::email()
 	 * @used-by self::gender()
@@ -127,44 +128,40 @@ final class Customer extends \Df\Sso\Customer {
 	 * @used-by self::nameLast()
 	 * @used-by self::nameMiddle()
 	 */
-	private function r(string $k):string {
-		# Общую схему запроса взял здесь: https://github.com/thephpleague/oauth2-facebook
-		$a = dfc($this, function():array {return $this->req('', [
+	private function r(string $k):string {return (string)dfaoc($this, function():array {return $this->req('', [
+		# 2015-10-10
+		# 1) Все доступные поля перечислены здесь: https://developers.facebook.com/docs/graph-api/reference/user
+		# 2) Получить адрес страницы пользователя мы в 2015 году уже не можем: http://stackoverflow.com/questions/29152500
+		# «link» возвращает адрес типа https://www.facebook.com/app_scoped_user_id/10206714043186313/
+		# Толку нам от него мало.
+		'fields' => df_csv(
+			'email'
+			,'first_name'
+			,'gender'
+			,'last_name'
+			,'locale'
+			,'middle_name'
+			,'name'
+			,'name_format'
+			,'timezone'
 			# 2015-10-10
-			# 1) Все доступные поля перечислены здесь: https://developers.facebook.com/docs/graph-api/reference/user
-			# 2) Получить адрес страницы пользователя мы в 2015 году уже не можем: http://stackoverflow.com/questions/29152500
-			# «link» возвращает адрес типа https://www.facebook.com/app_scoped_user_id/10206714043186313/
-			# Толку нам от него мало.
-			'fields' => df_csv(
-				'email'
-				,'first_name'
-				,'gender'
-				,'last_name'
-				,'locale'
-				,'middle_name'
-				,'name'
-				,'name_format'
-				,'timezone'
-				# 2015-10-10
-				# Предварительно надо настроить учётную запись на https://business.facebook.com/
-				# https://developers.facebook.com/docs/apps/for-business
-				# Иначе будет сбой: «Application must be associated with a business».
-				,'token_for_business'
-				# 2015-10-12
-				# 1) Администратор Magento в состоянии назначить дату рождения
-				# обязательной для указания покупателями.
-				# 2) Facebook может не вернуть дату, а также вернуть её лишь частично:
-				# https://developers.facebook.com/docs/graph-api/reference/user
-				# «The person's birthday.
-				# This is a fixed format string, like MM/DD/YYYY.
-				# However, people can control who can see the year they were born
-				# separately from the month and day
-				# so this string can be only the year (YYYY) or the month + day (MM/DD)»
-				,'birthday'
-			)
-		]);});
-		return (string)dfa($a, $k);
-	}
+			# Предварительно надо настроить учётную запись на https://business.facebook.com/
+			# https://developers.facebook.com/docs/apps/for-business
+			# Иначе будет сбой: «Application must be associated with a business».
+			,'token_for_business'
+			# 2015-10-12
+			# 1) Администратор Magento в состоянии назначить дату рождения
+			# обязательной для указания покупателями.
+			# 2) Facebook может не вернуть дату, а также вернуть её лишь частично:
+			# https://developers.facebook.com/docs/graph-api/reference/user
+			# «The person's birthday.
+			# This is a fixed format string, like MM/DD/YYYY.
+			# However, people can control who can see the year they were born
+			# separately from the month and day
+			# so this string can be only the year (YYYY) or the month + day (MM/DD)»
+			,'birthday'
+		)
+	]);}, $k);}
 
 	/**
 	 * @used-by self::picture()
