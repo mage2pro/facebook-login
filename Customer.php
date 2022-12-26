@@ -81,7 +81,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @used-by \Dfe\FacebookLogin\Controller\Index\Index::customerData()
 	 * @return string
 	 */
-	function picture() {return dfc($this, function() {return df_result_sne(dfa_deep(
+	function picture():string {return dfc($this, function():string {return df_result_sne(dfa_deep(
 		$this->request('picture', ['redirect' => 'false']), 'data/url'
 	));});}
 
