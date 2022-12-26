@@ -128,7 +128,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @used-by self::nameLast()
 	 * @used-by self::nameMiddle()
 	 */
-	private function r(string $k):string {return (string)dfaoc($this, function():array {return $this->req('', [
+	private function r(string $k):string {return dfaoc($this, function():array {return $this->req('', [
 		# 2015-10-10
 		# 1) Все доступные поля перечислены здесь: https://developers.facebook.com/docs/graph-api/reference/user
 		# 2) Получить адрес страницы пользователя мы в 2015 году уже не можем: http://stackoverflow.com/questions/29152500
@@ -161,7 +161,7 @@ final class Customer extends \Df\Sso\Customer {
 			# so this string can be only the year (YYYY) or the month + day (MM/DD)»
 			,'birthday'
 		)
-	]);}, $k);}
+	]);}, $k, '');}
 
 	/**
 	 * @used-by self::picture()
