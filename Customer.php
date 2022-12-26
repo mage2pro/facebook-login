@@ -115,14 +115,6 @@ final class Customer extends \Df\Sso\Customer {
 	});}
 
 	/**
-	 * 2015-10-10
-	 * Полученный нами от браузера идентификатор пользователя Facebook не является глобальным:
-	 * он разный для разных приложений.
-	 * @used-by self::request()
-	 */
-	private function appScopedId():string {return df_request('user');}
-
-	/**
 	 * @param string $key
 	 * @return string|null
 	 */
@@ -135,7 +127,10 @@ final class Customer extends \Df\Sso\Customer {
 	 * @throws Exception
 	 */
 	private function request($path, array $params) {
-		$fullPath = '/' . implode('/', df_clean(['v2.5', $this->appScopedId(), $path])); /** @var string $fullPath */
+		# 2015-10-10
+		# Полученный нами от браузера идентификатор пользователя Facebook не является глобальным: н разный для разных приложений.
+		$appScopedId = df_request('user'); /** @var string $appScopedId */
+		$fullPath = '/' . implode('/', df_clean(['v2.5', $appScopedId, $path])); /** @var string $fullPath */
 		$responseAsJson = $this->requestBasic($fullPath, $params + [
 			'access_token' => $this->longLivedAccessToken(),
 			'appsecret_proof' => hash_hmac('sha256', $this->longLivedAccessToken(), Credentials::s()->appSecret())
