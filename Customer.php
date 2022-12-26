@@ -221,6 +221,6 @@ final class Customer extends \Df\Sso\Customer {
 		return $r;
 	}
 
-	/** @return string */
+	/** @used-by self::longLivedAccessToken() */
 	private function token():string {return df_request('token');}
 }
