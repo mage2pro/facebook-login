@@ -168,8 +168,8 @@ final class Customer extends \Df\Sso\Customer {
 			->setUri($u)
 			->setOptions(['timeout' => 10])
 		;
-		$response = $c->send(); /** @var \Zend\Http\Response $response */
-		return $response->getBody();
+		$res = $c->send(); /** @var \Zend\Http\Response $res */
+		return $res->getBody();
 	}
 
 	/**
