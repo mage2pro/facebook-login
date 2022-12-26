@@ -115,10 +115,10 @@ final class Customer extends \Df\Sso\Customer {
 	});}
 
 	/**
-	 * @param string $key
+	 * @param string $k
 	 * @return string|null
 	 */
-	private function r($key) {return dfa($this->responseA(), $key);}
+	private function r($k) {return dfa($this->responseA(), $k);}
 
 	/**
 	 * @param string $path
