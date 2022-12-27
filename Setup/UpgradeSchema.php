@@ -9,7 +9,7 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	 * @see \Df\Sso\Upgrade\Schema::_process()
 	 * @used-by \Df\Framework\Upgrade::process()
 	 */
-	final protected function _process() {
+	final protected function _process():void {
 		parent::_process();
 		if ($this->isInitial()) {
 			# 2015-10-10 Не хочу проблем из-за идиотов с длинными именами, поэтому пусть будет 255.
