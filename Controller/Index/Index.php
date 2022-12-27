@@ -36,7 +36,7 @@ class Index extends _P {
 	 * @used-by self::customerFieldsToSync()
 	 * @return array(mixed => mixed)
 	 */
-	private function customerDataCustom() {return dfc($this, function() {return [
+	private function customerDataCustom():array {return dfc($this, function():array {return [
 		Schema::F__FULL_NAME => $this->c()->nameFull()
 		,Schema::F__LONG_LIVED_ACCESS_TOKEN => $this->c()->longLivedAccessToken()
 		,Schema::F__PICTURE => $this->c()->picture()
