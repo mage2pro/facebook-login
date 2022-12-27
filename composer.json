@@ -1,6 +1,6 @@
 {
 	"name": "mage2pro/facebook-login"
-	,"version": "1.4.3"
+	,"version": "1.5.0"
 	,"description": "The «Facebook Login» extension for Magento 2"
 	,"type": "magento2-module"
 	,"homepage": "https://mage2.pro/c/extensions/facebook-login"
@@ -14,7 +14,7 @@
 	,"require": {
 		"zendframework/zend-http": "*"
 		,"zendframework/zend-uri": "*"
-		,"mage2pro/core": ">=6.8.6"
+		,"mage2pro/core": ">=9.0.3"
 		,"mage2pro/facebook": ">=1.0.9"
 	}
 	,"autoload": {"files": ["registration.php"], "psr-4": {"Dfe\\FacebookLogin\\": ""}}
