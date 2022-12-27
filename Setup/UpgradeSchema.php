@@ -62,10 +62,9 @@ class UpgradeSchema extends \Df\Sso\Upgrade\Schema {
 	const F__PICTURE = 'dfe_fb__picture';
 	/**
 	 * 2015-10-10
-	 * Обратите внимание, что получить адрес страницы пользователя
-	 * мы в 2015 году уже не можем: http://stackoverflow.com/questions/29152500
-	 * «link» возвращает адрес типа
-	 * https://www.facebook.com/app_scoped_user_id/10206714043186313/
-	 * толку нам от него мало.
+	 * Обратите внимание, что получить адрес страницы пользователя мы в 2015 году уже не можем:
+	 * http://stackoverflow.com/questions/29152500
+	 * «link» возвращает адрес типа https://www.facebook.com/app_scoped_user_id/10206714043186313/
+	 * Толку нам от него мало.
 	 */
 }
