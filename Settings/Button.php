@@ -7,7 +7,6 @@ class Button extends \Df\Sso\Settings\Button {
 	 * 2016-11-25
 	 * @see \Dfe\FacebookLogin\Source\Button\Size
 	 * @used-by \Dfe\FacebookLogin\Button::loggedOut()
-	 * @return string
 	 */
-	function nativeSize() {return $this->v();}
+	function nativeSize():string {return $this->v();}
 }
