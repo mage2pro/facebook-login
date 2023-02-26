@@ -2,9 +2,9 @@
 namespace Dfe\FacebookLogin;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\Settings\Credentials;
-use Zend\Http\Client as zClient;
-use Zend\Http\Client\Adapter\Curl;
-use Zend\Uri\Http as zHttp;
+use Laminas\Http\Client as zClient;
+use Laminas\Http\Client\Adapter\Curl;
+use Laminas\Uri\Http as zHttp;
 final class Customer extends \Df\Sso\Customer {
 	/**
 	 * 2015-10-12
@@ -202,7 +202,7 @@ final class Customer extends \Df\Sso\Customer {
 			->setUri($u)
 			->setOptions(['timeout' => 10])
 		;
-		$res = $c->send(); /** @var \Zend\Http\Response $res */
+		$res = $c->send(); /** @var \Laminas\Http\Response $res */
 		return $res->getBody();
 	}
 
