@@ -71,5 +71,5 @@ class Button extends _P {
 	 * @see \Df\Sso\Button::loggedOut()
 	 * @used-by \Df\Sso\Button::_toHtml()
 	 */
-	final protected function loggedOut():string {return parent::loggedOut() . \Df\Facebook\I::init();}
+	final protected function loggedOut():string {return parent::loggedOut() . \Dfe\Facebook\I::init();}
 }
