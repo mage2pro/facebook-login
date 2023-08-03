@@ -215,8 +215,8 @@ final class Customer extends \Df\Sso\Customer {
 	 */
 	private function responseJson(string $j):array {
 		df_assert_array($r = df_json_decode($j)); /** @var array(string => mixed) $r */
-		if ($error = dfa($r, 'error')) { /** @var array(string => string)|null $error */
-			throw new Exception($error);
+		if ($e = dfa($r, 'error')) { /** @var array(string => string)|null $e */
+			throw new Exception($e);
 		}
 		return $r;
 	}
