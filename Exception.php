@@ -1,6 +1,7 @@
 <?php
 namespace Dfe\FacebookLogin;
 # 2015-10-10
+/** @used-by \Dfe\FacebookLogin\Customer::responseJson() */
 final class Exception extends \Df\Core\Exception {
 	/**
 	 * 2015-10-10
