@@ -1,6 +1,7 @@
 <?php
 namespace Dfe\FacebookLogin;
 use Df\Customer\Model\Gender;
+use Dfe\FacebookLogin\ResponseValidator as RV;
 use Dfe\FacebookLogin\Settings\Credentials;
 use Laminas\Http\Client as zClient;
 use Laminas\Http\Client\Adapter\Curl;
@@ -168,7 +169,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @used-by self::responseA()
 	 * @param array(string => mixed) $params
 	 * @return array(string => mixed)
-	 * @throws Exception
+	 * @throws RV
 	 */
 	private function req(string $path, array $params):array {
 		# 2015-10-10
@@ -211,12 +212,13 @@ final class Customer extends \Df\Sso\Customer {
 	 * @used-by self::longLivedAccessToken()
 	 * @used-by self::r()
 	 * @return array(satring => mixed)
-	 * @throws Exception
+	 * @throws RV
 	 */
 	private function responseJson(string $j):array {
 		df_assert_array($r = df_json_decode($j)); /** @var array(string => mixed) $r */
-		if ($e = dfa($r, 'error')) { /** @var array(string => string)|null $e */
-			throw new Exception($e);
+		$rv = new RV($r); /** @var RV $rv */
+		if (!$rv->valid()) {
+			throw $rv;
 		}
 		return $r;
 	}
