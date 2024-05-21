@@ -2,7 +2,7 @@
 namespace Dfe\FacebookLogin;
 # 2015-10-10
 /** @used-by \Dfe\FacebookLogin\Customer::responseJson() */
-final class Exception extends \Df\Core\Exception {
+final class ResponseValidator extends \Df\API\Response\Validator {
 	/**
 	 * 2015-10-10
 	 * @override
