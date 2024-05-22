@@ -10,10 +10,7 @@ final class ResponseValidator extends \Df\API\Response\Validator {
 	 * @used-by \Df\API\Client::_p()
 	 * @used-by \Df\API\Exception::message()
 	 */
-	function short():string {
-		$e = $this->r(); /** @var array(string => string) $e */
-		return "Facebook API error of type {$e['type']}: «{$e['message']}».";
-	}
+	function short():string {return "Facebook API error of type {$this->r('type')}: «{$this->r('message')}».";}
 
 	/**
 	 * 2024-05-22 "Remove `Df\Core\Exception::$_data`": https://github.com/mage2pro/core/issues/385
