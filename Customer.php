@@ -19,7 +19,7 @@ final class Customer extends \Df\Sso\Customer {
 	 * @see \Df\Sso\Customer::email()
 	 * @used-by \Df\Sso\CustomerReturn::customerData()
 	 */
-	function email():string {return df_contains($r = $this->r('email'), '@') ? $r : '';}
+	function email():string {return df_is_email($r = $this->r('email')) ? $r : '';}
 
 	/**
 	 * @override
