@@ -112,7 +112,7 @@ final class Customer extends \Df\Sso\Customer {
 		if ($raw = $this->r('birthday')) { /** @var string $raw */
 			$a = df_int(explode('/', $raw)); /** @var string[] $a */
 			$count = count($a); /** @var int $count */
-			$r = new \DateTime;
+			$r = new DT;
 			# 2022-10-27 https://3v4l.org/WEpEk
 			$r->setDate(...(1 === $count ? [$raw, 1, 1] : [2 === $count ? 1900 : $a[2], $a[0], $a[1]]));
 		}
