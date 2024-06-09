@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\FacebookLogin;
+use DateTime as DT;
 use Df\Customer\Model\Gender;
 use Dfe\FacebookLogin\ResponseValidator as RV;
 use Dfe\FacebookLogin\Settings\Credentials;
@@ -106,8 +107,8 @@ final class Customer extends \Df\Sso\Customer {
 	 * @used-by \Df\Sso\Customer::dob()
 	 * @return \DateTime|null
 	 */
-	protected function _dob() {return dfc($this, function() {
-		$r = null; /** @var \DateTime|null $r */
+	protected function _dob():?DT {return dfc($this, function():?DT {
+		$r = null; /** @var ?DT $r */
 		if ($raw = $this->r('birthday')) { /** @var string $raw */
 			$a = df_int(explode('/', $raw)); /** @var string[] $a */
 			$count = count($a); /** @var int $count */
